@@ -1,0 +1,16 @@
+{
+  "source": {
+    "file": "TTB_Tiny_Toolbox_v0.8.0_GITHUB_SOURCE.zip",
+    "entries": 43,
+    "integrity": "PASS",
+    "bytes": 58690,
+    "sha256": "fb19ff58b597ccc6a84572422d9838a4cd694d2da0e49151d54e103e05e0fa90"
+  },
+  "complete": {
+    "file": "TTB_Tiny_Toolbox_v0.8.0_GITHUB_COMPLETE_ALL_FILES.zip",
+    "entries": 45,
+    "integrity": "PASS",
+    "bytes": 162041,
+    "sha256": "bdae7b4683c6b0a4646257781972d19693aad7b0de9220dcf4e2e241e3fd9888"
+  }
+}
