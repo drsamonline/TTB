@@ -137,7 +137,7 @@
       const frame = document.createElement('iframe');
       frame.className = 'preview';
       frame.setAttribute('sandbox', 'allow-scripts');
-      frame.srcdoc = `<!doctype html><html><head><meta charset="utf-8"></head><body style="margin:0">${text}</body></html>`;
+      frame.srcdoc = `<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;background:#0f1115;color:#e8eaed;font:13px system-ui}</style></head><body>${text}</body></html>`;
       output.appendChild(frame);
     } else if (meta.output === 'image') {
       const wrap = document.createElement('div'); wrap.className = 'imgwrap';

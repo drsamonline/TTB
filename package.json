@@ -1,13 +1,14 @@
 {
   "name": "ttb-tiny-toolbox",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "private": true,
   "type": "module",
-  "description": "TTB — Tiny Toolbox: a privacy-first offline Chrome toolbox.",
+  "description": "TTB \u2014 Tiny Toolbox: a privacy-first offline Chrome toolbox.",
   "author": "Dr. Sohil Momin",
   "license": "MIT",
   "scripts": {
     "test": "node test.mjs",
-    "check": "node --check background.js"
+    "check": "node --check background.js",
+    "shots": "node screenshots.mjs"
   }
 }

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.9.1 — Documentation and presentation
+- Added README badges (build status, license, version, Manifest V3, Chrome version, tool/category counts, no-network).
+- Added real screenshots of the UI under `docs/screenshots/`, captured from the extension in headless Chrome, and a `npm run shots` script that regenerates them.
+- **Fixed:** HTML-preview results rendered on a white iframe while many tools style their text for a dark background, making them hard to read. The preview now inherits the extension's dark theme.
+
 ## 0.9.0 — Full implementation, hardening and documentation pass
 
 ### Implemented

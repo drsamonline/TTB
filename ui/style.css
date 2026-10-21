@@ -39,7 +39,7 @@ textarea{resize:vertical;min-height:80px;font-family:ui-monospace,SFMono-Regular
 #run:hover{background:#3a6ae8}
 .output-label{font-size:11px;color:#9da3ae;margin-bottom:4px}
 .output{min-height:120px}
-.preview{width:100%;height:340px;border:1px solid #343945;border-radius:8px;background:#fff}
+.preview{width:100%;height:340px;border:1px solid #343945;border-radius:8px;background:#0f1115}
 .imgwrap{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
 .imgwrap img{max-width:100%;border-radius:8px;border:1px solid #343945;background:#fff}
 .imgwrap a{color:#7aa2ff;font-size:12px}

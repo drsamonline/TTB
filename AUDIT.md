@@ -1,6 +1,6 @@
-# TTB v0.9.0 — Audit & coverage report
+# TTB v0.9.1 — Audit & coverage report
 
-This report describes the state of the repository at v0.9.0, after the implementation, hardening and documentation pass. Every number below is produced by the shipped smoke test (`node test.mjs`) and the registry, not by hand.
+This report describes the state of the repository at v0.9.1 (the v0.9.0 implementation pass plus README badges and UI screenshots). Every number below is produced by the shipped smoke test (`node test.mjs`) and the registry, not by hand.
 
 ## Coverage
 
