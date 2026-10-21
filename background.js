@@ -1,13 +1,29 @@
-chrome.runtime.onInstalled.addListener(async()=>{
- try{await chrome.contextMenus.removeAll();await chrome.contextMenus.create({id:'ttb-open',title:'Open TTB',contexts:['page','selection']});}catch{}
- try{await chrome.sidePanel.setPanelBehavior({openPanelOnActionClick:false});}catch{}
+// TTB — Tiny Toolbox · service worker
+// Kept deliberately small: it only wires up the context menu and keyboard
+// commands. No remote code, no network, no message surface.
+const canOpenPopup = typeof chrome.action?.openPopup === 'function';
+
+chrome.runtime.onInstalled.addListener(async () => {
+  try {
+    await chrome.contextMenus.removeAll();
+    chrome.contextMenus.create({ id: 'ttb-open', title: 'Open TTB', contexts: ['page', 'selection'] });
+  } catch {}
+  try {
+    await chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: false });
+  } catch {}
 });
-chrome.contextMenus.onClicked.addListener(()=>chrome.action.openPopup().catch(()=>{}));
-chrome.commands.onCommand.addListener(async command=>{
- if(command==='open-popup')await chrome.action.openPopup().catch(()=>{});
- if(command==='focus-search')await chrome.sidePanel.open({windowId:(await chrome.windows.getCurrent()).id}).catch(()=>{});
+
+chrome.contextMenus.onClicked.addListener(async () => {
+  try { if (canOpenPopup) await chrome.action.openPopup(); } catch {}
 });
-chrome.runtime.onMessage.addListener((msg,sender,sendResponse)=>{
- if(msg?.type==='open-sidepanel')chrome.sidePanel.open({windowId:sender.tab?.windowId}).then(()=>sendResponse({ok:true})).catch(e=>sendResponse({ok:false,error:e.message}));
- return true;
+
+chrome.commands.onCommand.addListener(async (command) => {
+  try {
+    if (command === 'open-popup') {
+      if (canOpenPopup) await chrome.action.openPopup();
+    } else if (command === 'focus-search') {
+      const win = await chrome.windows.getCurrent();
+      await chrome.sidePanel.open({ windowId: win.id });
+    }
+  } catch {}
 });

@@ -46,7 +46,6 @@ export async function runText(name,ctx={}){
  if(n==='leetspeak')return s.replace(/[aAeEiIoOsStTbBgG]/g,c=>({a:'4',e:'3',i:'1',o:'0',s:'5',t:'7',b:'8',g:'9'}[c.toLowerCase()]??c));
  if(n==='pig latin')return s.replace(/\b[\p{L}]+\b/gu,w=>/^[aeiou]/i.test(w)?w+'way':w.slice(1)+w[0]+'ay');
  if(n==='sentence length variance'){const a=(s.match(/[^.!?]+[.!?]+/g)||[]).map(x=>words(x).length);if(!a.length)return '0';const mean=a.reduce((x,y)=>x+y,0)/a.length;return String(a.reduce((x,y)=>x+(y-mean)**2,0)/a.length)}
- if(n==='reading time'||n==='speaking time') return '';
  return null;
 }
 function countWordSyllables(w){const x=w.toLowerCase().replace(/[^a-z]/g,'');if(!x)return 0;if(x.length<=3)return 1;const m=x.match(/[aeiouy]+/g)||[];let n=m.length;if(/e$/.test(x)&&n>1)n--;return Math.max(1,n)}

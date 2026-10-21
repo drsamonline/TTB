@@ -1,5 +1,11 @@
 function num(s){const x=Number(String(s).trim());if(!Number.isFinite(x))throw Error('Enter a valid number');return x}
 function expr(s){if(!/^[0-9+\-*/%().,\s^]+$/.test(s))throw Error('Only numeric arithmetic is allowed');return Function(`"use strict";return (${s.replace(/\^/g,'**')})`)()}
+const PW_ALNUM='ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789';
+const PW_SYMS='!@#$%^&*()-_=+[]{};:,.?';
+function randInt(max){if(!(max>0))return 0;const lim=Math.floor(256/max)*max;const b=new Uint8Array(1);let x;do{crypto.getRandomValues(b);x=b[0];}while(x>=lim);return x%max;}
+function pickSet(set,n){let o='';for(let i=0;i<n;i++)o+=set[randInt(set.length)];return o;}
+function genPassword(len,charset){const n=Math.max(4,Math.min(256,Number(len)||16));const set=charset==='letters'?PW_ALNUM.replace(/[0-9]/g,''):charset==='alphanumeric'?PW_ALNUM:charset==='symbols'?PW_SYMS:PW_ALNUM+PW_SYMS;return pickSet(set,n);}
+function genPin(len){return pickSet('0123456789',Math.max(4,Math.min(12,Number(len)||6)));}
 export async function runCalc(name,ctx={}){const s=String(ctx.text??''),n=name.toLowerCase();
  if(n==='live calculator'||n==='scientific')return String(expr(s));
  if(n==='percentage') {const a=String(ctx.a??'').trim(),b=String(ctx.b??'').trim();return a&&b?String(num(a)*num(b)/100):String(expr(s));}
@@ -31,7 +37,7 @@ export async function runCalc(name,ctx={}){const s=String(ctx.text??''),n=name.t
  if(n==='random number')return String(Math.floor(Math.random()*1000000));
  if(n==='dice')return String(1+Math.floor(Math.random()*6));
  if(n==='coin flip')return Math.random()<.5?'Heads':'Tails';
- if(n==='password generator'){const bytes=crypto.getRandomValues(new Uint8Array(24));return [...bytes].map(x=>'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%^&*'[x%72]).join('').slice(0,16)}
- if(n==='pin generator')return String(Math.floor(100000+Math.random()*900000));
+ if(n==='password generator')return genPassword(ctx.length,ctx.charset);
+ if(n==='pin generator')return genPin(ctx.length);
  return null;
 }

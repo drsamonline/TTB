@@ -1,8 +1,9 @@
 {
-  "project": "TTB \u2014 Tiny Toolbox",
-  "version": "0.8.0",
+  "project": "TTB — Tiny Toolbox",
+  "version": "0.9.0",
   "author": "Dr. Sohil Momin",
   "catalog_entries": 590,
-  "integrated_handlers": 87,
+  "handlers_wired": 590,
+  "lazy_dependency_stubs": 24,
   "license": "MIT"
 }

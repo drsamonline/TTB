@@ -10,12 +10,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check JavaScript syntax
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Syntax-check every JavaScript module
         shell: bash
         run: |
           set -e
-          find . -type f -name '*.js' -not -path './.git/*' -print0 |
+          find . -type f -name '*.js' -not -path './.git/*' -not -path './node_modules/*' -print0 |
+            xargs -0 -n1 node --check
+          find . -type f -name '*.mjs' -not -path './.git/*' -not -path './node_modules/*' -print0 |
             xargs -0 -n1 node --check
 
       - name: Validate manifest
         run: node -e "JSON.parse(require('fs').readFileSync('manifest.json','utf8')); console.log('manifest OK')"
+
+      - name: Run the smoke test
+        run: node test.mjs

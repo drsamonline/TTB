@@ -1,103 +1,65 @@
 # TTB — Tiny Toolbox
 
-> **590 tools. Lightweight architecture. Zero framework bloat.**
+> **590 tools. One popup. No framework, no telemetry, no remote code.**
 
-TTB (Tiny Toolbox) is a Manifest V3 Chrome extension designed to put a broad collection of small utilities in one fast, privacy-conscious interface instead of requiring a separate website or extension for every small task.
+TTB (Tiny Toolbox) is a Manifest V3 Chrome extension that gathers a large collection of small utilities — text, calculations, developer helpers, page tools, data, design, finance, media, security, accessibility and more — into one fast, offline-first interface, instead of a separate tab or extension for every small task.
 
-## Why TTB is useful
+## What's in it
 
-### 1. One toolbox instead of dozens of tabs
-TTB brings everyday utilities into one extension: text processing, calculations, developer utilities, page tools, design helpers, data utilities, communication helpers, accessibility utilities, finance, SEO, networking, education, productivity, media and more.
+- **590 cataloged tools across 18 categories**, all reachable from the popup or the side panel.
+- **A real category browser** — pick a category, see its count, then search within it. You don't need to know a tool's name to find it.
+- **Per-tool inputs.** Multi-field tools (EMI, tax, tip, regex, colour, matrix, image jobs…) render the fields they actually need — encode/decode switches, extra values, and file pickers for media tools.
+- **Text, HTML and image output.** Rich results (markdown previews, colour palettes, CSS generators, charts, even small games) render in a sandboxed preview; images render inline with a download link.
+- **Destructive actions are gated.** History/cookie/cache cleaners, duplicate-tab closing and auto-close are dry-run by default and only act after you tick an explicit confirmation.
 
-### 2. Browse by category — not just search
-The interface includes a dedicated **Browse by category** panel. Users can see the available categories and their tool counts immediately, select a category, and then search within that category.
+## How it is built
 
-This is important for discoverability: users do not need to know the name of a tool before they can find it.
+```
+popup.html / sidebar.html
+  ├─ data/tools.js        → globalThis.TTB_CATALOG  (590 entries)
+  └─ ui/app.js            → renders the catalog, builds inputs, runs tools
+       └─ (on first Run) tools/core.js  → dispatcher
+            ├─ text · calc · dev · page · system · security   (core handlers)
+            ├─ phase4–7 + t-*.js                              (bundled modules)
+            └─ ui/registry.js                                 (name → handler, inputs)
+background.js             → context menu + keyboard commands only
+lazy/loader.js            → optional third-party loader (nothing is downloaded)
+```
 
-### 3. Fast and lightweight architecture
-TTB uses vanilla JavaScript and browser-native APIs instead of a large application framework. The catalog is separated from the execution engine so browsing does not unnecessarily depend on every tool implementation.
+The catalog is separated from execution, so the tool list renders even if a handler or a privileged API fails. Tool execution is imported on demand. There is **no network layer** in the extension: nothing is fetched, phoned home, or loaded remotely.
 
-### 4. Local-first design
-The project is designed around local execution and minimal network dependence. The core extension does not include a telemetry/analytics layer.
+## Honest limitations
 
-### 5. Privacy-conscious permissions
-The extension avoids broad host permissions and uses Chrome permissions for specific browser capabilities. Review `manifest.json` and `PRIVACY.md` before deployment.
-
-### 6. Large catalog with honest implementation status
-The catalog contains **590 tools**. The current audited codebase contains **87 integrated handlers**. The remaining catalog entries are intentionally retained as catalog/fallback entries rather than being falsely presented as complete implementations.
-
-### 7. Search plus browsing
-Search remains useful when you know approximately what you need. It now works alongside category browsing rather than replacing it.
-
-### 8. GitHub-ready project structure
-The repository includes issue templates, a GitHub Actions validation workflow, contribution guidance, security guidance, privacy documentation, warnings, installation instructions, usage documentation, changelog and an MIT license.
-
-## Category browser
-
-The popup and side panel expose the catalog's **18 categories** directly. Each category displays its current tool count. Selecting a category filters the list; the search field then searches within that category. **All Tools** restores the complete catalog.
-
-The catalog categories are:
-
-- Accessibility
-- Calculators & Converters
-- Communication
-- Data
-- Design & Color
-- Developer
-- Education
-- Finance
-- Fun & Misc
-- Media & Files
-- Network
-- Page Tools
-- Productivity
-- SEO
-- Security
-- System & Browser
-- Text & Writing
-- Unique
-
-The exact catalog is authoritative in `data/tools.js`.
-
-## Honest limitations / cons
-
-TTB is intentionally not presented as a finished replacement for every specialist application. Important limitations are:
-
-- **Not every catalog entry is fully implemented yet.** There are 590 catalogue entries but 87 audited integrated handlers.
-- **Some tools are lightweight implementations.** A few entries provide guidance, generators or browser-native functionality rather than the depth of a dedicated specialist application.
-- **Some browser tools require permissions or an appropriate page context.** Features involving tabs, scripting, bookmarks, history, downloads or page content can fail on restricted Chrome pages or where Chrome does not expose the requested API.
-- **Heavy third-party tools are not automatically bundled.** Phase 7 tools that depend on large external libraries require those libraries to be supplied and reviewed for licensing, security and distribution requirements.
-- **Chrome compatibility matters.** Chrome extension APIs can change. A release should be tested against the target Chrome version before production deployment.
-- **The popup is space-constrained.** Category browsing improves discovery, but a 590-tool catalog still cannot display every tool simultaneously in a small popup.
-- **Some advanced utilities are intentionally modest.** TTB favors a small local footprint over reproducing the complete feature set of large applications.
-- **Privileged tools require care.** Browser-management tools necessarily have more powerful permissions than purely computational tools. Users should review the permissions and privacy documentation.
+- **Optional third-party libraries are not bundled.** 24 tools (PDF merge/split/rotate, PDF→text, OCR, Excel viewer, Prettier, OpenPGP, QR scanning helpers, axe-core, zxcvbn…) report their required local dependency instead of pretending to run. No remote code is fetched.
+- **Some tools are intentionally lightweight.** A few provide guidance, generators or browser-native behaviour rather than the depth of a specialist app.
+- **Browser tools need the right context.** Tab, history, cookie, bookmark, download and page tools can fail on restricted pages (e.g. `chrome://`) or where Chrome does not expose the API.
+- **A few capabilities are limited by Chrome itself.** A per-tab user-agent override, a global notification blocker, WebRTC leak testing and IP lookup cannot be done from an MV3 extension without extra permissions or a network request; those tools say so plainly.
+- **Recording tools are interactive.** Screen/audio/webcam capture need a permission prompt and keep the popup open for the duration.
 
 These limitations are documented deliberately rather than hidden.
 
-## Installation
+## Install
 
 1. Download or clone the repository.
 2. Open `chrome://extensions/`.
 3. Enable **Developer mode**.
-4. Choose **Load unpacked**.
-5. Select the repository root containing `manifest.json`.
-6. Open the TTB popup.
-7. Use **Browse by category** or the search field to find a tool.
+4. Choose **Load unpacked** and select the folder containing `manifest.json`.
+5. Pin TTB, then open the popup. Use **Browse by category** or the search box.
+
+Requires **Chrome 127+** (the extension uses `chrome.action.openPopup`). See `INSTALL.md`.
 
 ## Development
 
-No framework installation is required. TTB uses browser-native JavaScript.
+No build step and no framework. Vanilla JavaScript and browser APIs.
 
-See:
+- `npm test` — runs the smoke test (catalog integrity, dispatcher coverage, registry metadata).
+- CI (`.github/workflows/validate.yml`) syntax-checks every module and runs the smoke test on push.
 
-- `INSTALL.md`
-- `USAGE.md`
-- `CONTRIBUTING.md`
-- `SECURITY.md`
+See `INSTALL.md`, `USAGE.md`, `CONTRIBUTING.md`, `SECURITY.md`, `WARNINGS.md` and `AUDIT.md`.
 
 ## Privacy and security
 
-See `PRIVACY.md`, `SECURITY.md`, and `WARNINGS.md`.
+Local-first: no analytics, no telemetry, no remote code. Privileged tools use the Chrome permissions declared in `manifest.json`. Read `PRIVACY.md` and `SECURITY.md` before deployment, and `WARNINGS.md` for the caveats that matter.
 
 ## License
 

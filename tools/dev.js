@@ -23,7 +23,7 @@ export async function runDev(name,ctx={}){const s=String(ctx.text??''),n=name.to
  if(n==='css specificity'){const x=s.replace(/"[^"]*"|'[^']*'/g,'');return JSON.stringify({ids:(x.match(/#[\w-]+/g)||[]).length,classes:(x.match(/\.[\w-]+|\[[^\]]+\]|:(?!:)[\w-]+/g)||[]).length,elements:(x.match(/(^|[ >+~])([a-z][\w-]*)/gi)||[]).length},null,2)}
  if(n==='ascii table'){const rows=s.split(/\r?\n/).map(r=>r.split(/\t|,/));const w=[];for(const r of rows)r.forEach((c,i)=>w[i]=Math.max(w[i]||0,c.length));return rows.map(r=>'| '+r.map((c,i)=>c.padEnd(w[i])).join(' | ')+' |').join('\n')}
  if(n==='regex tester'){const re=new RegExp(String(ctx.pattern??''),String(ctx.flags??'g'));return [...s.matchAll(re)].map(m=>m[0]).join('\n')}
- if(n==='gitignore gen')return 'node_modules/\n.env\ndist/\ncoverage/\n.DS_Store\n*.log\n';
+ if(n==='.gitignore gen'||n==='gitignore gen')return 'node_modules/\n.env\ndist/\ncoverage/\n.DS_Store\n*.log\n';
  if(n==='dockerfile gen')return 'FROM node:22-alpine\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci --omit=dev\nCOPY . .\nCMD ["npm","start"]\n';
  if(n==='big-o cheatsheet')return 'Array lookup O(1)\nArray search O(n)\nBinary search O(log n)\nHash lookup average O(1)\nMerge sort O(n log n)\nQuick sort average O(n log n)';
  return null;

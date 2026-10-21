@@ -1,11 +1,12 @@
 {
   "manifest_version": 3,
   "name": "TTB — Tiny Toolbox",
-  "version": "0.8.0",
-  "description": "A privacy-first offline toolbox for Chrome with 590 cataloged utilities and lightweight local handlers.",
-  "minimum_chrome_version": "114",
+  "version": "0.9.0",
+  "description": "A privacy-first offline toolbox for Chrome with a 590-tool catalog, a category browser and local handlers.",
+  "minimum_chrome_version": "127",
   "permissions": [
     "activeTab",
+    "tabs",
     "scripting",
     "storage",
     "downloads",
@@ -32,15 +33,15 @@
   "commands": {
     "open-popup": {
       "suggested_key": {
-        "default": "Ctrl+Shift+T"
+        "default": "Alt+Shift+T"
       },
       "description": "Open TTB"
     },
     "focus-search": {
       "suggested_key": {
-        "default": "Ctrl+K"
+        "default": "Alt+Shift+K"
       },
-      "description": "Focus TTB search"
+      "description": "Open TTB in the side panel"
     }
   },
   "icons": {
