@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TTB — Tiny Toolbox · 590 tools. One extension.</title>
+<meta name="description" content="TTB (Tiny Toolbox) is a Manifest V3 browser extension that bundles a 590-tool catalog across 18 categories into one fast, offline-first popup. Chrome, Edge, Firefox and Safari. No framework, no telemetry, no remote code. MIT licensed.">
+<meta name="keywords" content="TTB, Tiny Toolbox, browser extension, Chrome extension, Manifest V3, offline toolbox, developer tools, text tools, calculators, 590 tools, privacy-first, no telemetry, open source, MIT, Firefox extension, Safari extension, Edge extension">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="author" content="Dr. Sohil Momin">
+<meta name="theme-color" content="#2563eb">
+<link rel="canonical" href="https://drsamonline.github.io/TTB/">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TTB — Tiny Toolbox">
+<meta property="og:title" content="TTB — 590 tools. One extension.">
+<meta property="og:description" content="A Manifest V3 browser extension bundling 590 tiny utilities across 18 categories into one offline-first popup. Chrome, Edge, Firefox and Safari. No framework, no telemetry, no remote code.">
+<meta property="og:url" content="https://drsamonline.github.io/TTB/">
+<meta property="og:image" content="https://socialify.git.ci/drsamonline/TTB/image?name=1&amp;owner=1&amp;description=1&amp;language=1&amp;theme=Dark&amp;font=Inter">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="TTB — Tiny Toolbox with 590 functionalities in one small extension for Chrome">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TTB — 590 tools. One extension.">
+<meta name="twitter:description" content="A Manifest V3 browser extension bundling 590 tiny utilities into one offline-first popup. Chrome, Edge, Firefox and Safari. No telemetry, no remote code. MIT.">
+<meta name="twitter:image" content="https://socialify.git.ci/drsamonline/TTB/image?name=1&amp;owner=1&amp;description=1&amp;language=1&amp;theme=Dark&amp;font=Inter">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "TTB — Tiny Toolbox",
+  "alternateName": "TinyToolBox",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Browser Extension",
+  "operatingSystem": "Chrome, Edge, Firefox, Safari",
+  "description": "A Manifest V3 browser extension that gathers 590 small utilities across 18 categories into one fast, offline-first interface. No framework, no telemetry, no remote code.",
+  "url": "https://drsamonline.github.io/TTB/",
+  "downloadUrl": "https://github.com/drsamonline/TTB",
+  "codeRepository": "https://github.com/drsamonline/TTB",
+  "softwareVersion": "0.10.0",
+  "license": "https://opensource.org/licenses/MIT",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "name": "Dr. Sohil Momin" },
+  "keywords": "browser extension, Manifest V3, offline toolbox, developer tools, privacy-first, open source"
+}
+</script>
+
+<style>
+  :root{
+    --ink:#0b1220;
+    --ink-2:#3d4757;
+    --ink-3:#6b7686;
+    --blue:#2563eb;
+    --blue-ink:#1d4ed8;
+    --blue-soft:#eef3fe;
+    --line:#dfe4ec;
+    --line-strong:#c3ccdb;
+    --paper:#ffffff;
+    --paper-2:#f7f9fc;
+    --grid:rgba(37,99,235,.07);
+    --grid-lg:rgba(37,99,235,.11);
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+    --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--sans);font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  /* Blueprint grid, fixed behind everything */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+    background-color:var(--paper);
+    background-image:
+      linear-gradient(to right,var(--grid) 1px,transparent 1px),
+      linear-gradient(to bottom,var(--grid) 1px,transparent 1px);
+    background-size:28px 28px;
+  }
+  body::after{
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background-image:
+      linear-gradient(to right,var(--grid-lg) 1px,transparent 1px),
+      linear-gradient(to bottom,var(--grid-lg) 1px,transparent 1px);
+    background-size:140px 140px;
+  }
+  a{color:var(--blue-ink);text-decoration:none}
+  a:hover{text-decoration:underline}
+  img{max-width:100%;display:block}
+  ::selection{background:rgba(37,99,235,.16)}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .mono{font-family:var(--mono)}
+  .label{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--blue-ink);font-weight:600;
+  }
+  .muted{color:var(--ink-3)}
+  .rule{border:0;border-top:1px solid var(--line);margin:0}
+
+  /* ---------- Nav ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.86);
+    backdrop-filter:saturate(1.4) blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-in{
+    max-width:var(--maxw);margin:0 auto;padding:0 24px;
+    height:60px;display:flex;align-items:center;gap:20px;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em;color:var(--ink)}
+  .brand:hover{text-decoration:none}
+  .brand svg{display:block}
+  .brand small{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--ink-3);text-transform:uppercase;font-weight:600}
+  .nav-links{display:flex;gap:22px;margin-left:auto}
+  .nav-links a{
+    font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--ink-2);font-weight:600;
+  }
+  .nav-links a:hover{color:var(--blue-ink);text-decoration:none}
+  .nav-cta{
+    font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+    font-weight:700;color:#fff;background:var(--blue);padding:9px 14px;border-radius:2px;
+  }
+  .nav-cta:hover{background:var(--blue-ink);text-decoration:none}
+  @media(max-width:820px){.nav-links{display:none}}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+    padding:13px 20px;border-radius:2px;border:1px solid transparent;cursor:pointer;
+    transition:background .15s ease,color .15s ease,border-color .15s ease,transform .15s ease;
+  }
+  .btn:hover{text-decoration:none;transform:translateY(-1px)}
+  .btn-primary{background:var(--blue);color:#fff}
+  .btn-primary:hover{background:var(--blue-ink)}
+  .btn-ghost{background:#fff;color:var(--ink);border-color:var(--line-strong)}
+  .btn-ghost:hover{border-color:var(--blue);color:var(--blue-ink)}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:76px 0 60px;position:relative}
+  .hero .kicker{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:26px}
+  .kicker .dot{width:7px;height:7px;background:var(--blue);border-radius:50%}
+  h1.hero-title{
+    font-size:clamp(2.9rem,8.4vw,6.6rem);
+    line-height:.98;letter-spacing:-.035em;font-weight:800;margin:0 0 6px;
+  }
+  h1.hero-title .blue{color:var(--blue)}
+  .hero-sub{
+    max-width:720px;font-size:clamp(1.02rem,1.6vw,1.22rem);color:var(--ink-2);
+    margin:26px 0 0;line-height:1.62;
+  }
+  .hero-sub strong{color:var(--ink)}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+  .spec-strip{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:52px;
+    border:1px solid var(--line);background:rgba(255,255,255,.7);
+  }
+  .spec-strip .cell{padding:16px 18px;border-right:1px solid var(--line)}
+  .spec-strip .cell:last-child{border-right:0}
+  .spec-strip .k{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+  .spec-strip .v{font-family:var(--mono);font-size:15px;font-weight:700;color:var(--ink);margin-top:4px}
+  @media(max-width:720px){.spec-strip{grid-template-columns:repeat(2,1fr)}.spec-strip .cell:nth-child(2){border-right:0}.spec-strip .cell:nth-child(1),.spec-strip .cell:nth-child(2){border-bottom:1px solid var(--line)}}
+
+  /* ---------- Badges ---------- */
+  .badges{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:30px}
+  .badges img{height:26px}
+  .cchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+  .chip{
+    font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    padding:6px 10px;border:1px solid var(--line-strong);border-radius:2px;background:#fff;color:var(--ink-2);
+    display:inline-flex;align-items:center;gap:7px;
+  }
+  .chip i{width:6px;height:6px;background:var(--blue);display:inline-block;border-radius:50%}
+  .chip.accent{border-color:var(--blue);color:var(--blue-ink);background:var(--blue-soft)}
+
+  /* ---------- Section shell ---------- */
+  section{padding:72px 0;border-top:1px solid var(--line)}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:40px;flex-wrap:wrap}
+  .sec-num{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--blue-ink);letter-spacing:.1em}
+  .sec-head h2{font-size:clamp(1.5rem,3vw,2.15rem);letter-spacing:-.025em;margin:0;font-weight:750}
+  .sec-head p{margin:0;color:var(--ink-3);font-size:.95rem;flex-basis:100%}
+
+  /* ---------- Feature cards ---------- */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);background:#fff}
+  .card{
+    padding:30px 26px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    position:relative;transition:background .18s ease;
+  }
+  .card:nth-child(3n){border-right:0}
+  .card:nth-last-child(-n+3){border-bottom:0}
+  .card:hover{background:var(--paper-2)}
+  .card .ico{width:38px;height:38px;color:var(--blue);margin-bottom:16px}
+  .card h3{margin:0 0 8px;font-size:1.06rem;letter-spacing:-.01em}
+  .card p{margin:0;color:var(--ink-2);font-size:.94rem;line-height:1.6}
+  .card .idx{position:absolute;top:16px;right:18px;font-family:var(--mono);font-size:10px;color:var(--line-strong);letter-spacing:.1em}
+  @media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}.card:nth-child(3n){border-right:1px solid var(--line)}.card:nth-child(2n){border-right:0}.card:nth-last-child(-n+3){border-bottom:1px solid var(--line)}.card:nth-last-child(-n+2){border-bottom:0}}
+  @media(max-width:600px){.cards{grid-template-columns:1fr}.card{border-right:0!important}.card:nth-last-child(-n+2){border-bottom:1px solid var(--line)}.card:last-child{border-bottom:0}}
+
+  /* ---------- Steps ---------- */
+  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);background:#fff}
+  .step{padding:24px 20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .step .n{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--blue-ink);letter-spacing:.1em}
+  .step h4{margin:12px 0 8px;font-size:.98rem;letter-spacing:-.01em}
+  .step p{margin:0;font-size:.88rem;color:var(--ink-2);line-height:1.55}
+  @media(max-width:960px){.steps{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.steps{grid-template-columns:1fr}}
+  .keys{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+  .key{
+    display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;
+    color:var(--ink-2);border:1px solid var(--line);background:#fff;padding:7px 11px;border-radius:2px;
+  }
+  .key kbd{
+    font-family:var(--mono);font-size:11px;font-weight:700;color:var(--ink);
+    background:var(--paper-2);border:1px solid var(--line-strong);border-bottom-width:2px;
+    border-radius:3px;padding:2px 6px;
+  }
+
+  /* ---------- Demo / screenshots ---------- */
+  .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .shot{border:1px solid var(--line);background:#fff;overflow:hidden}
+  .shot.wide{grid-column:span 2}
+  .shot .bar{
+    display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--line);
+    background:var(--paper-2);
+  }
+  .shot .bar .d{width:8px;height:8px;border:1px solid var(--line-strong);border-radius:50%}
+  .shot .bar .t{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-left:4px}
+  .shot img{width:100%;height:auto}
+  .shot figcaption{padding:12px 14px;font-size:.82rem;color:var(--ink-3);border-top:1px solid var(--line)}
+  .shot figcaption b{color:var(--ink-2);font-weight:600}
+  @media(max-width:900px){.shots{grid-template-columns:repeat(2,1fr)}.shot.wide{grid-column:span 2}}
+  @media(max-width:600px){.shots{grid-template-columns:1fr}.shot.wide{grid-column:span 1}}
+
+  /* ---------- Get started ---------- */
+  .getstart{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:start}
+  .panel{border:1px solid var(--line);background:#fff;padding:26px}
+  .panel h3{margin:0 0 6px;font-size:1.05rem}
+  .panel .sub{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:18px}
+  pre.code{
+    font-family:var(--mono);font-size:12.5px;line-height:1.7;background:#0b1220;color:#e6ecf7;
+    border-radius:3px;padding:16px 18px;overflow-x:auto;margin:0;
+  }
+  pre.code .c{color:#7d8aa0}
+  pre.code .b{color:#7fb0ff}
+  .list-check{list-style:none;margin:0;padding:0}
+  .list-check li{display:flex;gap:11px;padding:11px 0;border-bottom:1px solid var(--line);font-size:.92rem;color:var(--ink-2)}
+  .list-check li:last-child{border-bottom:0}
+  .list-check svg{flex:0 0 18px;color:var(--blue);margin-top:3px}
+  .dl-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+  @media(max-width:860px){.getstart{grid-template-columns:1fr}}
+
+  /* ---------- FAQ ---------- */
+  .faq{max-width:860px}
+  details.qa{border:1px solid var(--line);background:#fff;margin-bottom:-1px}
+  details.qa[open]{background:var(--paper-2)}
+  details.qa summary{
+    list-style:none;cursor:pointer;padding:18px 20px;display:flex;align-items:center;gap:14px;
+    font-weight:600;font-size:.98rem;
+  }
+  details.qa summary::-webkit-details-marker{display:none}
+  details.qa summary .q{font-family:var(--mono);font-size:11px;color:var(--blue-ink);letter-spacing:.08em}
+  details.qa summary .plus{margin-left:auto;color:var(--ink-3);transition:transform .2s ease;flex:0 0 auto}
+  details.qa[open] summary .plus{transform:rotate(45deg);color:var(--blue)}
+  details.qa .ans{padding:0 20px 20px 57px;color:var(--ink-2);font-size:.92rem;line-height:1.65}
+  details.qa .ans a{font-weight:600}
+
+  /* ---------- Footer ---------- */
+  footer{border-top:1px solid var(--line);background:var(--paper-2);padding:52px 0 40px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+  .foot-grid h5{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin:0 0 14px}
+  .foot-grid ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+  .foot-grid ul a{font-size:.9rem;color:var(--ink-2)}
+  .foot-bottom{
+    margin-top:38px;padding-top:22px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;
+    font-size:.85rem;color:var(--ink-3);
+  }
+  .foot-bottom .mono{font-size:11px;letter-spacing:.06em}
+  @media(max-width:720px){.foot-grid{grid-template-columns:1fr}}
+
+  /* ---------- Motion ---------- */
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @keyframes drawline{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  .reveal{opacity:0;animation:rise .6s cubic-bezier(.2,.7,.2,1) forwards}
+  .hero .kicker{animation-delay:.02s}
+  h1.hero-title{animation-delay:.08s}
+  .hero-sub{animation-delay:.16s}
+  .hero-cta{animation-delay:.24s}
+  .spec-strip{animation-delay:.32s}
+  .rule-anim{transform-origin:left;animation:drawline .7s cubic-bezier(.2,.7,.2,1) forwards}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .reveal,.rule-anim{animation:none!important;opacity:1!important;transform:none!important}
+    .btn,.card,details.qa summary .plus{transition:none!important}
+    .btn:hover{transform:none}
+  }
+  .skip{
+    position:absolute;left:-9999px;top:0;background:var(--blue);color:#fff;padding:10px 14px;z-index:100;
+    font-family:var(--mono);font-size:12px;border-radius:2px;
+  }
+  .skip:focus{left:12px;top:12px}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ================= NAV ================= -->
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="TTB home">
+      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+        <rect x="1" y="1" width="24" height="24" rx="2" fill="none" stroke="#2563eb" stroke-width="1.6"/>
+        <path d="M6 8h14M6 13h9M6 18h11" stroke="#0b1220" stroke-width="1.6" stroke-linecap="round"/>
+        <rect x="17" y="15" width="5" height="5" fill="#2563eb"/>
+      </svg>
+      <span>TTB<small>&nbsp;Tiny Toolbox</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#demo">Screens</a>
+      <a href="#start">Get started</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="nav-cta" href="https://github.com/drsamonline/TTB" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</header>
+
+<main id="main">
+<span id="top"></span>
+
+<!-- ================= HERO ================= -->
+<div class="hero">
+  <div class="wrap">
+    <div class="kicker reveal">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="label">Manifest V3 · Chrome / Edge / Firefox / Safari</span>
+      <span class="label muted">· MIT licensed</span>
+    </div>
+
+    <h1 class="hero-title reveal">590 tools.<br><span class="blue">One extension.</span></h1>
+
+    <p class="hero-sub reveal">
+      <strong>TTB (Tiny Toolbox)</strong> gathers a large collection of small utilities — text, calculations,
+      developer helpers, page tools, data, design, finance, media, security and accessibility — into one fast,
+      <strong>offline-first</strong> interface, instead of a separate tab or extension for every small task.
+      No framework, no telemetry, no remote code.
+    </p>
+
+    <div class="hero-cta reveal">
+      <a class="btn btn-primary" href="#start">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg>
+        Get TTB — free
+      </a>
+      <a class="btn btn-ghost" href="https://github.com/drsamonline/TTB" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49v-1.7c-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.93-2.35 4.8-4.58 5.05.36.32.68.94.68 1.9v2.82c0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+        View source
+      </a>
+    </div>
+
+    <!-- Live shields badges -->
+    <div class="badges reveal" aria-label="Repository badges">
+      <a href="https://github.com/drsamonline/TTB/stargazers" target="_blank" rel="noopener"><img src="https://img.shields.io/github/stars/drsamonline/TTB?style=for-the-badge&amp;logo=github&amp;labelColor=0b1220" alt="GitHub stars" onerror="this.style.display='none'"></a>
+      <a href="https://github.com/drsamonline/TTB/network/members" target="_blank" rel="noopener"><img src="https://img.shields.io/github/forks/drsamonline/TTB?style=for-the-badge&amp;logo=github&amp;labelColor=0b1220" alt="GitHub forks" onerror="this.style.display='none'"></a>
+      <a href="https://github.com/drsamonline/TTB/issues" target="_blank" rel="noopener"><img src="https://img.shields.io/github/issues/drsamonline/TTB?style=for-the-badge&amp;logo=github&amp;labelColor=0b1220" alt="Open issues" onerror="this.style.display='none'"></a>
+      <a href="https://github.com/drsamonline/TTB/commits/main" target="_blank" rel="noopener"><img src="https://img.shields.io/github/last-commit/drsamonline/TTB?style=for-the-badge&amp;logo=github&amp;labelColor=0b1220" alt="Last commit" onerror="this.style.display='none'"></a>
+      <a href="https://github.com/drsamonline/TTB/blob/main/LICENSE" target="_blank" rel="noopener"><img src="https://img.shields.io/github/license/drsamonline/TTB?style=for-the-badge&amp;labelColor=0b1220" alt="License: MIT" onerror="this.style.display='none'"></a>
+      <a href="https://github.com/drsamonline/TTB" target="_blank" rel="noopener"><img src="https://img.shields.io/github/package-json/v/drsamonline/TTB?style=for-the-badge&amp;labelColor=0b1220" alt="Version" onerror="this.style.display='none'"></a>
+    </div>
+
+    <!-- Custom in-page spec badges -->
+    <div class="cchips reveal" aria-label="Key facts">
+      <span class="chip accent"><i aria-hidden="true"></i>590 tools</span>
+      <span class="chip"><i aria-hidden="true"></i>18 categories</span>
+      <span class="chip"><i aria-hidden="true"></i>One extension</span>
+      <span class="chip"><i aria-hidden="true"></i>MIT licensed</span>
+      <span class="chip"><i aria-hidden="true"></i>Chrome / Edge</span>
+      <span class="chip"><i aria-hidden="true"></i>Firefox / Safari</span>
+      <span class="chip"><i aria-hidden="true"></i>Zero telemetry</span>
+      <span class="chip"><i aria-hidden="true"></i>Manifest V3</span>
+      <span class="chip"><i aria-hidden="true"></i>Offline-first</span>
+    </div>
+
+    <!-- Spec strip -->
+    <div class="spec-strip reveal" role="list" aria-label="Specification">
+      <div class="cell" role="listitem"><div class="k">Catalog size</div><div class="v">590 tools</div></div>
+      <div class="cell" role="listitem"><div class="k">Categories</div><div class="v">18</div></div>
+      <div class="cell" role="listitem"><div class="k">Network calls</div><div class="v">0</div></div>
+      <div class="cell" role="listitem"><div class="k">Framework</div><div class="v">None — vanilla JS</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= FEATURES ================= -->
+<section id="features">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2>What's in the box</h2>
+      <p>One popup, one catalog, no tabs to juggle — built to be read and trusted as much as it is used.</p>
+    </div>
+
+    <div class="cards">
+      <article class="card">
+        <span class="idx">01</span>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        <h3>590 tools, 18 categories</h3>
+        <p>A real category browser — pick a category, see its count, then search within it. You don't need to know a tool's name to find it.</p>
+      </article>
+
+      <article class="card">
+        <span class="idx">02</span>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/><circle cx="18.5" cy="17" r="2.5"/></svg>
+        <h3>One extension, not twenty</h3>
+        <p>Replace a separate tab, site or extension for every small task. Everything runs from the popup or the side panel, from a single install.</p>
+      </article>
+
+      <article class="card">
+        <span class="idx">03</span>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 7v5l3 2"/><path d="M21 3v6h-6"/></svg>
+        <h3>Offline-first, zero telemetry</h3>
+        <p>There is no network layer in the extension. Nothing is fetched, phoned home, or loaded remotely — your inputs stay on your machine.</p>
+      </article>
+
+      <article class="card">
+        <span class="idx">04</span>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="1.5"/><path d="M3 9h18M7 14h6"/></svg>
+        <h3>Rich, typed output</h3>
+        <p>Text lands in a copyable box; HTML results (markdown previews, palettes, CSS generators, charts) render in a sandboxed preview; images render inline with a download link.</p>
+      </article>
+
+      <article class="card">
+        <span class="idx">05</span>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3 4 6v5c0 5 3.4 8.4 8 10 4.6-1.6 8-5 8-10V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+        <h3>Destructive actions are gated</h3>
+        <p>History, cookie and cache cleaners, duplicate-tab closing and auto-close are dry-run by default — they only act after you tick an explicit confirmation.</p>
+      </article>
+
+      <article class="card">
+        <span class="idx">06</span>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg>
+        <h3>Runs across four browsers</h3>
+        <p>One source tree, assembled per browser. A tool that needs an API a browser doesn't expose is disabled and says so plainly — instead of failing silently.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2>How it works</h2>
+      <p>From toolbar to result in five steps. No setup, no account, no network round-trip.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step"><div class="n">STEP 01</div><h4>Open TTB</h4><p>Click the toolbar icon or press <span class="mono">Alt+Shift+T</span>. Open the side panel with <span class="mono">Alt+Shift+K</span>.</p></div>
+      <div class="step"><div class="n">STEP 02</div><h4>Browse or search</h4><p>Filter by category on the left, or type in the search box — <span class="mono">Ctrl+K</span> focuses it.</p></div>
+      <div class="step"><div class="n">STEP 03</div><h4>Pick a tool</h4><p>The panel shows the fields that tool needs: a main input, plus any extra values, switches or file pickers.</p></div>
+      <div class="step"><div class="n">STEP 04</div><h4>Run it</h4><p>Press <b>Run</b> or <span class="mono">Ctrl+Enter</span>. Execution is imported on demand — the catalog renders even if a handler fails.</p></div>
+      <div class="step"><div class="n">STEP 05</div><h4>Use the output</h4><p>Copy the result, or download it for image and file tools. Everything stays local.</p></div>
+    </div>
+
+    <div class="keys" aria-label="Keyboard shortcuts">
+      <span class="key"><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>T</kbd> Open popup</span>
+      <span class="key"><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd> Open side panel</span>
+      <span class="key"><kbd>Ctrl</kbd>+<kbd>K</kbd> Focus search</span>
+      <span class="key"><kbd>Ctrl</kbd>+<kbd>Enter</kbd> Run tool</span>
+    </div>
+
+    <div class="sec-head" style="margin-top:52px">
+      <span class="sec-num">02.1</span>
+      <h2 style="font-size:1.15rem">The shape of the code</h2>
+    </div>
+    <pre class="code"><span class="c">popup.html / sidebar.html</span>
+  ├─ data/tools.js        → <span class="b">globalThis.TTB_CATALOG</span>  (590 entries)
+  └─ ui/app.js            → renders the catalog, builds inputs, runs tools
+       └─ (on first Run) tools/core.js  → dispatcher
+            ├─ text · calc · dev · page · system · security   (core handlers)
+            ├─ phase4–7 + t-*.js                              (bundled modules)
+            ├─ tools/compat.js                                (namespace + capability layer)
+            └─ ui/registry.js                                 (name → handler, inputs)
+<span class="c">background.js             → context menu + keyboard commands only</span>
+<span class="c">build.mjs + browsers/*.json → per-browser packages (dist/chrome, edge, firefox, safari)</span></pre>
+    <p class="muted" style="font-size:.88rem;margin-top:14px">
+      The catalog is separated from execution, so the tool list renders even if a handler or a privileged API fails.
+      Tool execution is imported on demand, and <span class="mono">tools/compat.js</span> is the only place that knows
+      about browser differences.
+    </p>
+  </div>
+</section>
+
+<!-- ================= DEMO / SCREENSHOTS ================= -->
+<section id="demo">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2>See it in action</h2>
+      <p>Every image below was captured from the real extension UI in headless Chrome.</p>
+    </div>
+
+    <div class="shots">
+      <figure class="shot wide">
+        <div class="bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="t">catalog</span></div>
+        <img src="screenshots/01-catalog.png" width="1000" height="625" loading="lazy" decoding="async" alt="TTB catalog with the category browser open in the popup">
+        <figcaption><b>Browse the catalog, or filter by category.</b> 590 tools, each with its own entry.</figcaption>
+      </figure>
+
+      <figure class="shot">
+        <div class="bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="t">category</span></div>
+        <img src="screenshots/02-category.png" width="500" height="625" loading="lazy" decoding="async" alt="A single TTB category with its tool count and list">
+        <figcaption><b>Category view.</b> See a category's count, then search within it.</figcaption>
+      </figure>
+
+      <figure class="shot">
+        <div class="bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="t">inputs</span></div>
+        <img src="screenshots/03-tool-inputs.png" width="500" height="625" loading="lazy" decoding="async" alt="Loan/EMI tool showing its own input fields and a JSON result">
+        <figcaption><b>Every tool renders the inputs it needs.</b> Loan/EMI with its own fields and a JSON result.</figcaption>
+      </figure>
+
+      <figure class="shot">
+        <div class="bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="t">html output</span></div>
+        <img src="screenshots/04-html-output.png" width="500" height="625" loading="lazy" decoding="async" alt="A typography scale rendered in the sandboxed HTML preview">
+        <figcaption><b>Rich HTML output.</b> A typography scale rendered in the sandboxed preview.</figcaption>
+      </figure>
+
+      <figure class="shot">
+        <div class="bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="t">image output</span></div>
+        <img src="screenshots/05-image-output.png" width="500" height="625" loading="lazy" decoding="async" alt="A QR code generated and shown inline with a download link">
+        <figcaption><b>Images render inline</b> with a download link — QR code generated offline.</figcaption>
+      </figure>
+
+      <figure class="shot">
+        <div class="bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="t">crypto</span></div>
+        <img src="screenshots/06-totp.png" width="500" height="625" loading="lazy" decoding="async" alt="A TOTP code generated from a Base32 secret">
+        <figcaption><b>Real crypto, offline.</b> A TOTP code generated from a Base32 secret.</figcaption>
+      </figure>
+
+      <figure class="shot">
+        <div class="bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="t">confirm</span></div>
+        <img src="screenshots/07-confirm.png" width="500" height="625" loading="lazy" decoding="async" alt="History cleaner showing the confirmation tick before acting">
+        <figcaption><b>Destructive tools ask first.</b> History cleaner showing the confirmation tick.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GET STARTED ================= -->
+<section id="start">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2>Get started</h2>
+      <p>No build step is required to load the extension — the repository root is a working Chromium extension.</p>
+    </div>
+
+    <div class="getstart">
+      <div class="panel">
+        <div class="sub">Chromium · Chrome / Edge / Brave / Opera / Vivaldi</div>
+        <h3>Load unpacked in four steps</h3>
+        <ol class="list-check" style="margin-top:18px">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4 10-10"/></svg><span>Clone or download the repository.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4 10-10"/></svg><span>Open <span class="mono">chrome://extensions</span> (or <span class="mono">edge://extensions</span>) and enable <b>Developer mode</b>.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4 10-10"/></svg><span>Choose <b>Load unpacked</b> and select the folder containing <span class="mono">manifest.json</span>.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4 10-10"/></svg><span>Pin TTB, then click the icon or press <span class="mono">Alt+Shift+T</span>.</span></li>
+        </ol>
+        <div class="dl-row">
+          <a class="btn btn-primary" href="https://github.com/drsamonline/TTB" target="_blank" rel="noopener">Clone on GitHub ↗</a>
+          <a class="btn btn-ghost" href="https://github.com/drsamonline/TTB/blob/main/INSTALL.md" target="_blank" rel="noopener">Install guide</a>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="sub">Firefox &amp; Safari</div>
+        <h3>Build per browser</h3>
+        <pre class="code" style="margin-top:16px"><span class="c"># produce dist/chrome, edge, firefox, safari</span>
+npm run build
+
+<span class="c"># Firefox: load dist/firefox/manifest.json</span>
+<span class="c"># via about:debugging#/runtime/this-firefox</span>
+npm run build:firefox
+
+<span class="c"># Safari: convert the package with Xcode</span>
+npm run build:safari</pre>
+        <p class="muted" style="font-size:.88rem;margin:16px 0 0">
+          Prebuilt ZIPs for every browser are attached to each successful CI run
+          (Actions → <b>Validate</b> → Artifacts). Requirements: Chrome 127+, Edge 127+,
+          Firefox 121+, Safari 16.4+.
+        </p>
+        <div class="dl-row">
+          <a class="btn btn-ghost" href="https://github.com/drsamonline/TTB/actions/workflows/validate.yml" target="_blank" rel="noopener">CI artifacts ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2>FAQ</h2>
+      <p>Straight answers, including the limitations.</p>
+    </div>
+
+    <div class="faq">
+      <details class="qa" open>
+        <summary><span class="q">Q</span> Is TTB free and open source?
+          <svg class="plus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="ans">Yes. TTB is MIT licensed — free to use, read, modify and redistribute. See <a href="https://github.com/drsamonline/TTB/blob/main/LICENSE" target="_blank" rel="noopener">LICENSE</a>.</div>
+      </details>
+
+      <details class="qa">
+        <summary><span class="q">Q</span> Does it phone home or track me?
+          <svg class="plus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="ans">No. There is no network layer in the extension: nothing is fetched, phoned home, or loaded remotely. No analytics, no telemetry. Privileged tools use only the permissions declared in <span class="mono">manifest.json</span>, and each browser build requests only what that browser can grant.</div>
+      </details>
+
+      <details class="qa">
+        <summary><span class="q">Q</span> Which browsers are supported?
+          <svg class="plus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="ans">Chrome 127+, Edge 127+, Firefox 121+ and Safari 16.4+. One source tree is assembled per browser by <span class="mono">npm run build</span>. Safari exposes no history, bookmarks, downloads, management, browsingData or fontSettings APIs, so those tools are disabled there and report that — and Safari also needs an Xcode conversion step.</div>
+      </details>
+
+      <details class="qa">
+        <summary><span class="q">Q</span> Why do some tools say they need a dependency?
+          <svg class="plus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="ans">Optional third-party libraries are not bundled. 24 tools (PDF merge/split/rotate, PDF→text, OCR, Excel viewer, Prettier, OpenPGP, QR scanning helpers, axe-core, zxcvbn…) report their required local dependency and the exact path where it would live, instead of pretending to run. No remote code is ever fetched.</div>
+      </details>
+
+      <details class="qa">
+        <summary><span class="q">Q</span> Are destructive tools safe to try?
+          <svg class="plus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="ans">They do nothing on the first run. History/cookie/cache cleaners, duplicate-tab closing and auto-close report exactly what they would change and ask you to tick “I understand — confirm this destructive action”. Only then does a second <b>Run</b> act.</div>
+      </details>
+
+      <details class="qa">
+        <summary><span class="q">Q</span> Why do some page tools fail on certain tabs?
+          <svg class="plus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="ans">Tab, history, cookie, bookmark, download and page tools need the right context. They can fail on restricted pages such as <span class="mono">chrome://</span>, the Web Store, or other extensions' pages — which no browser allows scripting.</div>
+      </details>
+
+      <details class="qa">
+        <summary><span class="q">Q</span> How do I contribute?
+          <svg class="plus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="ans">Read <a href="https://github.com/drsamonline/TTB/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">CONTRIBUTING.md</a>. There's no framework — vanilla JavaScript and browser APIs. <span class="mono">npm test</span> runs the smoke test, <span class="mono">npm run build</span> assembles all four targets.</div>
+      </details>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top" aria-label="Back to top">
+          <svg width="24" height="24" viewBox="0 0 26 26" aria-hidden="true">
+            <rect x="1" y="1" width="24" height="24" rx="2" fill="none" stroke="#2563eb" stroke-width="1.6"/>
+            <path d="M6 8h14M6 13h9M6 18h11" stroke="#0b1220" stroke-width="1.6" stroke-linecap="round"/>
+            <rect x="17" y="15" width="5" height="5" fill="#2563eb"/>
+          </svg>
+          <span>TTB<small>&nbsp;Tiny Toolbox</small></span>
+        </a>
+        <p class="muted" style="font-size:.9rem;max-width:320px;margin:16px 0 0">
+          590 tiny utilities across 18 categories in one offline-first browser extension.
+          No framework, no telemetry, no remote code.
+        </p>
+      </div>
+      <div>
+        <h5>Project</h5>
+        <ul>
+          <li><a href="https://github.com/drsamonline/TTB" target="_blank" rel="noopener">GitHub repository</a></li>
+          <li><a href="https://github.com/drsamonline/TTB/blob/main/INSTALL.md" target="_blank" rel="noopener">Install guide</a></li>
+          <li><a href="https://github.com/drsamonline/TTB/blob/main/USAGE.md" target="_blank" rel="noopener">Usage</a></li>
+          <li><a href="https://github.com/drsamonline/TTB/blob/main/ALL_TOOLS.md" target="_blank" rel="noopener">All 590 tools</a></li>
+          <li><a href="https://github.com/drsamonline/TTB/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Changelog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Docs &amp; policies</h5>
+        <ul>
+          <li><a href="https://github.com/drsamonline/TTB/blob/main/BROWSER_SUPPORT.md" target="_blank" rel="noopener">Browser support</a></li>
+          <li><a href="https://github.com/drsamonline/TTB/blob/main/PRIVACY.md" target="_blank" rel="noopener">Privacy</a></li>
+          <li><a href="https://github.com/drsamonline/TTB/blob/main/SECURITY.md" target="_blank" rel="noopener">Security</a></li>
+          <li><a href="https://github.com/drsamonline/TTB/blob/main/LICENSE" target="_blank" rel="noopener">License (MIT)</a></li>
+          <li><a href="https://github.com/drsamonline/TTB/blob/main/WARNINGS.md" target="_blank" rel="noopener">Warnings</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>Built by <strong style="color:var(--ink)">Dr. Sohil Momin</strong> · MIT licensed · v0.10.0</span>
+      <span class="mono"><a href="https://github.com/drsamonline/TTB" target="_blank" rel="noopener">github.com/drsamonline/TTB ↗</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Reveal-on-scroll for below-the-fold sections (respects reduced motion)
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) return;
+    var els = document.querySelectorAll('section .sec-head, section .card, section .step, section .shot, section .panel, details.qa');
+    els.forEach(function (el) { el.style.opacity = '0'; });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.style.transition = 'opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1)';
+          e.target.style.transform = 'translateY(0)';
+          e.target.style.opacity = '1';
+          io.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    els.forEach(function (el) { el.style.transform = 'translateY(12px)'; io.observe(el); });
+  })();
+
+  // Only one FAQ open at a time feels tighter on a spec sheet
+  document.querySelectorAll('details.qa').forEach(function (d) {
+    d.addEventListener('toggle', function () {
+      if (!d.open) return;
+      document.querySelectorAll('details.qa[open]').forEach(function (o) { if (o !== d) o.open = false; });
+    });
+  });
+</script>
+</body>
+</html>

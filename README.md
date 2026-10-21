@@ -1,3 +1,22 @@
+<div align="center">
+
+# TTB — Tiny Toolbox
+
+**590 tools. One extension.** A Manifest V3 browser extension that bundles 590 tiny utilities across 18 categories into one fast, offline-first popup — Chrome, Edge, Firefox and Safari. No framework, no telemetry, no remote code.
+
+[![Stars](https://img.shields.io/github/stars/drsamonline/TTB?style=for-the-badge&logo=github&labelColor=0b1220)](https://github.com/drsamonline/TTB/stargazers)
+[![Forks](https://img.shields.io/github/forks/drsamonline/TTB?style=for-the-badge&logo=github&labelColor=0b1220)](https://github.com/drsamonline/TTB/network/members)
+[![License: MIT](https://img.shields.io/github/license/drsamonline/TTB?style=for-the-badge&labelColor=0b1220)](LICENSE)
+[![Tools](https://img.shields.io/badge/tools-590-brightgreen?style=for-the-badge)](ALL_TOOLS.md)
+
+### ▶ [Open the landing page](https://drsamonline.github.io/TTB/) &nbsp;·&nbsp; [View the repository](https://github.com/drsamonline/TTB)
+
+<sub>Live site: **https://drsamonline.github.io/TTB/** — install steps, feature tour, screenshots and FAQ.</sub>
+
+</div>
+
+---
+
 # TTB — Tiny Toolbox
 
 [![Validate](https://github.com/drsamonline/TTB/actions/workflows/validate.yml/badge.svg)](https://github.com/drsamonline/TTB/actions/workflows/validate.yml)
