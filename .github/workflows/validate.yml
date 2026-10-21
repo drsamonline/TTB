@@ -3,6 +3,7 @@ name: Validate
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 jobs:
   validate:
@@ -18,9 +19,9 @@ jobs:
         shell: bash
         run: |
           set -e
-          find . -type f -name '*.js' -not -path './.git/*' -not -path './node_modules/*' -print0 |
+          find . -type f -name '*.js' -not -path './.git/*' -not -path './node_modules/*' -not -path './dist/*' -print0 |
             xargs -0 -n1 node --check
-          find . -type f -name '*.mjs' -not -path './.git/*' -not -path './node_modules/*' -print0 |
+          find . -type f -name '*.mjs' -not -path './.git/*' -not -path './node_modules/*' -not -path './dist/*' -print0 |
             xargs -0 -n1 node --check
 
       - name: Validate manifest
@@ -28,3 +29,29 @@ jobs:
 
       - name: Run the smoke test
         run: node test.mjs
+
+      - name: Build every browser target
+        run: node build.mjs
+
+      - name: Smoke-test each built package
+        shell: bash
+        run: |
+          set -e
+          for t in chrome edge firefox safari; do
+            cp test.mjs "dist/$t/test.mjs"
+            ( cd "dist/$t" && node test.mjs )
+            rm -f "dist/$t/test.mjs"
+          done
+
+      - name: Package the builds
+        run: |
+          for t in chrome edge firefox safari; do
+            ( cd dist && zip -qr "../ttb-$t.zip" "$t" )
+          done
+          ls -la ttb-*.zip
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ttb-browser-builds
+          path: ttb-*.zip
+          if-no-files-found: error

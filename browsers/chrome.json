@@ -1,0 +1,10 @@
+{
+  "name": "TTB — Tiny Toolbox",
+  "notes": "Chromium build: Chrome, Edge, Brave, Opera, Vivaldi, Arc and other Chromium browsers load this package unchanged.",
+  "exclude": [],
+  "permissions_remove": [],
+  "set": {
+    "background": { "service_worker": "background.js", "type": "module" },
+    "side_panel": { "default_path": "sidebar.html" }
+  }
+}

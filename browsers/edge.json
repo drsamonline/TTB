@@ -1,0 +1,10 @@
+{
+  "name": "TTB — Tiny Toolbox",
+  "notes": "Edge build: identical to the Chromium build. Edge loads the Chrome package directly; this copy exists so the artifact is labelled for Edge.",
+  "exclude": [],
+  "permissions_remove": [],
+  "set": {
+    "background": { "service_worker": "background.js", "type": "module" },
+    "side_panel": { "default_path": "sidebar.html" }
+  }
+}

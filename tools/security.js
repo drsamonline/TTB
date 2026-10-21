@@ -2,6 +2,8 @@
 // All primitives use the Web Crypto API. Nothing here performs a network
 // request except the explicitly-invoked URL expander, which degrades
 // gracefully when the browser blocks a cross-origin fetch.
+import { has, unsupported } from './compat.js';
+
 const te = new TextEncoder();
 const td = new TextDecoder();
 const bytes = (s) => te.encode(String(s));
@@ -133,8 +135,9 @@ export async function runSecurity(name, ctx = {}) {
     return Array.from({ length: count }, pick).join('-');
   }
   // --- cookies ---
-  if (n === 'cookie inspector/editor') return ctx.tab?.url ? await chrome.cookies.getAll({ url: ctx.tab.url }) : [];
+  if (n === 'cookie inspector/editor') { if (!has('cookies')) return unsupported('The cookies API'); return ctx.tab?.url ? await chrome.cookies.getAll({ url: ctx.tab.url }) : []; }
   if (n === 'cookie third-party analyzer') {
+    if (!has('cookies')) return unsupported('The cookies API');
     const c = ctx.tab?.url ? await chrome.cookies.getAll({ url: ctx.tab.url }) : [];
     const host = ctx.tab?.url ? new URL(ctx.tab.url).hostname : '';
     return c.map((x) => ({ ...x, thirdParty: !host.endsWith(x.domain.replace(/^\./, '')) }));

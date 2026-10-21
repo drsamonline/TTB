@@ -1,0 +1,17 @@
+{
+  "name": "TTB — Tiny Toolbox",
+  "notes": "Firefox build: MV3 event page instead of a service worker, sidebar_action instead of side_panel.",
+  "exclude": ["minimum_chrome_version", "side_panel"],
+  "permissions_remove": ["sidePanel"],
+  "set": {
+    "background": { "scripts": ["background.js"] },
+    "sidebar_action": {
+      "default_panel": "sidebar.html",
+      "default_title": "TTB — Tiny Toolbox",
+      "default_icon": { "16": "icons/icon16.png", "48": "icons/icon48.png" }
+    },
+    "browser_specific_settings": {
+      "gecko": { "id": "ttb@drsamonline", "strict_min_version": "121.0" }
+    }
+  }
+}

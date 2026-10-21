@@ -1,6 +1,6 @@
-# TTB v0.9.1 — Audit & coverage report
+# TTB v0.10.0 — Audit & coverage report
 
-This report describes the state of the repository at v0.9.1 (the v0.9.0 implementation pass plus README badges and UI screenshots). Every number below is produced by the shipped smoke test (`node test.mjs`) and the registry, not by hand.
+This report describes the state of the repository at v0.10.0 (the implementation pass, README badges and screenshots, and the cross-browser builds). Every number below is produced by the shipped smoke test (`node test.mjs`) and the registry, not by hand.
 
 ## Coverage
 
@@ -34,6 +34,15 @@ The 24 lazy stubs are the tools that genuinely need a third-party library (PDF m
 - **Dynamic:** each of the 590 catalog names executed through the real dispatcher under a Chrome mock; none fall through to the "no handler" message.
 - **Unit-style assertions:** Roman numerals, base conversion, slug generation and Luhn validation checked for known-correct output; destructive flags, HTML/image output types and handler registration asserted.
 - **QR encoder:** output matrices compared cell-for-cell against a reference encoder for multiple inputs, all four ECC levels and all eight mask patterns.
+
+## Browser builds
+
+Four packages are assembled from the one source tree by `npm run build`:
+`dist/chrome`, `dist/edge`, `dist/firefox`, `dist/safari`. Each is smoke-tested in CI
+(590/590 catalog entries resolve in every target) before the ZIPs are uploaded as
+artifacts. The feature-parity matrix and per-browser gaps live in
+`BROWSER_SUPPORT.md`; the differences that matter are a namespace/capability layer
+(`tools/compat.js`) and a per-browser manifest (`browsers/*.json`).
 
 ## Known limitations
 

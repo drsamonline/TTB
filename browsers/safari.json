@@ -1,0 +1,9 @@
+{
+  "name": "TTB — Tiny Toolbox",
+  "notes": "Safari build: MV3 service worker, no side panel. Safari exposes no history/bookmarks/downloads/management/browsingData APIs, so those tools are disabled and say so.",
+  "exclude": ["minimum_chrome_version", "side_panel"],
+  "permissions_remove": ["sidePanel", "downloads", "history", "bookmarks", "management", "browsingData", "fontSettings"],
+  "set": {
+    "background": { "service_worker": "background.js" }
+  }
+}

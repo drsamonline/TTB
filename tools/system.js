@@ -1,6 +1,8 @@
 // TTB — System & Browser tools
 // Destructive operations are dry-run by default: they report exactly what they
 // would change and only act when the UI passes ctx.confirm === true.
+import { has, unsupported } from './compat.js';
+
 const tabQuery = (opts = {}) => chrome.tabs.query(opts);
 const needConfirm = (ctx) => ctx.confirm === true;
 const SESSION_KEY = 'ttb_tab_sessions';
@@ -20,8 +22,8 @@ export async function runSystem(name, ctx = {}) {
   if (n === 'tab pinner') { if (ctx.tab?.id) { await chrome.tabs.update(ctx.tab.id, { pinned: !ctx.tab.pinned }); return 'Tab pin state toggled'; } return 'No active tab'; }
   if (n === 'tab muter') { if (ctx.tab?.id) { await chrome.tabs.update(ctx.tab.id, { muted: !ctx.tab.mutedInfo?.muted }); return 'Tab mute state toggled'; } return 'No active tab'; }
   if (n === 'tab reloader') { if (ctx.tab?.id) { await chrome.tabs.reload(ctx.tab.id); return 'Tab reloaded'; } return 'No active tab'; }
-  if (n === 'tab group manager') { if (!ctx.tab?.id) return 'Select a tab first'; const gid = await chrome.tabs.group({ tabIds: [ctx.tab.id] }); return `Tab group ${gid} created`; }
-  if (n === 'tab suspender') { if (ctx.tab?.id) { await chrome.tabs.discard(ctx.tab.id); return 'Tab discarded'; } return 'No active tab'; }
+  if (n === 'tab group manager') { if (!has('tabGroups')) return unsupported('Tab groups'); if (!ctx.tab?.id) return 'Select a tab first'; const gid = await chrome.tabs.group({ tabIds: [ctx.tab.id] }); return `Tab group ${gid} created`; }
+  if (n === 'tab suspender') { if (!has('discardTab')) return unsupported('Tab discarding'); if (ctx.tab?.id) { await chrome.tabs.discard(ctx.tab.id); return 'Tab discarded'; } return 'No active tab'; }
   if (n === 'duplicate tab closer') {
     const ts = await tabQuery({});
     const seen = new Map(); const dupes = [];
@@ -59,16 +61,18 @@ export async function runSystem(name, ctx = {}) {
   }
 
   // --- downloads / bookmarks / history ---
-  if (n === 'download manager') return await chrome.downloads.search({ limit: 100 });
-  if (n === 'bookmark manager') return await chrome.bookmarks.getTree();
+  if (n === 'download manager') { if (!has('downloads')) return unsupported('The downloads API', 'Safari does not expose it.'); return await chrome.downloads.search({ limit: 100 }); }
+  if (n === 'bookmark manager') { if (!has('bookmarks')) return unsupported('Bookmarks', 'Safari does not expose the bookmarks API.'); return await chrome.bookmarks.getTree(); }
   if (n === 'bookmark cleaner' || n === 'bookmark deduplicator') {
+    if (!has('bookmarks')) return unsupported('Bookmarks', 'Safari does not expose the bookmarks API.');
     const all = await chrome.bookmarks.search({});
     const seen = new Set(), dupes = [];
     for (const b of all) { if (!b.url) continue; if (seen.has(b.url)) dupes.push(b); else seen.add(b.url); }
     return dupes;
   }
-  if (n === 'history search') return await chrome.history.search({ text: s || '', maxResults: 100 });
+  if (n === 'history search') { if (!has('history')) return unsupported('Browsing history', 'Safari does not expose the history API.'); return await chrome.history.search({ text: s || '', maxResults: 100 }); }
   if (n === 'history cleaner') {
+    if (!has('history')) return unsupported('Browsing history', 'Safari does not expose the history API.');
     const scope = String(ctx.scope || 'all');
     const spans = { hour: 3600e3, day: 86400e3, week: 604800e3, all: Date.now() };
     const start = Date.now() - (spans[scope] ?? Date.now());
@@ -77,11 +81,13 @@ export async function runSystem(name, ctx = {}) {
     return `History cleared (${scope}).`;
   }
   if (n === 'cache cleaner') {
+    if (!has('browsingData')) return unsupported('Browsing-data clearing', 'Safari does not expose the browsingData API.');
     if (!needConfirm(ctx)) return 'Would clear the browser HTTP cache for all sites.\nTick "Confirm destructive actions" and Run again to proceed.';
     await chrome.browsingData.remove({}, { cache: true });
     return 'Cache cleared.';
   }
   if (n === 'cookie cleaner') {
+    if (!has('browsingData')) return unsupported('Cookie clearing', 'Safari does not expose the browsingData API.');
     const scope = String(ctx.scope || 'all');
     if (!needConfirm(ctx)) return `Would delete cookies (${scope === 'current-site' ? 'for the current site only' : 'for ALL sites'}).\nTick "Confirm destructive actions" and Run again to proceed.`;
     if (scope === 'current-site' && ctx.tab?.url) {
@@ -95,6 +101,7 @@ export async function runSystem(name, ctx = {}) {
 
   // --- web storage ---
   if (n === 'localstorage viewer/editor' || n === 'sessionstorage viewer/editor' || n === 'indexeddb viewer/editor') {
+    if (!has('scripting')) return unsupported('Page scripting');
     if (!ctx.tab?.id) return 'No active tab.';
     const kind = n.startsWith('local') ? 'local' : n.startsWith('session') ? 'session' : 'idb';
     const res = await chrome.scripting.executeScript({
@@ -112,9 +119,10 @@ export async function runSystem(name, ctx = {}) {
   }
 
   // --- display / device ---
-  if (n === 'installed fonts viewer') return await chrome.fontSettings.getFontList();
+  if (n === 'installed fonts viewer') { if (!has('fontSettings')) return unsupported('The font list', 'This browser does not expose fontSettings.'); return await chrome.fontSettings.getFontList(); }
   if (n === 'zoom controller') { if (!ctx.tab?.id) return 'No active tab'; const z = Number(ctx.zoom ?? 1); await chrome.tabs.setZoom(ctx.tab.id, z); return `Zoom set to ${Math.round(z * 100)}%`; }
   if (n === 'font size controller') {
+    if (!has('scripting')) return unsupported('Page scripting');
     if (!ctx.tab?.id) return 'No active tab';
     const size = String(ctx.size || 'larger');
     const pct = { smaller: '85%', larger: '120%', largest: '150%', reset: '100%' }[size] || '120%';
@@ -126,8 +134,8 @@ export async function runSystem(name, ctx = {}) {
   if (n === 'screen resolution viewer') return `${screen.width} × ${screen.height} (viewport ${innerWidth} × ${innerHeight}, DPR ${devicePixelRatio})`;
   if (n === 'device info viewer') return { platform: navigator.platform, userAgent: navigator.userAgent, languages: navigator.languages, online: navigator.onLine, cores: navigator.hardwareConcurrency, memoryGB: navigator.deviceMemory ?? 'n/a' };
   if (n === 'browser info viewer') return { userAgent: navigator.userAgent, language: navigator.language, platform: navigator.platform, vendor: navigator.vendor, chrome: typeof chrome !== 'undefined' };
-  if (n === 'permission viewer') return await chrome.permissions.getAll();
-  if (n === 'extension manager') return await chrome.management.getAll();
+  if (n === 'permission viewer') { if (!has('permissions')) return unsupported('The permissions API'); return await chrome.permissions.getAll(); }
+  if (n === 'extension manager') { if (!has('management')) return unsupported('The extensions list', 'Safari does not expose the management API.'); return await chrome.management.getAll(); }
   if (n === 'user agent switcher') {
     const ua = ['Chrome desktop (Windows)', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'iPhone (iOS 17)', 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1', 'Android (Pixel)', 'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36'];
     const rows = []; for (let i = 0; i < ua.length; i += 2) rows.push({ device: ua[i], userAgent: ua[i + 1] });
@@ -136,6 +144,7 @@ export async function runSystem(name, ctx = {}) {
   if (n === 'notification blocker') return 'Chrome does not expose a universal notification blocker API; manage this at chrome://settings/content/notifications.';
   if (n === 'popup blocker') return 'Chrome controls popup blocking at the browser/site level; TTB cannot globally disable it.';
   if (n === 'focus mode') {
+    if (!has('scripting')) return unsupported('Page scripting');
     if (!ctx.tab?.id) return 'No active tab';
     const res = await chrome.scripting.executeScript({ target: { tabId: ctx.tab.id }, func: () => { document.querySelectorAll('aside,nav,header,footer,[role="complementary"],.advertisement,.ads').forEach((e) => e.style.setProperty('display', 'none', 'important')); document.body.style.maxWidth = '900px'; document.body.style.margin = 'auto'; return 'Focus mode applied'; } });
     return res[0].result;
