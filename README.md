@@ -9,7 +9,7 @@
 [![License: MIT](https://img.shields.io/github/license/drsamonline/TTB?style=for-the-badge&labelColor=0b1220)](LICENSE)
 [![Tools](https://img.shields.io/badge/tools-590-brightgreen?style=for-the-badge)](ALL_TOOLS.md)
 
-### ▶ [Open the landing page](https://drsamonline.github.io/TTB/) &nbsp;·&nbsp; [View the repository](https://github.com/drsamonline/TTB)
+### ▶ [Open the landing page](https://drsamonline.github.io/TTB/) &nbsp;·&nbsp; [View the repository](https://github.com/drsamonline/TTB) &nbsp;·&nbsp; [All projects](https://drsamonline.github.io/)
 
 <sub>Live site: **https://drsamonline.github.io/TTB/** — install steps, feature tour, screenshots and FAQ.</sub>
 
