@@ -2,12 +2,12 @@
 
 # TTB — Tiny Toolbox
 
-**590 tools. One extension.** A Manifest V3 browser extension that bundles 590 tiny utilities across 18 categories into one fast, offline-first popup — Chrome, Edge, Firefox and Safari. No framework, no telemetry, no remote code.
+**591 tools. One extension.** A Manifest V3 browser extension that bundles 591 tiny utilities across 18 categories into one fast, offline-first popup — Chrome, Edge, Firefox and Safari. No framework, no telemetry, no remote code.
 
 [![Stars](https://img.shields.io/github/stars/drsamonline/TTB?style=for-the-badge&logo=github&labelColor=0b1220)](https://github.com/drsamonline/TTB/stargazers)
 [![Forks](https://img.shields.io/github/forks/drsamonline/TTB?style=for-the-badge&logo=github&labelColor=0b1220)](https://github.com/drsamonline/TTB/network/members)
 [![License: MIT](https://img.shields.io/github/license/drsamonline/TTB?style=for-the-badge&labelColor=0b1220)](LICENSE)
-[![Tools](https://img.shields.io/badge/tools-590-brightgreen?style=for-the-badge)](ALL_TOOLS.md)
+[![Tools](https://img.shields.io/badge/tools-591-brightgreen?style=for-the-badge)](ALL_TOOLS.md)
 
 ### ▶ [Open the landing page](https://drsamonline.github.io/TTB/) &nbsp;·&nbsp; [View the repository](https://github.com/drsamonline/TTB) &nbsp;·&nbsp; [All projects](https://drsamonline.github.io/)
 
@@ -26,11 +26,11 @@
 [![Firefox 121+](https://img.shields.io/badge/Firefox-121%2B-orange.svg)](BROWSER_SUPPORT.md)
 [![Safari 16.4+](https://img.shields.io/badge/Safari-16.4%2B-blue.svg)](BROWSER_SUPPORT.md)
 [![Edge](https://img.shields.io/badge/Edge-supported-0078D7.svg)](BROWSER_SUPPORT.md)
-[![Tools](https://img.shields.io/badge/tools-590-brightgreen.svg)](ALL_TOOLS.md)
+[![Tools](https://img.shields.io/badge/tools-591-brightgreen.svg)](ALL_TOOLS.md)
 [![Categories](https://img.shields.io/badge/categories-18-informational.svg)](ALL_TOOLS.md)
 [![Network](https://img.shields.io/badge/network-none-lightgrey.svg)](PRIVACY.md)
 
-> **590 tools. One popup. Chrome, Edge, Firefox and Safari. No framework, no telemetry, no remote code.**
+> **591 tools. One popup. Chrome, Edge, Firefox and Safari. No framework, no telemetry, no remote code.**
 
 TTB (Tiny Toolbox) is a Manifest V3 browser extension that gathers a large collection of small utilities — text, calculations, developer helpers, page tools, data, design, finance, media, security, accessibility and more — into one fast, offline-first interface, instead of a separate tab or extension for every small task.
 
@@ -56,7 +56,7 @@ All images below were captured from the real extension UI in headless Chrome.
 
 ## Runs in your browser
 
-One source tree, assembled per browser by `npm run build`. Every build carries the full 590-tool catalog; a tool that needs an API a browser does not provide is disabled and **says so plainly** instead of failing silently.
+One source tree, assembled per browser by `npm run build`. Every build carries the full 591-tool catalog; a tool that needs an API a browser does not provide is disabled and **says so plainly** instead of failing silently.
 
 | | Chrome / Edge / Brave / Opera / Vivaldi | Firefox | Safari |
 |---|---|---|---|
@@ -71,7 +71,7 @@ Full matrix, including what each browser changes and the exact gaps: **[BROWSER_
 
 ## What's in it
 
-- **590 cataloged tools across 18 categories**, all reachable from the popup or the side panel.
+- **591 cataloged tools across 18 categories**, all reachable from the popup or the side panel.
 - **A real category browser** — pick a category, see its count, then search within it. You don't need to know a tool's name to find it.
 - **Per-tool inputs.** Multi-field tools (EMI, tax, tip, regex, colour, matrix, image jobs…) render the fields they actually need — encode/decode switches, extra values, and file pickers for media tools.
 - **Text, HTML and image output.** Rich results (markdown previews, colour palettes, CSS generators, charts, even small games) render in a sandboxed preview; images render inline with a download link.
@@ -81,7 +81,7 @@ Full matrix, including what each browser changes and the exact gaps: **[BROWSER_
 
 ```
 popup.html / sidebar.html
-  ├─ data/tools.js        → globalThis.TTB_CATALOG  (590 entries)
+  ├─ data/tools.js        → globalThis.TTB_CATALOG  (591 entries)
   └─ ui/app.js            → renders the catalog, builds inputs, runs tools
        └─ (on first Run) tools/core.js  → dispatcher
             ├─ text · calc · dev · page · system · security   (core handlers)
