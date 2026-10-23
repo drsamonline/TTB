@@ -12,6 +12,8 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(fileURLToPath(new URL('.', import.meta.url)));
 const DIST = path.join(ROOT, 'dist');
+// Live tool count, derived from the authoritative catalog so generated docs never go stale.
+const CATALOG_COUNT = (fs.readFileSync(path.join(ROOT, 'data', 'tools.js'), 'utf8').match(/"id":/g) || []).length;
 
 // Files that belong to the repository, not to a shipped extension package.
 const EXCLUDE = new Set(['dist', '.git', '.github', 'node_modules', 'docs', 'browsers',
@@ -100,7 +102,7 @@ ${excluded}
 ### Reduced or needs checking
 ${partial}
 
-Everything else — the 590-tool catalog, the popup UI, per-tool inputs, page tools, crypto, and all pure-computation tools — is identical to the Chromium build.
+Everything else — the ${CATALOG_COUNT}-tool catalog, the popup UI, per-tool inputs, page tools, crypto, and all pure-computation tools — is identical to the Chromium build.
 `;
 }
 
@@ -145,7 +147,7 @@ for (const target of targets) {
 const header = `# Browser support
 
 TTB ships from one source tree and is assembled per browser with \`npm run build\`.
-Every build carries the full 590-tool catalog; tools that need an API a browser
+Every build carries the full ${CATALOG_COUNT}-tool catalog; tools that need an API a browser
 does not provide are disabled and say so plainly rather than failing silently.
 
 | Capability | Chrome | Edge | Firefox | Safari |
