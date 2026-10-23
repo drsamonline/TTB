@@ -6,11 +6,11 @@ This report describes the state of the repository at v0.10.0 (the implementation
 
 | Measure | Value |
 |---|---|
-| Catalog entries | **590** |
-| Unique ids / names | **590 / 590** |
+| Catalog entries | **591** |
+| Unique ids / names | **591 / 591** |
 | Duplicate ids or names | **0** |
 | Categories | **18** |
-| Entries that resolve to a handler | **590 / 590** |
+| Entries that resolve to a handler | **591 / 591** |
 | Tools with custom input fields | **220** |
 | Lazy / optional-dependency stubs | **24** |
 | Destructive tools gated by confirmation | **5** |
@@ -21,7 +21,7 @@ The 24 lazy stubs are the tools that genuinely need a third-party library (PDF m
 
 ## What changed from v0.8.0
 
-- Coverage went from ~190 to **590** entries with handlers.
+- Coverage went from ~190 to **591** entries with handlers.
 - The UI gained **per-tool inputs**, so multi-field and encode/decode tools are usable, plus HTML and image output.
 - Destructive browser operations are **dry-run until confirmed**.
 - Correctness fixes: the password generator (modulo bug), the IBAN validator and .gitignore generator (name-literal bugs), the font-size controller (dead message), the duplicate-tab closer (missing `tabs` permission), and the `minimum_chrome_version` mismatch.
@@ -31,7 +31,7 @@ The 24 lazy stubs are the tools that genuinely need a third-party library (PDF m
 ## Verification performed
 
 - **Static:** every `.js` module syntax-checked as ES modules; `manifest.json` parsed.
-- **Dynamic:** each of the 590 catalog names executed through the real dispatcher under a Chrome mock; none fall through to the "no handler" message.
+- **Dynamic:** each of the 591 catalog names executed through the real dispatcher under a Chrome mock; none fall through to the "no handler" message.
 - **Unit-style assertions:** Roman numerals, base conversion, slug generation and Luhn validation checked for known-correct output; destructive flags, HTML/image output types and handler registration asserted.
 - **QR encoder:** output matrices compared cell-for-cell against a reference encoder for multiple inputs, all four ECC levels and all eight mask patterns.
 
@@ -39,7 +39,7 @@ The 24 lazy stubs are the tools that genuinely need a third-party library (PDF m
 
 Four packages are assembled from the one source tree by `npm run build`:
 `dist/chrome`, `dist/edge`, `dist/firefox`, `dist/safari`. Each is smoke-tested in CI
-(590/590 catalog entries resolve in every target) before the ZIPs are uploaded as
+(591/591 catalog entries resolve in every target) before the ZIPs are uploaded as
 artifacts. The feature-parity matrix and per-browser gaps live in
 `BROWSER_SUPPORT.md`; the differences that matter are a namespace/capability layer
 (`tools/compat.js`) and a per-browser manifest (`browsers/*.json`).
