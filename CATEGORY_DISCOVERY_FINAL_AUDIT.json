@@ -1,6 +1,6 @@
 {
-  "catalog_entries": 590,
-  "unique_ids": 590,
+  "catalog_entries": 591,
+  "unique_ids": 591,
   "duplicate_ids": [],
   "categories": {
     "Accessibility": 13,
@@ -23,7 +23,7 @@
     "Unique": 19
   },
   "category_count": 18,
-  "handlers_wired": 590,
+  "handlers_wired": 591,
   "lazy_stubs": 24,
   "tools_with_custom_inputs": 220,
   "destructive_tools_guarded": 5,
