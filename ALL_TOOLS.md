@@ -2,9 +2,9 @@
 
 **Version:** v0.9.0  
 **Author:** Dr. Sohil Momin  
-**Total catalog entries:** 590  
+**Total catalog entries:** 591  
 **Categories:** 18  
-**Handlers wired:** 590 (of which 24 are lazy/optional-dependency stubs)  
+**Handlers wired:** 591 (of which 24 are lazy/optional-dependency stubs)  
 
 The catalog in `data/tools.js` is authoritative. Every entry now resolves to a handler; tools that need an optional third-party library (PDF, OCR, Excel, …) report that dependency honestly instead of pretending to work.
 
@@ -28,7 +28,7 @@ The catalog in `data/tools.js` is authoritative. Every entry now resolves to a h
 | 14 | SEO | 10 |
 | 15 | Security | 31 |
 | 16 | System & Browser | 41 |
-| 17 | Text & Writing | 61 |
+| 17 | Text & Writing | 62 |
 | 18 | Unique | 19 |
 
 ## Tools by category
@@ -591,7 +591,9 @@ The catalog in `data/tools.js` is authoritative. Every entry now resolves to a h
 - Backup/restore
 - Debug console
 
-### Text & Writing (61)
+### Text & Writing (62)
+
+- NATO phonetic alphabet
 
 - Case converter
 - Trim/dedupe/sort/reverse lines
