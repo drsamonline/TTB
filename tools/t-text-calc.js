@@ -75,6 +75,10 @@ export const TTB_EXTRA_TEXT = {
     const SR = globalThis.SpeechRecognition || globalThis.webkitSpeechRecognition;
     if (!SR) return 'Speech recognition is not available in this browser context.';
     return await new Promise((resolve) => { const r = new SR(); r.lang = navigator.language || 'en-IN'; r.onresult = (e) => resolve(e.results[0][0].transcript); r.onerror = (e) => resolve('Speech recognition error: ' + e.error); r.onend = () => resolve('No speech detected.'); try { r.start(); } catch (e) { resolve('Could not start recognition: ' + e.message); } }); } },
+  'nato phonetic alphabet': { name: 'NATO phonetic alphabet', cat: 'text', run: (t) => {
+    const M = { A:'Alfa',B:'Bravo',C:'Charlie',D:'Delta',E:'Echo',F:'Foxtrot',G:'Golf',H:'Hotel',I:'India',J:'Juliett',K:'Kilo',L:'Lima',M:'Mike',N:'November',O:'Oscar',P:'Papa',Q:'Quebec',R:'Romeo',S:'Sierra',T:'Tango',U:'Uniform',V:'Victor',W:'Whiskey',X:'X-ray',Y:'Yankee',Z:'Zulu' };
+    const out = []; for (const ch of String(t).toUpperCase()) { if (M[ch]) out.push(M[ch]); else if (/[0-9]/.test(ch)) out.push(ch); }
+    return out.length ? out.join(' ') : 'Enter text to spell with the NATO phonetic alphabet.'; } },
 };
 
 // ---------- Calculators & Converters ----------
