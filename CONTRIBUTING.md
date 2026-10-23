@@ -11,7 +11,7 @@ Thanks for helping improve TTB.
 
 ## Adding a tool
 
-1. Add the catalog entry to `data/tools.js` (keep the 590-entry shape: `{id, name, category}`).
+1. Add the catalog entry to `data/tools.js` (keep the 591-entry shape: `{id, name, category}`).
 2. Add a handler in the matching `tools/t-*.js` module, keyed by the **lower-cased catalog name**:
 
    ```js
