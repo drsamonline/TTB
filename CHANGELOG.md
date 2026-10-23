@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Added
+- **NATO phonetic alphabet** tool (Text & Writing) — spells text as the NATO/ICAO phonetic alphabet (A→Alfa … Z→Zulu), digits passed through. Catalog 590 → 591.
+
 ## 0.10.0 — Cross-browser builds (Chrome, Edge, Firefox, Safari)
 
 ### Added
