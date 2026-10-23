@@ -4,7 +4,7 @@ import './data/tools.js';
 
 const catalog = globalThis.TTB_CATALOG;
 assert.ok(Array.isArray(catalog), 'catalog should be an array');
-assert.equal(catalog.length, 590, `expected 590 catalog entries, got ${catalog.length}`);
+assert.equal(catalog.length, 591, `expected 591 catalog entries, got ${catalog.length}`);
 
 const ids = catalog.map((t) => t.id);
 assert.equal(new Set(ids).size, ids.length, 'catalog ids must be unique');
@@ -64,5 +64,7 @@ assert.match(await runTool('Base converter', { text: '255', b: '10', c: '16' }),
 assert.match(await runTool('Slug generator', { text: 'Hello, World!' }), /hello-world/);
 const luhn = await runTool('Credit card validator (Luhn)', { text: '4242424242424242' });
 assert.equal(luhn, 'Valid');
+assert.equal(await runTool('NATO phonetic alphabet', { text: 'SOS' }), 'Sierra Oscar Sierra');
+assert.equal(await runTool('NATO phonetic alphabet', { text: 'a-1' }), 'Alfa 1');
 
 console.log(`OK — ${catalog.length} tools, ${cats.size} categories, ${withInputs.length} with custom inputs`);
