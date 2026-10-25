@@ -5,7 +5,7 @@
   "type": "module",
   "description": "TTB \u2014 Tiny Toolbox: a privacy-first offline browser toolbox for Chrome, Edge, Firefox and Safari.",
   "author": "Dr. Sohil Momin",
-  "license": "MIT",
+  "license": "PolyForm-Noncommercial-1.0.0",
   "scripts": {
     "test": "node test.mjs",
     "build": "node build.mjs",

@@ -135,7 +135,7 @@ Local-first: no analytics, no telemetry, no remote code. Privileged tools use th
 
 ## License
 
-MIT — see `LICENSE`.
+PolyForm Noncommercial — see `LICENSE`.
 
 ## Author
 
