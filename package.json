@@ -1,6 +1,6 @@
 {
   "name": "ttb-tiny-toolbox",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "private": true,
   "type": "module",
   "description": "TTB \u2014 Tiny Toolbox: a privacy-first offline browser toolbox for Chrome, Edge, Firefox and Safari.",
