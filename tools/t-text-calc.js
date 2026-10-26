@@ -81,6 +81,48 @@ export const TTB_EXTRA_TEXT = {
     return out.length ? out.join(' ') : 'Enter text to spell with the NATO phonetic alphabet.'; } },
 };
 
+// Number to words — Indian (crore/lakh) and international (billion/million) groupings.
+// The grouping is the whole point: 1,23,45,678 is "One Crore Twenty-Three Lakh ..."
+// in the Indian system and "Twelve Million ..." in the international one, and no
+// existing tool in the catalog did either. Decimals are read digit by digit as
+// typed, so 12.50 keeps its trailing zero instead of being silently re-rounded.
+const NUM_WORDS_ONES = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine',
+  'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+const NUM_WORDS_TENS = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+const NUM_WORDS_GROUPS = {
+  indian: [[10000000, 'Crore'], [100000, 'Lakh'], [1000, 'Thousand'], [100, 'Hundred']],
+  international: [[1000000000, 'Billion'], [1000000, 'Million'], [1000, 'Thousand'], [100, 'Hundred']],
+};
+function numWordsUnder100(n) {
+  if (n < 20) return NUM_WORDS_ONES[n];
+  const t = NUM_WORDS_TENS[Math.floor(n / 10)];
+  return n % 10 ? t + '-' + NUM_WORDS_ONES[n % 10] : t;
+}
+function numWordsUnder1000(n) {
+  const parts = [];
+  const h = Math.floor(n / 100);
+  if (h) parts.push(NUM_WORDS_ONES[h] + ' Hundred');
+  const rest = n % 100;
+  if (rest) parts.push(numWordsUnder100(rest));
+  return parts.join(' ');
+}
+function numWordsInteger(n, system) {
+  if (n === 0) return 'Zero';
+  const parts = [];
+  let rest = n;
+  for (const [size, label] of NUM_WORDS_GROUPS[system]) {
+    const count = Math.floor(rest / size);
+    if (count) {
+      // The count of a group is itself spoken in the same system's smaller units,
+      // so 1e9 is "One Hundred Crore" (Indian) rather than an invented "Arab".
+      parts.push((size >= 1000 ? numWordsInteger(count, system) : numWordsUnder100(count)) + ' ' + label);
+      rest -= count * size;
+    }
+  }
+  if (rest) parts.push(numWordsUnder1000(rest));
+  return parts.join(' ');
+}
+
 // ---------- Calculators & Converters ----------
 const UNITS = {
   length: { m: 1, km: 1000, cm: 0.01, mm: 0.001, mi: 1609.344, yd: 0.9144, ft: 0.3048, in: 0.0254, nmi: 1852 },
@@ -102,6 +144,20 @@ function convert(amount, from, to, table) {
 const num = (x, d) => { const n = Number(x); if (!Number.isFinite(n)) throw Error('Enter a valid number'); return n; };
 
 export const TTB_EXTRA_CALC = {
+  'number to words': { name: 'Number to words', cat: 'calc', inputs: [{ key: 'b', label: 'Numbering system', type: 'select', options: ['Indian (lakh/crore)', 'International (million/billion)'], value: 'Indian (lakh/crore)' }], run: (t, c) => {
+    const raw = String(t == null ? '' : t).replace(/[,\s_]/g, '');
+    if (!raw) return 'Enter a number, e.g. 12345678 or 1234.50.';
+    if (!/^-?\d+(\.\d+)?$/.test(raw)) throw Error('That is not a number. Digits, an optional minus sign and one decimal point only.');
+    const neg = raw.startsWith('-');
+    const body = neg ? raw.slice(1) : raw;
+    const [intPart, decPart] = body.split('.');
+    const digits = intPart.replace(/^0+(?=\d)/, '');
+    if (digits.length > 15) throw Error('Too large: 15 digits is the limit for exact whole-number words.');
+    const system = /^international/i.test(String(c.b || '')) ? 'international' : 'indian';
+    let out = numWordsInteger(Number(digits), system);
+    if (decPart) out += ' Point ' + decPart.split('').map((d) => NUM_WORDS_ONES[Number(d)]).join(' ');
+    if (neg) out = 'Minus ' + out;
+    return out; } },
   'matrix': { name: 'Matrix', cat: 'calc', inputs: [{ key: 'b', label: 'Matrix B (rows on new lines, space-separated)', type: 'textarea' }, { key: 'op', label: 'Operation', type: 'select', options: ['multiply', 'add', 'transpose A', 'determinant A'], value: 'multiply' }], run: (t, c) => {
     const parse = (s) => String(s || '').trim().split(/\r?\n/).filter(Boolean).map((r) => r.trim().split(/[\s,]+/).map(Number));
     const A = parse(t), B = parse(c.b);
