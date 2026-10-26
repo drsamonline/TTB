@@ -6,7 +6,11 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read      # was `write`. This workflow validates and uploads an artifact;
+                      # it never commits, pushes or releases. `upload-artifact` needs no
+                      # contents permission at all. A write token in a workflow that
+                      # cannot use it is pure blast radius - it is what a compromised
+                      # step would reach for.
   actions: read
 
 concurrency:
