@@ -4,7 +4,7 @@ import './data/tools.js';
 
 const catalog = globalThis.TTB_CATALOG;
 assert.ok(Array.isArray(catalog), 'catalog should be an array');
-assert.equal(catalog.length, 591, `expected 591 catalog entries, got ${catalog.length}`);
+assert.equal(catalog.length, 592, `expected 592 catalog entries, got ${catalog.length}`);
 
 const ids = catalog.map((t) => t.id);
 assert.equal(new Set(ids).size, ids.length, 'catalog ids must be unique');
@@ -66,5 +66,24 @@ const luhn = await runTool('Credit card validator (Luhn)', { text: '424242424242
 assert.equal(luhn, 'Valid');
 assert.equal(await runTool('NATO phonetic alphabet', { text: 'SOS' }), 'Sierra Oscar Sierra');
 assert.equal(await runTool('NATO phonetic alphabet', { text: 'a-1' }), 'Alfa 1');
+
+// Number to words — the grouping IS the feature, so each system is checked
+// against a number whose grouping differs between them.
+const nw = (text, b) => runTool('Number to words', { text, b: b || 'Indian (lakh/crore)' });
+assert.equal(await nw('0'), 'Zero');
+assert.equal(await nw('19'), 'Nineteen');
+assert.equal(await nw('100'), 'One Hundred');
+assert.equal(await nw('999'), 'Nine Hundred Ninety-Nine');
+assert.equal(await nw('100000'), 'One Lakh');
+assert.equal(await nw('12345678'), 'One Crore Twenty-Three Lakh Forty-Five Thousand Six Hundred Seventy-Eight');
+assert.equal(await nw('12345678', 'International (million/billion)'), 'Twelve Million Three Hundred Forty-Five Thousand Six Hundred Seventy-Eight');
+assert.equal(await nw('1000000000'), 'One Hundred Crore');
+assert.equal(await nw('1000000000', 'International (million/billion)'), 'One Billion');
+assert.equal(await nw('1,23,45,678'), 'One Crore Twenty-Three Lakh Forty-Five Thousand Six Hundred Seventy-Eight');
+assert.equal(await nw('1234.50'), 'One Thousand Two Hundred Thirty-Four Point Five Zero');
+assert.equal(await nw('-7'), 'Minus Seven');
+assert.match(await nw(''), /Enter a number/);
+assert.rejects(() => nw('12a'), /not a number/);
+assert.rejects(() => nw('9'.repeat(16)), /Too large/);
 
 console.log(`OK — ${catalog.length} tools, ${cats.size} categories, ${withInputs.length} with custom inputs`);
