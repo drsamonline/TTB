@@ -13,6 +13,15 @@
 
 ### Added
 - **NATO phonetic alphabet** tool (Text & Writing) — spells text as the NATO/ICAO phonetic alphabet (A→Alfa … Z→Zulu), digits passed through. Catalog 590 → 591.
+- **Number to words** tool (Calculators & Converters) — 12345678 is
+  "One Crore Twenty-Three Lakh Forty-Five Thousand Six Hundred Seventy-Eight" in the
+  Indian system and "Twelve Million Three Hundred Forty-Five Thousand Six Hundred
+  Seventy-Eight" in the international one, from one routine with two scale tables;
+  the grouping is the feature, and no tool in the catalog did either. Accepts Indian
+  digit grouping (`1,23,45,678`), negatives, and decimals read digit by digit so
+  `1234.50` keeps its trailing zero. Crore repeats above 99 (`1e9` is "One Hundred
+  Crore"); no arab/kharab names are invented. 15-digit limit, refused plainly above
+  it. Catalog 591 → 592.
 
 ## 0.10.0 — Cross-browser builds (Chrome, Edge, Firefox, Safari)
 
