@@ -1,7 +1,7 @@
 # Browser support
 
 TTB ships from one source tree and is assembled per browser with `npm run build`.
-Every build carries the full 591-tool catalog; tools that need an API a browser
+Every build carries the full 592-tool catalog; tools that need an API a browser
 does not provide are disabled and say so plainly rather than failing silently.
 
 | Capability | Chrome | Edge | Firefox | Safari |
