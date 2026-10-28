@@ -6,7 +6,7 @@
 
 [![Stars](https://img.shields.io/github/stars/drsamonline/TTB?style=for-the-badge&logo=github&labelColor=0b1220)](https://github.com/drsamonline/TTB/stargazers)
 [![Forks](https://img.shields.io/github/forks/drsamonline/TTB?style=for-the-badge&logo=github&labelColor=0b1220)](https://github.com/drsamonline/TTB/network/members)
-[![License: MIT](https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-2e7d32?style=for-the-badge&labelColor=0b1220)](LICENSE)
+[![License: PolyForm Noncommercial 1.0.0](https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-2e7d32?style=for-the-badge&labelColor=0b1220)](LICENSE)
 [![Tools](https://img.shields.io/badge/tools-591-brightgreen?style=for-the-badge)](ALL_TOOLS.md)
 
 ### ▶ [Open the landing page](https://drsamonline.github.io/TTB/) &nbsp;·&nbsp; [View the repository](https://github.com/drsamonline/TTB) &nbsp;·&nbsp; [All projects](https://drsamonline.github.io/)
