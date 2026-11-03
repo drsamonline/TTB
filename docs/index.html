@@ -311,7 +311,17 @@
   }
   .skip:focus{left:12px;top:12px}
 </style>
-<style id="__overflow_fix__"> /* horizontal-overflow fixes */ .getstart>*,.steps>*,.cards>*,.shots>*,.foot-grid>*{min-width:0} </style>
+<style id="__overflow_fix__"> /* horizontal-overflow fixes */ .getstart>*,.steps>*,.cards>*,.shots>*,.foot-grid>*{min-width:0} 
+  /* ---------- light theme ----------
+     Added so the page reads on paper. It overrides the page's own variables and
+     nothing else — no markup, no layout, no type. */
+  :root, html {
+    color-scheme: light;
+    --ink: #14161a;
+    --line: #e2ddd2;
+    --paper: #f7f6f2;
+  }
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
