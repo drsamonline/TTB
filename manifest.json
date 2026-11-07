@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "TTB \u2014 Tiny Toolbox",
   "version": "0.11.0",
-  "description": "A privacy-first offline toolbox with a 590-tool catalog, a category browser and local handlers.",
+  "description": "A privacy-first offline toolbox with a 563-tool catalog, a category browser and local handlers.",
   "minimum_chrome_version": "127",
   "permissions": [
     "activeTab",
