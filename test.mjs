@@ -1,10 +1,12 @@
 // TTB smoke test — catalog integrity, dispatcher coverage, registry metadata.
 import assert from 'node:assert/strict';
 import './data/tools.js';
+import fs from 'node:fs';
+const meta = JSON.parse(fs.readFileSync(new URL('./PROJECT_METADATA.json', import.meta.url), 'utf8'));
 
 const catalog = globalThis.TTB_CATALOG;
 assert.ok(Array.isArray(catalog), 'catalog should be an array');
-assert.equal(catalog.length, 592, `expected 592 catalog entries, got ${catalog.length}`);
+assert.equal(catalog.length, meta.tools, `expected ${meta.tools} catalog entries, got ${catalog.length}`);
 
 const ids = catalog.map((t) => t.id);
 assert.equal(new Set(ids).size, ids.length, 'catalog ids must be unique');

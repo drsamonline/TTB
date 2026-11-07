@@ -19,7 +19,7 @@ export async function runDev(name,ctx={}){const s=String(ctx.text??''),n=name.to
  if(n==='uuid v4/v7')return crypto.randomUUID();
  if(n==='jwt decode'){const p=s.split('.')[1];if(!p)throw Error('Invalid JWT');return JSON.stringify(JSON.parse(atob(p.replace(/-/g,'+').replace(/_/g,'/'))),null,2)}
  if(n==='color converter'){const m=s.match(/^#?([\da-f]{6})$/i);if(!m)throw Error('Use a 6-digit hex color');const h=m[1],r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);return JSON.stringify({hex:'#'+h.toUpperCase(),rgb:`rgb(${r}, ${g}, ${b})`,hsl:rgbToHsl(r,g,b)},null,2)}
- if(n==='color contrast (wcag)'){const [a,b]=s.split(/\s+/);return contrast(a,b)}
+ if(n==='color contrast (wcag)'){const [a,b0]=s.split(/\s+/);const b=ctx.b||b0;if(!b)throw Error('Enter the second colour in the field, or both separated by a space');return contrast(a,b)}
  if(n==='css specificity'){const x=s.replace(/"[^"]*"|'[^']*'/g,'');return JSON.stringify({ids:(x.match(/#[\w-]+/g)||[]).length,classes:(x.match(/\.[\w-]+|\[[^\]]+\]|:(?!:)[\w-]+/g)||[]).length,elements:(x.match(/(^|[ >+~])([a-z][\w-]*)/gi)||[]).length},null,2)}
  if(n==='ascii table'){const rows=s.split(/\r?\n/).map(r=>r.split(/\t|,/));const w=[];for(const r of rows)r.forEach((c,i)=>w[i]=Math.max(w[i]||0,c.length));return rows.map(r=>'| '+r.map((c,i)=>c.padEnd(w[i])).join(' | ')+' |').join('\n')}
  if(n==='regex tester'){const re=new RegExp(String(ctx.pattern??''),String(ctx.flags??'g'));return [...s.matchAll(re)].map(m=>m[0]).join('\n')}

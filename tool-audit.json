@@ -1,0 +1,5570 @@
+[
+ {
+  "name": "Case converter",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 118,
+  "verdict": "REAL",
+  "sample": "The Quick Brown Fox Jumps Over The Lazy Dog. It Was A Bright Cold Day In April, And The Clocks Were Striking Thirteen."
+ },
+ {
+  "name": "Trim/dedupe/sort/reverse lines",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 118,
+  "verdict": "REAL",
+  "sample": "The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thirteen."
+ },
+ {
+  "name": "Remove empty/duplicate lines",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 118,
+  "verdict": "REAL",
+  "sample": "The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thirteen."
+ },
+ {
+  "name": "Strip HTML/Markdown/URLs",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 0,
+  "verdict": "EMPTY"
+ },
+ {
+  "name": "Word/char/line/sentence/paragraph count",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 117,
+  "verdict": "REAL",
+  "sample": "{\n  \"words\": 23,\n  \"characters\": 118,\n  \"charactersNoSpaces\": 96,\n  \"lines\": 1,\n  \"sentences\": 2,\n  \"paragraphs\": 1\n}"
+ },
+ {
+  "name": "Reading time",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 18,
+  "verdict": "REAL",
+  "sample": "1 min (at 200 wpm)"
+ },
+ {
+  "name": "Speaking time",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 18,
+  "verdict": "REAL",
+  "sample": "1 min (at 130 wpm)"
+ },
+ {
+  "name": "Flesch-Kincaid",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 31,
+  "verdict": "REAL",
+  "sample": "Reading Ease: 92.17\nGrade: 3.26"
+ },
+ {
+  "name": "Gunning Fog",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 11,
+  "verdict": "SHALLOW",
+  "sample": "Grade: 4.60"
+ },
+ {
+  "name": "SMOG",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 11,
+  "verdict": "SHALLOW",
+  "sample": "Grade: 3.13"
+ },
+ {
+  "name": "Slug generator",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 115,
+  "verdict": "REAL",
+  "sample": "the-quick-brown-fox-jumps-over-the-lazy-dog-it-was-a-bright-cold-day-in-april-and-the-clocks-were-striking-thirteen"
+ },
+ {
+  "name": "Lorem ipsum",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 1126,
+  "verdict": "REAL",
+  "sample": "Laboris aliqua deserunt velit ipsum proident et enim incididunt enim est sunt incididunt laborum eu anim elit voluptate "
+ },
+ {
+  "name": "Base64 encode/decode",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 16,
+  "verdict": "REAL",
+  "sample": "aGVsbG8gd29ybGQ="
+ },
+ {
+  "name": "URL encode/decode",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 73,
+  "verdict": "REAL",
+  "sample": "https%3A%2F%2Fexample.com%2Fpath%2Fpage%3Fa%3D1%26utm_source%3Dnewsletter"
+ },
+ {
+  "name": "HTML entity encode/decode",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 118,
+  "verdict": "REAL",
+  "sample": "The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thirteen."
+ },
+ {
+  "name": "Unicode escape/unescape",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 708,
+  "verdict": "REAL",
+  "sample": "\\u0054\\u0068\\u0065\\u0020\\u0071\\u0075\\u0069\\u0063\\u006b\\u0020\\u0062\\u0072\\u006f\\u0077\\u006e\\u0020\\u0066\\u006f\\u0078\\u0020"
+ },
+ {
+  "name": "ROT13",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 118,
+  "verdict": "REAL",
+  "sample": "Gur dhvpx oebja sbk whzcf bire gur ynml qbt. Vg jnf n oevtug pbyq qnl va Ncevy, naq gur pybpxf jrer fgevxvat guvegrra."
+ },
+ {
+  "name": "Caesar cipher",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 118,
+  "verdict": "REAL",
+  "sample": "Gur dhvpx oebja sbk whzcf bire gur ynml qbt. Vg jnf n oevtug pbyq qnl va Ncevy, naq gur pybpxf jrer fgevxvat guvegrra."
+ },
+ {
+  "name": "Morse code",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 11,
+  "verdict": "SHALLOW",
+  "sample": "... --- ..."
+ },
+ {
+  "name": "Binary ↔ text",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 1061,
+  "verdict": "REAL",
+  "sample": "01010100 01101000 01100101 00100000 01110001 01110101 01101001 01100011 01101011 00100000 01100010 01110010 01101111 011"
+ },
+ {
+  "name": "Hex ↔ text",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 14,
+  "verdict": "REAL",
+  "sample": "23333336363939"
+ },
+ {
+  "name": "Leetspeak",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 118,
+  "verdict": "REAL",
+  "sample": "7h3 qu1ck 8r0wn f0x jump5 0v3r 7h3 l4zy d09. 17 w45 4 8r19h7 c0ld d4y 1n 4pr1l, 4nd 7h3 cl0ck5 w3r3 57r1k1n9 7h1r733n."
+ },
+ {
+  "name": "Pig Latin",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 170,
+  "verdict": "REAL",
+  "sample": "heTay uickqay rownbay oxfay umpsjay overway hetay azylay ogday. Itway asway away rightbay oldcay ayday inway Aprilway, a"
+ },
+ {
+  "name": "Reverse text/words",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 118,
+  "verdict": "REAL",
+  "sample": ".neetriht gnikirts erew skcolc eht dna ,lirpA ni yad dloc thgirb a saw tI .god yzal eht revo spmuj xof nworb kciuq ehT"
+ },
+ {
+  "name": "Palindrome checker",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 16,
+  "verdict": "REAL",
+  "sample": "Not a palindrome"
+ },
+ {
+  "name": "Anagram finder",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 107,
+  "verdict": "REAL",
+  "sample": "Signature: ,..aaaaaabbccccddddeeeeeeeefggghhhhhiiiiiiiijkkkllllmnnnnnooooooppqrrrrrrrssssttttttttuuvwwwxyyz"
+ },
+ {
+  "name": "Word frequency",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 149,
+  "verdict": "REAL",
+  "sample": "the\t3\nquick\t1\nbrown\t1\nfox\t1\njumps\t1\nover\t1\nlazy\t1\ndog\t1\nit\t1\nwas\t1\na\t1\nbright\t1\ncold\t1\nday\t1\nin\t1\napril\t1\nand\t1\nclocks\t1"
+ },
+ {
+  "name": "N-gram extractor",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 262,
+  "verdict": "REAL",
+  "sample": "1\tthe quick\n1\tquick brown\n1\tbrown fox\n1\tfox jumps\n1\tjumps over\n1\tover the\n1\tthe lazy\n1\tlazy dog\n1\tdog it\n1\tit was\n1\twas "
+ },
+ {
+  "name": "Keyword density",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 255,
+  "verdict": "REAL",
+  "sample": "the: 13.04%\nquick: 4.35%\nbrown: 4.35%\nfox: 4.35%\njumps: 4.35%\nover: 4.35%\nlazy: 4.35%\ndog: 4.35%\nit: 4.35%\nwas: 4.35%\na:"
+ },
+ {
+  "name": "Syllable counter",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 83,
+  "verdict": "REAL",
+  "sample": "{\n  \"words\": 23,\n  \"syllables\": 28,\n  \"averagePerWord\": 1.22,\n  \"polysyllabic\": 0\n}"
+ },
+ {
+  "name": "Passive voice detector",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 123,
+  "verdict": "REAL",
+  "sample": "Possible passive constructions (1/2 sentences):\n• It was a bright cold day in April, and the clocks were striking thirte"
+ },
+ {
+  "name": "Adverb highlighter",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 21,
+  "verdict": "REAL",
+  "sample": "No -ly adverbs found."
+ },
+ {
+  "name": "Sentence length variance",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 4,
+  "verdict": "SHALLOW",
+  "sample": "6.25"
+ },
+ {
+  "name": "Paragraph reflow",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 118,
+  "verdict": "REAL",
+  "sample": "The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thirteen."
+ },
+ {
+  "name": "Smart quotes ↔ straight quotes",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 118,
+  "verdict": "REAL",
+  "sample": "The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thirteen."
+ },
+ {
+  "name": "Dash normalizer",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 118,
+  "verdict": "REAL",
+  "sample": "The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thirteen."
+ },
+ {
+  "name": "Ellipsis normalizer",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 118,
+  "verdict": "REAL",
+  "sample": "The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thirteen."
+ },
+ {
+  "name": "Whitespace visualizer",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 118,
+  "verdict": "REAL",
+  "sample": "The·quick·brown·fox·jumps·over·the·lazy·dog.·It·was·a·bright·cold·day·in·April,·and·the·clocks·were·striking·thirteen."
+ },
+ {
+  "name": "Invisible character detector",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 10,
+  "verdict": "SHALLOW",
+  "sample": "None found"
+ },
+ {
+  "name": "Zero-width char remover",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 118,
+  "verdict": "REAL",
+  "sample": "The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thirteen."
+ },
+ {
+  "name": "Homoglyph detector",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 43,
+  "verdict": "STATIC",
+  "sample": "No mixed-script lookalike characters found."
+ },
+ {
+  "name": "RTL/LTR fixer",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 121,
+  "verdict": "REAL",
+  "sample": "‫The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thirteen.‬"
+ },
+ {
+  "name": "Bidi char remover",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 118,
+  "verdict": "REAL",
+  "sample": "The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thirteen."
+ },
+ {
+  "name": "Title case (AP/Chicago/APA)",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 118,
+  "verdict": "REAL",
+  "sample": "The Quick Brown Fox Jumps over the Lazy Dog. it Was a Bright Cold Day in April, and the Clocks Were Striking Thirteen."
+ },
+ {
+  "name": "Citation formatter",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 144,
+  "verdict": "REAL",
+  "sample": "The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thirteen. ("
+ },
+ {
+  "name": "BibTeX formatter",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 220,
+  "verdict": "REAL",
+  "sample": "@article{thesample,\n  author  = {The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the"
+ },
+ {
+  "name": "Markdown → HTML",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 96,
+  "verdict": "REAL",
+  "sample": "<h1>Title</h1><br><br>Some <strong>bold</strong> and <em>italic</em> text.<br><br>- one<br>- two"
+ },
+ {
+  "name": "HTML → Markdown",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 54,
+  "verdict": "REAL",
+  "sample": "# Title\n\nSome **bold** and *italic* text.\n\n- one\n- two"
+ },
+ {
+  "name": "CSV → Markdown table",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 118,
+  "verdict": "REAL",
+  "sample": "| name | score | city |\n| --- | --- | --- |\n| A | 10 | Pune |\n| B | 20 | Delhi |\n| C | 30 | Mumbai |\n| D | 40 | Pune |"
+ },
+ {
+  "name": "Text diff",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 129,
+  "verdict": "REAL",
+  "sample": "- The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thirteen."
+ },
+ {
+  "name": "Levenshtein similarity",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 18,
+  "verdict": "REAL",
+  "sample": "0.0423728813559322"
+ },
+ {
+  "name": "Jaccard similarity",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 1,
+  "verdict": "SHALLOW",
+  "sample": "0"
+ },
+ {
+  "name": "Regex extractor",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 0,
+  "verdict": "EMPTY"
+ },
+ {
+  "name": "Regex replace preview",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 52,
+  "verdict": "REAL",
+  "sample": "Order 1234 shipped on 2024-03-15 to user@example.com"
+ },
+ {
+  "name": "Text templating",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 118,
+  "verdict": "REAL",
+  "sample": "The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thirteen."
+ },
+ {
+  "name": "Emoji picker",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 81,
+  "verdict": "STATIC",
+  "sample": "No category matched. Try: smile, love, hand, animal, food, travel, nature, symbol"
+ },
+ {
+  "name": "Kaomoji library",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 176,
+  "verdict": "STATIC",
+  "sample": "(╯°□°）╯︵ ┻━┻\n┬─┬ノ( º _ ºノ)\n(づ｡◕‿‿◕｡)づ\n( •_•)>⌐■-■\n¯\\_(ツ)_/¯\n( ͡° ͜ʖ ͡°)\n(╥﹏╥)\nʕ•ᴥ•ʔ\n(✿◠‿◠)\n(>_<)\no(≧v≦)o\n(￣▽￣)\n(¬_¬)\n(°ロ"
+ },
+ {
+  "name": "Unicode browser",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 2084,
+  "verdict": "REAL",
+  "sample": "T  U+0054  84  T\nh  U+0068  104  h\ne  U+0065  101  e\n   U+0020  32   \nq  U+0071  113  q\nu  U+0075  117  u\ni  U+0069  105"
+ },
+ {
+  "name": "Font preview",
+  "category": "Text & Writing",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 1762,
+  "verdict": "REAL",
+  "sample": "<div style=\"font-size:22px\"><p style=\"font-family:system-ui;margin:0 0 10px\">system-ui<br><span>The quick brown fox jump"
+ },
+ {
+  "name": "TTS (Web Speech)",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 50,
+  "verdict": "PLACEHOLDER",
+  "sample": "Speech synthesis is not available in this context."
+ },
+ {
+  "name": "STT (Web Speech)",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 60,
+  "verdict": "PLACEHOLDER",
+  "sample": "Speech recognition is not available in this browser context."
+ },
+ {
+  "name": "Live calculator",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 6,
+  "verdict": "SHALLOW",
+  "sample": "1234.5"
+ },
+ {
+  "name": "Scientific",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 6,
+  "verdict": "SHALLOW",
+  "sample": "1234.5"
+ },
+ {
+  "name": "Matrix",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "Matrix B must be rectangular and contain only numbers.",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "Percentage",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "Enter a valid number",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "Tip",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 41,
+  "verdict": "REAL",
+  "sample": "{\n  \"tip\": 185.175,\n  \"total\": 1419.675\n}"
+ },
+ {
+  "name": "Discount",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 44,
+  "verdict": "REAL",
+  "sample": "{\n  \"discount\": 123.45,\n  \"final\": 1111.05\n}"
+ },
+ {
+  "name": "Tax/VAT/GST",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 39,
+  "verdict": "REAL",
+  "sample": "{\n  \"tax\": 222.21,\n  \"total\": 1456.71\n}"
+ },
+ {
+  "name": "Loan/EMI",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 96,
+  "verdict": "REAL",
+  "sample": "{\n  \"emi\": 25.031208749046904,\n  \"total\": 1501.8725249428142,\n  \"interest\": 267.37252494281415\n}"
+ },
+ {
+  "name": "Amortization",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 9930,
+  "verdict": "REAL",
+  "sample": "[\n  {\n    \"month\": 1,\n    \"payment\": 25.031208749046904,\n    \"principal\": 16.801208749046904,\n    \"interest\": 8.23,\n    "
+ },
+ {
+  "name": "Compound interest",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 65,
+  "verdict": "REAL",
+  "sample": "{\n  \"interest\": 604.7145268983311,\n  \"total\": 1839.214526898331\n}"
+ },
+ {
+  "name": "Simple interest",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 5,
+  "verdict": "SHALLOW",
+  "sample": "98.76"
+ },
+ {
+  "name": "ROI/ROAS",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 9,
+  "verdict": "SHALLOW",
+  "sample": "12245.00%"
+ },
+ {
+  "name": "Break-even",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 8,
+  "verdict": "SHALLOW",
+  "sample": "Infinity"
+ },
+ {
+  "name": "Markup/margin",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 54,
+  "verdict": "REAL",
+  "sample": "{\n  \"markup\": -99.18995544754962,\n  \"margin\": -12245\n}"
+ },
+ {
+  "name": "Salary↔hourly",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "Enter a valid number",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "Overtime",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 7,
+  "verdict": "SHALLOW",
+  "sample": "1851.75"
+ },
+ {
+  "name": "Freelance rate",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 144,
+  "verdict": "REAL",
+  "sample": "{\n  \"annualTarget\": 1234.5,\n  \"billableHoursPerWeek\": 25,\n  \"workingWeeks\": 46,\n  \"hourlyRate\": 1.07,\n  \"dayRate\": 8.59,"
+ },
+ {
+  "name": "Age",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "Use a valid birth date",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "Date difference",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 8,
+  "verdict": "SHALLOW",
+  "sample": "NaN days"
+ },
+ {
+  "name": "Business days",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "Enter two valid dates",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "Add/subtract date",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 20,
+  "verdict": "REAL",
+  "sample": "1990-06-19 (Tuesday)"
+ },
+ {
+  "name": "Week number",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 3,
+  "verdict": "SHALLOW",
+  "sample": "NaN"
+ },
+ {
+  "name": "Day of week",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 12,
+  "verdict": "REAL",
+  "sample": "Invalid Date"
+ },
+ {
+  "name": "Zodiac",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 5,
+  "verdict": "SHALLOW",
+  "sample": "Aries"
+ },
+ {
+  "name": "Chinese zodiac",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 13,
+  "verdict": "REAL",
+  "sample": "Horse (Metal)"
+ },
+ {
+  "name": "Time zone converter",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 60,
+  "verdict": "REAL",
+  "sample": "Asia/Kolkata: 1 May 1234, 05:53:28\nUTC: 1 May 1234, 00:00:00"
+ },
+ {
+  "name": "Unix timestamp",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 10,
+  "verdict": "SHALLOW",
+  "sample": "1794055305"
+ },
+ {
+  "name": "ISO 8601",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 24,
+  "verdict": "REAL",
+  "sample": "2026-11-07T12:41:45.852Z"
+ },
+ {
+  "name": "Cron time",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 314,
+  "verdict": "STATIC",
+  "sample": "Sat Nov 07 2026 12:45:00 GMT+0000 (Coordinated Universal Time)\nSat Nov 07 2026 13:00:00 GMT+0000 (Coordinated Universal "
+ },
+ {
+  "name": "Stopwatch",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 75,
+  "verdict": "STATIC",
+  "sample": "{\n  \"running\": true,\n  \"elapsedMs\": 0,\n  \"elapsed\": \"0.00s\",\n  \"laps\": []\n}"
+ },
+ {
+  "name": "Countdown",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 88,
+  "verdict": "REAL",
+  "sample": "Since Sun May 20 1990 00:00:00 GMT+0000 (Coordinated Universal Time): 13320d 12h 41m 45s"
+ },
+ {
+  "name": "Pomodoro",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 178,
+  "verdict": "STATIC",
+  "sample": "#1 work 12:41–13:06\n   break until 13:11\n#2 work 13:11–13:36\n   break until 13:41\n#3 work 13:41–14:06\n   break until 14:"
+ },
+ {
+  "name": "Unit converter",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 25,
+  "verdict": "REAL",
+  "sample": "1234.5 km = 767.082737 mi"
+ },
+ {
+  "name": "Length/weight/temp/area/volume",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 24,
+  "verdict": "REAL",
+  "sample": "1234.5 m = 4050.19685 ft"
+ },
+ {
+  "name": "Speed/pressure/energy/power",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 28,
+  "verdict": "REAL",
+  "sample": "1234.5 km/h = 767.082737 mph"
+ },
+ {
+  "name": "Fuel economy",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 111,
+  "verdict": "REAL",
+  "sample": "{\n  \"input\": \"1234.5 L/100km\",\n  \"L/100km\": 1234.5,\n  \"km/L\": 0.081,\n  \"mpg (US)\": 0.191,\n  \"mpg (UK)\": 0.229\n}"
+ },
+ {
+  "name": "Cooking",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 26,
+  "verdict": "REAL",
+  "sample": "1234.5 cup = 292068.178 mL"
+ },
+ {
+  "name": "Byte converter",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 107,
+  "verdict": "REAL",
+  "sample": "{\n  \"bytes\": 1234.5,\n  \"KB\": 1.2056,\n  \"MB\": 0.001177,\n  \"GB\": 0.00000115,\n  \"TB\": 1.1e-9,\n  \"bits\": 9876\n}"
+ },
+ {
+  "name": "Data rate",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 27,
+  "verdict": "REAL",
+  "sample": "1234.5 Mbps = 154.3125 MB/s"
+ },
+ {
+  "name": "Frequency/wavelength",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 95,
+  "verdict": "REAL",
+  "sample": "{\n  \"frequencyMHz\": 1234.5,\n  \"wavelengthM\": 0.2428,\n  \"wavelengthCm\": 24.28,\n  \"band\": \"UHF\"\n}"
+ },
+ {
+  "name": "Angle",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 25,
+  "verdict": "REAL",
+  "sample": "1234.5 deg = 21.54609 rad"
+ },
+ {
+  "name": "Base converter",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 3,
+  "verdict": "SHALLOW",
+  "sample": "4D2"
+ },
+ {
+  "name": "Roman numerals",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 8,
+  "verdict": "SHALLOW",
+  "sample": "MCCXXXIV"
+ },
+ {
+  "name": "Binary/octal/hex",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "Invalid number",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "Fraction↔decimal",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 6,
+  "verdict": "SHALLOW",
+  "sample": "1234.5"
+ },
+ {
+  "name": "Scientific notation",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 11,
+  "verdict": "SHALLOW",
+  "sample": "1.234500e+3"
+ },
+ {
+  "name": "Significant figures",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 7,
+  "verdict": "SHALLOW",
+  "sample": "1.23e+3"
+ },
+ {
+  "name": "Rounding",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 75,
+  "verdict": "REAL",
+  "sample": "{\n  \"rounded\": 1234.5,\n  \"floor\": 1234.5,\n  \"ceil\": 1234.5,\n  \"places\": 2\n}"
+ },
+ {
+  "name": "Prime checker",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 9,
+  "verdict": "SHALLOW",
+  "sample": "Not prime"
+ },
+ {
+  "name": "GCD/LCM",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 29,
+  "verdict": "REAL",
+  "sample": "{\n  \"gcd\": 1234,\n  \"lcm\": 0\n}"
+ },
+ {
+  "name": "Factorial/permutations",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "Enter a whole number ≥ 0 (e.g. 10 or 10,3)",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "Fibonacci",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 28501,
+  "verdict": "REAL",
+  "sample": "0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75"
+ },
+ {
+  "name": "Statistics",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 88,
+  "verdict": "REAL",
+  "sample": "{\n  \"count\": 1,\n  \"min\": 1234.5,\n  \"max\": 1234.5,\n  \"mean\": 1234.5,\n  \"median\": 1234.5\n}"
+ },
+ {
+  "name": "Percentile/quartile",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 119,
+  "verdict": "STATIC",
+  "sample": "{\n  \"count\": 1,\n  \"min\": 1234.5,\n  \"max\": 1234.5,\n  \"q1\": 1234.5,\n  \"median\": 1234.5,\n  \"q3\": 1234.5,\n  \"p90\": 1234.5\n}"
+ },
+ {
+  "name": "Correlation",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "X and Y must have the same length (≥2)",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "Linear regression",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "X and Y must have the same length (≥2)",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "Probability",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "Keep n ≤ 170 to stay within floating-point range",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "Random number",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 6,
+  "verdict": "SHALLOW",
+  "sample": "875358"
+ },
+ {
+  "name": "Random from list",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 6,
+  "verdict": "SHALLOW",
+  "sample": "1234.5"
+ },
+ {
+  "name": "Dice",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 1,
+  "verdict": "SHALLOW",
+  "sample": "3"
+ },
+ {
+  "name": "Coin flip",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 5,
+  "verdict": "SHALLOW",
+  "sample": "Heads"
+ },
+ {
+  "name": "Password generator",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 16,
+  "verdict": "REAL",
+  "sample": "GHoyd![n[n5[cUL#"
+ },
+ {
+  "name": "PIN generator",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 6,
+  "verdict": "SHALLOW",
+  "sample": "683591"
+ },
+ {
+  "name": "BMI/BMR/TDEE",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 101,
+  "verdict": "REAL",
+  "sample": "{\n  \"bmi\": 123450,\n  \"category\": \"obese\",\n  \"bmr\": 12363,\n  \"tdee\": 19162,\n  \"activity\": \"moderate\"\n}"
+ },
+ {
+  "name": "Body fat",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 82,
+  "verdict": "REAL",
+  "sample": "{\n  \"bodyFatPercent\": -450,\n  \"method\": \"US Navy circumference\",\n  \"sex\": \"male\"\n}"
+ },
+ {
+  "name": "Pace/speed",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 102,
+  "verdict": "STATIC",
+  "sample": "{\n  \"distanceKm\": 5,\n  \"timeMin\": 30,\n  \"paceMinPerKm\": \"6:00\",\n  \"speedKmh\": 10,\n  \"speedMph\": 6.21\n}"
+ },
+ {
+  "name": "Fuel cost",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 102,
+  "verdict": "STATIC",
+  "sample": "{\n  \"litresUsed\": 0.67,\n  \"cost\": 66.67,\n  \"currencyNote\": \"Currency is whatever your price unit is\"\n}"
+ },
+ {
+  "name": "Electricity cost",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 91,
+  "verdict": "REAL",
+  "sample": "{\n  \"watts\": 1234.5,\n  \"hoursPerDay\": 4,\n  \"days\": 30,\n  \"kWh\": 148.14,\n  \"cost\": 1185.12\n}"
+ },
+ {
+  "name": "JSON format/validate/minify",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 87,
+  "verdict": "REAL",
+  "sample": "{\"name\":\"Ada\",\"age\":36,\"tags\":[\"math\",\"code\"],\"address\":{\"city\":\"Pune\",\"zip\":\"411001\"}}"
+ },
+ {
+  "name": "JSON→TypeScript",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 135,
+  "verdict": "REAL",
+  "sample": "interface Root {\n  name: string;\n  age: number;\n  tags: type x = string[];\n  address: interface x {\n  city: string;\n  zi"
+ },
+ {
+  "name": "JSON→Go/Rust/Python",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 200,
+  "verdict": "REAL",
+  "sample": "type Root struct {\n\tName string `json:\"name\"`\n\tAge int `json:\"age\"`\n\tTags []string `json:\"tags\"`\n\tAddress type Address s"
+ },
+ {
+  "name": "JSON→SQL/CSV/YAML/XML",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 132,
+  "verdict": "REAL",
+  "sample": "{\n  \"name\": \"Ada\",\n  \"age\": 36,\n  \"tags\": [\n    \"math\",\n    \"code\"\n  ],\n  \"address\": {\n    \"city\": \"Pune\",\n    \"zip\": \"4"
+ },
+ {
+  "name": "JSON Schema gen",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 603,
+  "verdict": "REAL",
+  "sample": "{\n  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"name\": {\n     "
+ },
+ {
+  "name": "JSONPath eval",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 2,
+  "verdict": "SHALLOW",
+  "sample": "[]"
+ },
+ {
+  "name": "JSON diff",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "Unexpected token 's', \"sample\" is not valid JSON",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "YAML↔JSON",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 132,
+  "verdict": "REAL",
+  "sample": "{\n  \"name\": \"Ada\",\n  \"age\": 36,\n  \"tags\": [\n    \"math\",\n    \"code\"\n  ],\n  \"address\": {\n    \"city\": \"Pune\",\n    \"zip\": \"4"
+ },
+ {
+  "name": "XML format",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 58,
+  "verdict": "REAL",
+  "sample": "<root>\n<item id=\"1\">A</item>\n<item id=\"2\">B</item>\n</root>"
+ },
+ {
+  "name": "XML→JSON",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "DOMParser is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "CSV↔JSON",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 2,
+  "verdict": "SHALLOW",
+  "sample": "[]"
+ },
+ {
+  "name": "TOML parser",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 63,
+  "verdict": "REAL",
+  "sample": "{\n  \"server\": {\n    \"port\": 8080,\n    \"host\": \"localhost\"\n  }\n}"
+ },
+ {
+  "name": "INI parser",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 55,
+  "verdict": "REAL",
+  "sample": "{\n  \"default\": {},\n  \"main\": {\n    \"key\": \"value\"\n  }\n}"
+ },
+ {
+  "name": ".env parser",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 57,
+  "verdict": "REAL",
+  "sample": "{\n  \"API_URL\": \"https://example.com\",\n  \"DEBUG\": \"true\"\n}"
+ },
+ {
+  "name": "Regex tester",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 0,
+  "verdict": "EMPTY"
+ },
+ {
+  "name": "Cron explainer",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 94,
+  "verdict": "STATIC",
+  "sample": "Runs at every 15 minute, hour 9–17, on every day-of-month, in every month, on day-of-week 1–5."
+ },
+ {
+  "name": "Cron next-run",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 314,
+  "verdict": "STATIC",
+  "sample": "Mon Nov 09 2026 09:00:00 GMT+0000 (Coordinated Universal Time)\nMon Nov 09 2026 09:15:00 GMT+0000 (Coordinated Universal "
+ },
+ {
+  "name": "UUID v4/v7",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 36,
+  "verdict": "REAL",
+  "sample": "87d01433-7305-4b0e-8153-5f9eaa0e6c63"
+ },
+ {
+  "name": "ULID",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 26,
+  "verdict": "REAL",
+  "sample": "01M6V0EYNRBVEJ72T1WCADX5R3"
+ },
+ {
+  "name": "NanoID",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 21,
+  "verdict": "REAL",
+  "sample": "D_9c8xWixa1ZdxR2InxWC"
+ },
+ {
+  "name": "JWT decode",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 42,
+  "verdict": "STATIC",
+  "sample": "{\n  \"sub\": \"1234567890\",\n  \"name\": \"Ada\"\n}"
+ },
+ {
+  "name": "JWT verify (HS256)",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 139,
+  "verdict": "STATIC",
+  "sample": "{\n  \"valid\": false,\n  \"header\": {\n    \"alg\": \"HS256\",\n    \"typ\": \"JWT\"\n  },\n  \"payload\": {\n    \"sub\": \"1234567890\",\n    "
+ },
+ {
+  "name": "Base64 URL-safe",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 74,
+  "verdict": "REAL",
+  "sample": "aHR0cHM6Ly9leGFtcGxlLmNvbS9wYXRoL3BhZ2U_YT0xJnV0bV9zb3VyY2U9bmV3c2xldHRlcg"
+ },
+ {
+  "name": "Base32",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 26,
+  "verdict": "REAL",
+  "sample": "JJBFGV2ZGNCFARKIKBFTGUCYKA"
+ },
+ {
+  "name": "Base58",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 161,
+  "verdict": "REAL",
+  "sample": "bqG9UewMrMvQa5LCR1ZkA2soupheyiDL1Jt8gLepeGX97MQqSUX8W4LAsrmiTsgTmemaeC3DD9YzBRG2xZys88B231GiGgz2JUaUkfcFEyeTNTFeZRKr8RsG"
+ },
+ {
+  "name": "URL parser",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 242,
+  "verdict": "REAL",
+  "sample": "{\n  \"href\": \"https://example.com/path/page?a=1&utm_source=newsletter\",\n  \"protocol\": \"https:\",\n  \"host\": \"example.com\",\n"
+ },
+ {
+  "name": "Query string parser",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 130,
+  "verdict": "REAL",
+  "sample": "{\n  \"The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thirte"
+ },
+ {
+  "name": "HTTP header parser",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 144,
+  "verdict": "REAL",
+  "sample": "[\n  [\n    \"The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking "
+ },
+ {
+  "name": "HTTP status lookup",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 14,
+  "verdict": "REAL",
+  "sample": "Unknown status"
+ },
+ {
+  "name": "MIME lookup",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 7,
+  "verdict": "SHALLOW",
+  "sample": "Unknown"
+ },
+ {
+  "name": "Hash (MD5/SHA-1/256/512)",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 64,
+  "verdict": "REAL",
+  "sample": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+ },
+ {
+  "name": "HMAC",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 64,
+  "verdict": "REAL",
+  "sample": "421fda9fa81e8bb20275cc5c7a947731bce933f4131182a1fdf2eabd0a714c93"
+ },
+ {
+  "name": "Diff tool",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 129,
+  "verdict": "REAL",
+  "sample": "- The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thirteen."
+ },
+ {
+  "name": "JS/CSS/HTML beautify",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 37,
+  "verdict": "REAL",
+  "sample": "div.card > a:hover {\n  color: red;\n}\n"
+ },
+ {
+  "name": "JS/CSS/HTML minify",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 16,
+  "verdict": "REAL",
+  "sample": "[main] key=value"
+ },
+ {
+  "name": "CSS specificity",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 47,
+  "verdict": "REAL",
+  "sample": "{\n  \"ids\": 0,\n  \"classes\": 2,\n  \"elements\": 4\n}"
+ },
+ {
+  "name": "CSS selector gen",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 282,
+  "verdict": "REAL",
+  "sample": "#id\t#div.card > a:hover { color: red; }\n.class\t.div.card > a:hover { color: red; }\n[attr]\t[div.card > a:hover { color: r"
+ },
+ {
+  "name": "XPath gen",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 1002,
+  "verdict": "REAL",
+  "sample": "By tag\t//The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking th"
+ },
+ {
+  "name": "Color picker",
+  "category": "Developer",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 291,
+  "verdict": "REAL",
+  "sample": "<div style=\"display:flex;gap:14px;align-items:center;font:13px system-ui;color:#e8eaed\"><div style=\"width:120px;height:1"
+ },
+ {
+  "name": "Hex↔RGB↔HSL↔CMYK",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 120,
+  "verdict": "REAL",
+  "sample": "{\n  \"hex\": \"#336699\",\n  \"rgb\": \"rgb(51, 102, 153)\",\n  \"hsl\": \"hsl(210, 50%, 40%)\",\n  \"cmyk\": \"cmyk(67%, 33%, 0%, 40%)\"\n}"
+ },
+ {
+  "name": "Color contrast (WCAG)",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 17,
+  "verdict": "REAL",
+  "sample": "5.997786839657083"
+ },
+ {
+  "name": "Palette extractor",
+  "category": "Developer",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 1127,
+  "verdict": "REAL",
+  "sample": "<div style=\"display:flex;font:11px system-ui;color:#111\"><div style=\"flex:1;height:80px;background:#0a141f;display:flex;"
+ },
+ {
+  "name": "Gradient gen",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 40,
+  "verdict": "REAL",
+  "sample": "linear-gradient(90deg, #336699, #66ccff)"
+ },
+ {
+  "name": "Box shadow gen",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 40,
+  "verdict": "REAL",
+  "sample": "box-shadow: 0px 8px 24px -4px #00000033;"
+ },
+ {
+  "name": "Border radius gen",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 148,
+  "verdict": "REAL",
+  "sample": "border-radius: The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were strik"
+ },
+ {
+  "name": "CSS transform gen",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 53,
+  "verdict": "STATIC",
+  "sample": "transform: translate(0px, 0px) rotate(0deg) scale(1);"
+ },
+ {
+  "name": "Flexbox playground",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 228,
+  "verdict": "REAL",
+  "sample": ".flex {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n  gap: The quick brown"
+ },
+ {
+  "name": "Grid playground",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 217,
+  "verdict": "REAL",
+  "sample": ".grid {\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr;\n  grid-auto-rows: The quick brown fox jumps over the lazy"
+ },
+ {
+  "name": "SVG→JSX",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 99,
+  "verdict": "REAL",
+  "sample": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\"><rect width=\"24\" height=\"24\"/></svg>"
+ },
+ {
+  "name": "SVG→PNG",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "Image is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Favicon gen",
+  "category": "Developer",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 450,
+  "verdict": "REAL",
+  "sample": "<img width=\"64\" height=\"64\" style=\"border-radius:14px\" src=\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.o"
+ },
+ {
+  "name": "Meta tag gen",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 562,
+  "verdict": "REAL",
+  "sample": "<title>The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thir"
+ },
+ {
+  "name": "OG/Twitter preview",
+  "category": "Developer",
+  "output": "html",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Robots.txt tester",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 58,
+  "verdict": "STATIC",
+  "sample": "Path \"/\" for user-agent \"*\": ALLOWED\n\nParsed rules:\n(none)"
+ },
+ {
+  "name": "Sitemap validator",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 70,
+  "verdict": "STATIC",
+  "sample": "{\n  \"urlCount\": 0,\n  \"invalid\": [],\n  \"duplicate\": [],\n  \"ok\": false\n}"
+ },
+ {
+  "name": "HTML validator",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 63,
+  "verdict": "STATIC",
+  "sample": "Missing <title>\nMissing meta description\nMissing lang on <html>"
+ },
+ {
+  "name": "Markdown preview",
+  "category": "Developer",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 199,
+  "verdict": "REAL",
+  "sample": "<div style=\"font:14px/1.6 system-ui;color:#e8eaed;background:#0f1115;padding:12px\"><h1>Title</h1><br><br>Some <strong>bo"
+ },
+ {
+  "name": "ASCII table",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 129,
+  "verdict": "REAL",
+  "sample": "| name | score | city   |\n| A    | 10    | Pune   |\n| B    | 20    | Delhi  |\n| C    | 30    | Mumbai |\n| D    | 40    |"
+ },
+ {
+  "name": "CSV table",
+  "category": "Developer",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 1023,
+  "verdict": "REAL",
+  "sample": "<table style=\"border-collapse:collapse;font:13px system-ui;color:#e8eaed\"><thead><tr><th style=\"border:1px solid #333;pa"
+ },
+ {
+  "name": "SQL formatter",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 69,
+  "verdict": "REAL",
+  "sample": "SELECT id, name \nFROM users \nWHERE age > 30 \nORDER BY name \nLIMIT 10;"
+ },
+ {
+  "name": "SQL→MongoDB",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 67,
+  "verdict": "REAL",
+  "sample": "db.users.find({ age > 30 order by name }, id: 1, name: 1).limit(10)"
+ },
+ {
+  "name": "Regex→SQL",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 291,
+  "verdict": "REAL",
+  "sample": "-- Simple LIKE translation of Order 1234 shipped on 2024-03-15 to user@example.com\nSELECT * FROM table WHERE column LIKE"
+ },
+ {
+  "name": "GraphQL builder",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 241,
+  "verdict": "REAL",
+  "sample": "query {\n  item(id: \"1\") {\n    The\n    quick\n    brown\n    fox\n    jumps\n    over\n    the\n    lazy\n    dog.\n    It\n    wa"
+ },
+ {
+  "name": "WebSocket tester",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 28,
+  "verdict": "REAL",
+  "sample": "Enter a ws:// or wss:// URL."
+ },
+ {
+  "name": "SSE inspector",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 40,
+  "verdict": "REAL",
+  "sample": "Enter an http(s) URL of an SSE endpoint."
+ },
+ {
+  "name": "CORS tester",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 21,
+  "verdict": "REAL",
+  "sample": "Enter an http(s) URL."
+ },
+ {
+  "name": "Cookie inspector",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 2,
+  "verdict": "SHALLOW",
+  "sample": "[]"
+ },
+ {
+  "name": "LocalStorage viewer",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 4,
+  "verdict": "SHALLOW",
+  "sample": "null"
+ },
+ {
+  "name": "SessionStorage viewer",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 4,
+  "verdict": "SHALLOW",
+  "sample": "null"
+ },
+ {
+  "name": "IndexedDB viewer",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 4,
+  "verdict": "SHALLOW",
+  "sample": "null"
+ },
+ {
+  "name": "CacheStorage viewer",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 4,
+  "verdict": "SHALLOW",
+  "sample": "null"
+ },
+ {
+  "name": "HAR viewer",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "Unexpected token 'T', \"The quick \"... is not valid JSON",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "IP subnet",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "Use IPv4 CIDR, e.g. 192.168.1.10/24",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "MAC checker",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 133,
+  "verdict": "REAL",
+  "sample": "{\n  \"valid\": false,\n  \"normalized\": \"EA:EC:AA:EA:1C:EE:EE\",\n  \"oui\": \"EA:EC:AA\",\n  \"locallyAdministered\": null,\n  \"multi"
+ },
+ {
+  "name": "Port reference",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 36,
+  "verdict": "REAL",
+  "sample": "Unknown/common port not in reference"
+ },
+ {
+  "name": "HSTS/CSP/SRI checker",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 124,
+  "verdict": "STATIC",
+  "sample": "{\n  \"hsts\": null,\n  \"csp\": null,\n  \"cspIssues\": [\n    \"(no CSP)\"\n  ],\n  \"xContentTypeOptions\": null,\n  \"sriPresent\": fal"
+ },
+ {
+  "name": "Git commit templates",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 170,
+  "verdict": "REAL",
+  "sample": "feat(The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thirte"
+ },
+ {
+  "name": ".gitignore gen",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 51,
+  "verdict": "STATIC",
+  "sample": "node_modules/\n.env\ndist/\ncoverage/\n.DS_Store\n*.log\n"
+ },
+ {
+  "name": "Dockerfile gen",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 106,
+  "verdict": "STATIC",
+  "sample": "FROM node:22-alpine\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci --omit=dev\nCOPY . .\nCMD [\"npm\",\"start\"]\n"
+ },
+ {
+  "name": "Docker Compose gen",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 438,
+  "verdict": "REAL",
+  "sample": "services:\n  app:\n    build: .\n    ports:\n      - \"The quick brown fox jumps over the lazy dog. It was a bright cold day "
+ },
+ {
+  "name": "K8s YAML gen",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 407,
+  "verdict": "REAL",
+  "sample": "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: name: Ada\nage: 36\ncity: Pune\nspec:\n  replicas: 2\n  selector:\n    "
+ },
+ {
+  "name": "Nginx config gen",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 292,
+  "verdict": "REAL",
+  "sample": "server {\n  listen 80;\n  server_name The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and "
+ },
+ {
+  "name": "Makefile gen",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 237,
+  "verdict": "REAL",
+  "sample": ".PHONY: install build test clean\n\ninstall:\n\tThe quick brown fox jumps over the lazy dog. It was a bright cold day in Apr"
+ },
+ {
+  "name": "Bash/PowerShell snippets",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 317,
+  "verdict": "STATIC",
+  "sample": "Bash\n  find . -name '*.js' | xargs wc -l\n  tar -czf out.tgz dir/\n  grep -rn 'TODO' --include='*.ts'\n  du -sh * | sort -h"
+ },
+ {
+  "name": "SSH config gen",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 224,
+  "verdict": "REAL",
+  "sample": "Host The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thirte"
+ },
+ {
+  "name": "Big-O cheatsheet",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 135,
+  "verdict": "STATIC",
+  "sample": "Array lookup O(1)\nArray search O(n)\nBinary search O(log n)\nHash lookup average O(1)\nMerge sort O(n log n)\nQuick sort ave"
+ },
+ {
+  "name": "Design patterns",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 9,
+  "verdict": "SHALLOW",
+  "sample": "No match."
+ },
+ {
+  "name": "Sorting visualizer",
+  "category": "Developer",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 18881,
+  "verdict": "REAL",
+  "sample": "<div id=\"v\" style=\"display:flex;gap:2px;align-items:flex-end;height:220px;background:#0f1115;padding:8px\"></div><script>"
+ },
+ {
+  "name": "Path finding visualizer",
+  "category": "Developer",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 16168,
+  "verdict": "REAL",
+  "sample": "<div style=\"display:grid;grid-template-columns:repeat(15,1fr);gap:2px;width:min(70vh,100%);background:#0f1115;padding:6p"
+ },
+ {
+  "name": "Extract links/images/emails/phones/hashtags/mentions",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Extract tables→CSV",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Extract form fields",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Extract meta tags",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Extract headings/alt text",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Extract iframes/scripts/stylesheets",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Extract fonts/colors/SVG",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Extract videos/audio/PDF links",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Page→Markdown/Plain text/Clean HTML/JSON",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Reading mode",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Dark mode",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Sepia",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "High contrast",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Grayscale",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Dyslexia font",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Larger text",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Line-height adjuster",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Print cleaner",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Screenshot (visible)",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 104,
+  "verdict": "STATIC",
+  "sample": "“Screenshot (visible)” has no handler in this build. It should not be in the catalog — please report it."
+ },
+ {
+  "name": "Full-page screenshot",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 104,
+  "verdict": "STATIC",
+  "sample": "“Full-page screenshot” has no handler in this build. It should not be in the catalog — please report it."
+ },
+ {
+  "name": "Sticky notes",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Highlight & annotate",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Save scroll position",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Auto-refresh",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Page change monitor",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Element hider",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Element picker",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Computed CSS inspector",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Font inspector",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Box model inspector",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Contrast auditor",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Broken image detector",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Slow resource finder",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Page weight analyzer",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "SEO snapshot",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Schema.org extractor",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Hreflang checker",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Canonical checker",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Cookie banner dismisser",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Newsletter popup killer",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Form autofill",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Form data exporter",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Copy URL as Markdown/HTML/citation",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 38,
+  "verdict": "REAL",
+  "sample": "[Example](https://example.com/article)"
+ },
+ {
+  "name": "Copy table as Markdown/CSV",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Video speed controller",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Autoplay blocker",
+  "category": "Page Tools",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Image compressor",
+  "category": "Media & Files",
+  "output": "image",
+  "lazy": false,
+  "page": false,
+  "sample": "Image is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Image resizer",
+  "category": "Media & Files",
+  "output": "image",
+  "lazy": false,
+  "page": false,
+  "sample": "Image is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Image cropper",
+  "category": "Media & Files",
+  "output": "image",
+  "lazy": false,
+  "page": false,
+  "sample": "Image is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Image rotator/flipper",
+  "category": "Media & Files",
+  "output": "image",
+  "lazy": false,
+  "page": false,
+  "sample": "Image is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Format converter (PNG/JPG/WebP/AVIF)",
+  "category": "Media & Files",
+  "output": "image",
+  "lazy": false,
+  "page": false,
+  "sample": "Image is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Quality adjuster",
+  "category": "Media & Files",
+  "output": "image",
+  "lazy": false,
+  "page": false,
+  "sample": "Image is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Image filters",
+  "category": "Media & Files",
+  "output": "image",
+  "lazy": false,
+  "page": false,
+  "sample": "Image is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Watermarker",
+  "category": "Media & Files",
+  "output": "image",
+  "lazy": false,
+  "page": false,
+  "sample": "Image is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Annotator",
+  "category": "Media & Files",
+  "output": "image",
+  "lazy": false,
+  "page": false,
+  "sample": "Image is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Blur/pixelate",
+  "category": "Media & Files",
+  "output": "image",
+  "lazy": false,
+  "page": false,
+  "sample": "Image is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Redactor",
+  "category": "Media & Files",
+  "output": "image",
+  "lazy": false,
+  "page": false,
+  "sample": "Image is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Border/padding/rounding",
+  "category": "Media & Files",
+  "output": "image",
+  "lazy": false,
+  "page": false,
+  "sample": "Image is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Collage",
+  "category": "Media & Files",
+  "output": "image",
+  "lazy": false,
+  "page": false,
+  "sample": "Image is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Splitter (grid)",
+  "category": "Media & Files",
+  "output": "image",
+  "lazy": false,
+  "page": false,
+  "sample": "Image is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Stitcher",
+  "category": "Media & Files",
+  "output": "image",
+  "lazy": false,
+  "page": false,
+  "sample": "Image is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Comparison (diff)",
+  "category": "Media & Files",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 261,
+  "verdict": "STATIC",
+  "sample": "<div style=\"display:flex;gap:10px;font:11px system-ui;color:#e8eaed\"><div><div>A</div><img src=\"data:image/png;base64,iV"
+ },
+ {
+  "name": "EXIF viewer",
+  "category": "Media & Files",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "Choose a JPEG file.",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "EXIF remover",
+  "category": "Media & Files",
+  "output": "image",
+  "lazy": false,
+  "page": false,
+  "sample": "Image is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "GPS extractor",
+  "category": "Media & Files",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "Choose a JPEG file.",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "Color extractor",
+  "category": "Media & Files",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "sample": "Image is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Image→base64",
+  "category": "Media & Files",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 110,
+  "verdict": "STATIC",
+  "sample": "data:image/png;base64,AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+ },
+ {
+  "name": "GIF→frames",
+  "category": "Media & Files",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "Choose a GIF.",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "QR gen",
+  "category": "Media & Files",
+  "output": "image",
+  "lazy": false,
+  "page": false,
+  "bytes": 21594,
+  "verdict": "REAL",
+  "sample": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMTgiIGhlaWdodD0iMzE4IiB2aWV3Qm"
+ },
+ {
+  "name": "QR scan",
+  "category": "Media & Files",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 122,
+  "verdict": "PLACEHOLDER",
+  "sample": "Barcode/QR scanning is not available in the chrome build. The BarcodeDetector API is not implemented in Firefox or Safar"
+ },
+ {
+  "name": "Barcode gen",
+  "category": "Media & Files",
+  "output": "image",
+  "lazy": false,
+  "page": false,
+  "bytes": 47290,
+  "verdict": "REAL",
+  "sample": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNzA2IiBoZWlnaHQ9IjEyMCIgc2hhcG"
+ },
+ {
+  "name": "Barcode scan",
+  "category": "Media & Files",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 122,
+  "verdict": "PLACEHOLDER",
+  "sample": "Barcode/QR scanning is not available in the chrome build. The BarcodeDetector API is not implemented in Firefox or Safar"
+ },
+ {
+  "name": "ZIP extract",
+  "category": "Media & Files",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 10,
+  "verdict": "SHALLOW",
+  "sample": "Contents:\n"
+ },
+ {
+  "name": "ZIP create",
+  "category": "Media & Files",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 68,
+  "verdict": "STATIC",
+  "sample": "Created a ZIP containing file.txt (120 bytes). Check your downloads."
+ },
+ {
+  "name": "TAR extract",
+  "category": "Media & Files",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 41,
+  "verdict": "STATIC",
+  "sample": "No entries found (is this really a TAR?)."
+ },
+ {
+  "name": "GZIP extract",
+  "category": "Media & Files",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "incorrect header check",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "File type detector",
+  "category": "Media & Files",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 165,
+  "verdict": "STATIC",
+  "sample": "{\n  \"name\": \"sample.png\",\n  \"declaredType\": \"image/png\",\n  \"size\": 1024,\n  \"firstBytes\": \"00 00 00 00 00 00 00 00 00 00 "
+ },
+ {
+  "name": "File hash calculator",
+  "category": "Media & Files",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 64,
+  "verdict": "STATIC",
+  "sample": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b"
+ },
+ {
+  "name": "Screen recorder",
+  "category": "Media & Files",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "navigator is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Audio recorder",
+  "category": "Media & Files",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "navigator is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Webcam capture",
+  "category": "Media & Files",
+  "output": "image",
+  "lazy": false,
+  "page": false,
+  "sample": "navigator is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Screenshot annotator",
+  "category": "Media & Files",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 63,
+  "verdict": "STATIC",
+  "sample": "Captured the visible area of the tab (0 KB) — download started."
+ },
+ {
+  "name": "Tab suspender",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 13,
+  "verdict": "REAL",
+  "sample": "Tab discarded"
+ },
+ {
+  "name": "Tab group manager",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 19,
+  "verdict": "REAL",
+  "sample": "Tab group 1 created"
+ },
+ {
+  "name": "Duplicate tab closer",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 24,
+  "verdict": "REAL",
+  "sample": "No duplicate tabs found."
+ },
+ {
+  "name": "Tab session save/restore",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 139,
+  "verdict": "REAL",
+  "sample": "Saved 0 tab(s) as \"The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were s"
+ },
+ {
+  "name": "Tab search",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 2,
+  "verdict": "SHALLOW",
+  "sample": "[]"
+ },
+ {
+  "name": "Tab pinner",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 21,
+  "verdict": "REAL",
+  "sample": "Tab pin state toggled"
+ },
+ {
+  "name": "Tab muter",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 22,
+  "verdict": "REAL",
+  "sample": "Tab mute state toggled"
+ },
+ {
+  "name": "Tab reloader",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 12,
+  "verdict": "REAL",
+  "sample": "Tab reloaded"
+ },
+ {
+  "name": "Auto-close tabs",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 135,
+  "verdict": "REAL",
+  "sample": "No tabs match \"the quick brown fox jumps over the lazy dog. it was a bright cold day in april, and the clocks were strik"
+ },
+ {
+  "name": "Extension manager",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 2,
+  "verdict": "SHALLOW",
+  "sample": "[]"
+ },
+ {
+  "name": "Command palette (⌘K)",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 26,
+  "verdict": "REAL",
+  "sample": "No tool matches “#336699”."
+ },
+ {
+  "name": "Download manager",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 2,
+  "verdict": "SHALLOW",
+  "sample": "[]"
+ },
+ {
+  "name": "Bookmark manager",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 2,
+  "verdict": "SHALLOW",
+  "sample": "{}"
+ },
+ {
+  "name": "Bookmark cleaner",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 2,
+  "verdict": "SHALLOW",
+  "sample": "[]"
+ },
+ {
+  "name": "Bookmark deduplicator",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 2,
+  "verdict": "SHALLOW",
+  "sample": "[]"
+ },
+ {
+  "name": "History search",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 2,
+  "verdict": "SHALLOW",
+  "sample": "[]"
+ },
+ {
+  "name": "History cleaner",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 108,
+  "verdict": "STATIC",
+  "sample": "Would delete browsing history for the last day.\nTick \"Confirm destructive actions\" and Run again to proceed."
+ },
+ {
+  "name": "Cache cleaner",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 110,
+  "verdict": "STATIC",
+  "sample": "Would clear the browser HTTP cache for all sites.\nTick \"Confirm destructive actions\" and Run again to proceed."
+ },
+ {
+  "name": "Cookie cleaner",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 110,
+  "verdict": "STATIC",
+  "sample": "Would delete cookies (for the current site only).\nTick \"Confirm destructive actions\" and Run again to proceed."
+ },
+ {
+  "name": "LocalStorage viewer/editor",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 28,
+  "verdict": "REAL",
+  "sample": "No stored data on this page."
+ },
+ {
+  "name": "SessionStorage viewer/editor",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 28,
+  "verdict": "REAL",
+  "sample": "No stored data on this page."
+ },
+ {
+  "name": "IndexedDB viewer/editor",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 28,
+  "verdict": "REAL",
+  "sample": "No stored data on this page."
+ },
+ {
+  "name": "Installed fonts viewer",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 2,
+  "verdict": "SHALLOW",
+  "sample": "[]"
+ },
+ {
+  "name": "Zoom controller",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 16,
+  "verdict": "REAL",
+  "sample": "Zoom set to 100%"
+ },
+ {
+  "name": "Font size controller",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 27,
+  "verdict": "REAL",
+  "sample": "Page font size set to 120%."
+ },
+ {
+  "name": "Theme toggler",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 30,
+  "verdict": "REAL",
+  "sample": "Theme follows TTB UI settings."
+ },
+ {
+  "name": "User agent switcher",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "navigator is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Language switcher",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "navigator is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Screen resolution viewer",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "screen is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Device info viewer",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "navigator is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Browser info viewer",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "navigator is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Permission viewer",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 2,
+  "verdict": "SHALLOW",
+  "sample": "{}"
+ },
+ {
+  "name": "Focus mode",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 19,
+  "verdict": "REAL",
+  "sample": "Focus mode applied."
+ },
+ {
+  "name": "Break reminder (20-20-20)",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 109,
+  "verdict": "STATIC",
+  "sample": "“Break reminder (20-20-20)” has no handler in this build. It should not be in the catalog — please report it."
+ },
+ {
+  "name": "Session timer",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 97,
+  "verdict": "STATIC",
+  "sample": "“Session timer” has no handler in this build. It should not be in the catalog — please report it."
+ },
+ {
+  "name": "Site time tracker",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 101,
+  "verdict": "STATIC",
+  "sample": "“Site time tracker” has no handler in this build. It should not be in the catalog — please report it."
+ },
+ {
+  "name": "Import/export settings",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 2,
+  "verdict": "SHALLOW",
+  "sample": "{}"
+ },
+ {
+  "name": "Backup/restore",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 2,
+  "verdict": "SHALLOW",
+  "sample": "{}"
+ },
+ {
+  "name": "Debug console",
+  "category": "System & Browser",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 86,
+  "verdict": "STATIC",
+  "sample": "{\n  \"extensionVersion\": \"0.10.0\",\n  \"tabs\": 0,\n  \"catalog\": 563,\n  \"permissions\": {}\n}"
+ },
+ {
+  "name": "Evidence capture (SHA-256 + timestamp)",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 188,
+  "verdict": "REAL",
+  "sample": "{\n  \"sha256\": \"ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad\",\n  \"timestamp\": \"2026-11-07T12:41:46.69"
+ },
+ {
+  "name": "Chain-of-custody screenshot",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 220,
+  "verdict": "REAL",
+  "sample": "{\n  \"timestamp\": \"2026-11-07T12:41:46.694Z\",\n  \"sha256\": \"b53413d9cd9bc655b64059fb15cc134a821453437f83f5e9315a658ac66dc3"
+ },
+ {
+  "name": "Password strength meter (zxcvbn)",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 174,
+  "verdict": "REAL",
+  "sample": "{\n  \"length\": 118,\n  \"charsetSize\": 85,\n  \"entropyBits\": 756.3,\n  \"verdict\": \"very strong\",\n  \"hasUpper\": true,\n  \"hasLo"
+ },
+ {
+  "name": "Passphrase generator (EFF)",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 35,
+  "verdict": "REAL",
+  "sample": "aurora-signal-thistle-signal-marble"
+ },
+ {
+  "name": "TOTP (RFC 6238)",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 103,
+  "verdict": "STATIC",
+  "sample": "{\n  \"code\": \"624138\",\n  \"period\": 30,\n  \"secondsRemaining\": 14,\n  \"algorithm\": \"SHA-1\",\n  \"digits\": 6\n}"
+ },
+ {
+  "name": "HOTP (RFC 4226)",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 77,
+  "verdict": "STATIC",
+  "sample": "{\n  \"code\": \"397368\",\n  \"counter\": 0,\n  \"algorithm\": \"SHA-1\",\n  \"digits\": 6\n}"
+ },
+ {
+  "name": "Base32 for TOTP",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 26,
+  "verdict": "REAL",
+  "sample": "JJBFGV2ZGNCFARKIKBFTGUCYKA"
+ },
+ {
+  "name": "AES-GCM encrypt/decrypt",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 310,
+  "verdict": "REAL",
+  "sample": "{\"v\":1,\"kdf\":\"PBKDF2-SHA256\",\"iter\":210000,\"cipher\":\"AES-GCM\",\"salt\":\"A81a6+SmxDKROlKD8x+Zjg==\",\"iv\":\"sh8Ltv4FoUMZB1J+\","
+ },
+ {
+  "name": "PBKDF2",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 172,
+  "verdict": "STATIC",
+  "sample": "{\n  \"algorithm\": \"PBKDF2-HMAC-SHA256\",\n  \"iterations\": 210000,\n  \"salt\": \"ttb-salt\",\n  \"derivedKeyHex\": \"07590374962f767"
+ },
+ {
+  "name": "Cookie inspector/editor",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 2,
+  "verdict": "SHALLOW",
+  "sample": "[]"
+ },
+ {
+  "name": "Cookie third-party analyzer",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 2,
+  "verdict": "SHALLOW",
+  "sample": "[]"
+ },
+ {
+  "name": "Fingerprint detector",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "navigator is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Homoglyph URL detector",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 143,
+  "verdict": "STATIC",
+  "sample": "{\n  \"hostname\": \"example.com\",\n  \"asciiOnly\": true,\n  \"nonAsciiChars\": [],\n  \"punycode\": false,\n  \"mixedScript\": false,\n"
+ },
+ {
+  "name": "Typosquatting detector",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 11,
+  "verdict": "SHALLOW",
+  "sample": "Invalid URL"
+ },
+ {
+  "name": "Lookalike domain detector",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 155,
+  "verdict": "STATIC",
+  "sample": "{\n  \"hostname\": \"example.com\",\n  \"tld\": \"com\",\n  \"suspiciousTLD\": false,\n  \"brandImpersonation\": [],\n  \"hyphenCount\": 0,"
+ },
+ {
+  "name": "Suspicious TLD checker",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 11,
+  "verdict": "SHALLOW",
+  "sample": "Invalid URL"
+ },
+ {
+  "name": "URL expander",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "timeout",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "URL cleaner (UTM)",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 33,
+  "verdict": "REAL",
+  "sample": "https://example.com/path/page?a=1"
+ },
+ {
+  "name": "Clipboard hijack detector",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 164,
+  "verdict": "STATIC",
+  "sample": "{\n  \"zeroWidth\": 0,\n  \"bidiControls\": 0,\n  \"homoglyphs\": 0,\n  \"cryptoAddresses\": [],\n  \"suspicious\": false,\n  \"note\": \"N"
+ },
+ {
+  "name": "Clipboard sanitizer",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 118,
+  "verdict": "REAL",
+  "sample": "The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thirteen."
+ },
+ {
+  "name": "PII detector",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 80,
+  "verdict": "STATIC",
+  "sample": "{\n  \"emails\": [],\n  \"phones\": [],\n  \"possibleSecrets\": [],\n  \"aadhaarLike\": []\n}"
+ },
+ {
+  "name": "Credit card validator (Luhn)",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 5,
+  "verdict": "SHALLOW",
+  "sample": "Valid"
+ },
+ {
+  "name": "IBAN validator",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 32,
+  "verdict": "REAL",
+  "sample": "Valid IBAN (DE, check digits 89)"
+ },
+ {
+  "name": "SSN format checker",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 14,
+  "verdict": "REAL",
+  "sample": "Invalid format"
+ },
+ {
+  "name": "Secure notes (encrypted)",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 41,
+  "verdict": "STATIC",
+  "sample": "Encrypted note \"note\" saved. Labels: note"
+ },
+ {
+  "name": "Hash verifier",
+  "category": "Security",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 148,
+  "verdict": "REAL",
+  "sample": "{\n  \"algorithm\": \"SHA-256\",\n  \"computed\": \"ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad\",\n  \"expecte"
+ },
+ {
+  "name": "Smart Selection Parser",
+  "category": "Unique",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 153,
+  "verdict": "REAL",
+  "sample": "{\n  \"input\": \"The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striki"
+ },
+ {
+  "name": "Cross-tab copy queue",
+  "category": "Unique",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 19,
+  "verdict": "REAL",
+  "sample": "Queued (1 item(s))."
+ },
+ {
+  "name": "Clipboard history (opt-in)",
+  "category": "Unique",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 33,
+  "verdict": "REAL",
+  "sample": "Saved. History now has 1 item(s)."
+ },
+ {
+  "name": "Sticky notes across tabs",
+  "category": "Unique",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Screen ruler",
+  "category": "Unique",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Color from screen (EyeDropper)",
+  "category": "Unique",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 119,
+  "verdict": "PLACEHOLDER",
+  "sample": "Screen colour picking is not available in the chrome build. The EyeDropper API is not implemented in Firefox or Safari."
+ },
+ {
+  "name": "Meeting cost calculator",
+  "category": "Unique",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 28,
+  "verdict": "REAL",
+  "sample": "Estimated meeting cost: 0.00"
+ },
+ {
+  "name": "Calendar gap finder",
+  "category": "Unique",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 35,
+  "verdict": "REAL",
+  "sample": "Free slots:\n09:00 – 18:00 (540 min)"
+ },
+ {
+  "name": "Reading fatigue detector",
+  "category": "Unique",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 90,
+  "verdict": "REAL",
+  "sample": "{\n  \"words\": 23,\n  \"sentences\": 2,\n  \"averageWordsPerSentence\": 11.5,\n  \"flagged\": false\n}"
+ },
+ {
+  "name": "Auto-pause video on tab switch",
+  "category": "Unique",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Resume video across tabs",
+  "category": "Unique",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Scroll position memory",
+  "category": "Unique",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Page annotations",
+  "category": "Unique",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Document redactor",
+  "category": "Unique",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 118,
+  "verdict": "REAL",
+  "sample": "The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thirteen."
+ },
+ {
+  "name": "PII highlighter",
+  "category": "Unique",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 347,
+  "verdict": "REAL",
+  "sample": "<div style=\"font:14px/1.7 system-ui;color:#e8eaed;background:#0f1115;padding:12px;white-space:pre-wrap\">The quick brown "
+ },
+ {
+  "name": "Page weight→CO₂ estimate",
+  "category": "Unique",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Boss key",
+  "category": "Unique",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Element copier (selector/XPath/CSS)",
+  "category": "Unique",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Multiple timers",
+  "category": "Productivity",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 26,
+  "verdict": "REAL",
+  "sample": "Timer \"timer\" set for 60s."
+ },
+ {
+  "name": "Alarms",
+  "category": "Productivity",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "Enter a valid date/time",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "Reminders",
+  "category": "Productivity",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 141,
+  "verdict": "REAL",
+  "sample": "Saved 1 reminder(s).\n• The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks we"
+ },
+ {
+  "name": "Recurring reminders",
+  "category": "Productivity",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 185,
+  "verdict": "REAL",
+  "sample": "Recurring reminder \"The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were "
+ },
+ {
+  "name": "Task list",
+  "category": "Productivity",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 123,
+  "verdict": "REAL",
+  "sample": "☐ 1. The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thirte"
+ },
+ {
+  "name": "Todo from selection",
+  "category": "Productivity",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 130,
+  "verdict": "REAL",
+  "sample": "Added task: The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking"
+ },
+ {
+  "name": "Eisenhower matrix",
+  "category": "Productivity",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 1035,
+  "verdict": "REAL",
+  "sample": "<div style=\"display:grid;grid-template-columns:1fr 1fr;gap:8px;font:13px system-ui;color:#e8eaed\"><div style=\"border:1px"
+ },
+ {
+  "name": "Time blocking",
+  "category": "Productivity",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 131,
+  "verdict": "REAL",
+  "sample": "09:00–09:30  The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were strikin"
+ },
+ {
+  "name": "Habit tracker",
+  "category": "Productivity",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 129,
+  "verdict": "REAL",
+  "sample": "{\n  \"The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thirte"
+ },
+ {
+  "name": "Streak tracker",
+  "category": "Productivity",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 154,
+  "verdict": "REAL",
+  "sample": "Streak \"The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thi"
+ },
+ {
+  "name": "Goal tracker",
+  "category": "Productivity",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 132,
+  "verdict": "REAL",
+  "sample": "The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thirteen.: "
+ },
+ {
+  "name": "Countdown to date",
+  "category": "Productivity",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 98,
+  "verdict": "REAL",
+  "sample": "{\n  \"target\": \"1990-05-20T00:00:00.000Z\",\n  \"milliseconds\": -1150893710162,\n  \"days\": -13320.529\n}"
+ },
+ {
+  "name": "Days-since tracker",
+  "category": "Productivity",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "Enter a valid date",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "Break reminder",
+  "category": "Productivity",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 114,
+  "verdict": "STATIC",
+  "sample": "Break reminder set every 20 minutes. Follow the 20-20-20 rule: every 20 minutes, look 20 feet away for 20 seconds."
+ },
+ {
+  "name": "Posture reminder",
+  "category": "Productivity",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 38,
+  "verdict": "REAL",
+  "sample": "Posture reminder set every 30 minutes."
+ },
+ {
+  "name": "Hydration reminder",
+  "category": "Productivity",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 40,
+  "verdict": "REAL",
+  "sample": "Hydration reminder set every 45 minutes."
+ },
+ {
+  "name": "DND",
+  "category": "Productivity",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 76,
+  "verdict": "STATIC",
+  "sample": "Do-not-disturb until 1:41:50 PM. TTB will stay quiet (no alarms) until then."
+ },
+ {
+  "name": "Site blocker",
+  "category": "Productivity",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 221,
+  "verdict": "REAL",
+  "sample": "Blocked list: the quick brown fox jumps over the lazy dog. it was a bright cold day in april, and the clocks were striki"
+ },
+ {
+  "name": "Daily limit enforcer",
+  "category": "Productivity",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 172,
+  "verdict": "REAL",
+  "sample": "Limit for \"The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking "
+ },
+ {
+  "name": "Loan",
+  "category": "Finance",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 95,
+  "verdict": "REAL",
+  "sample": "{\n  \"principal\": 1234.5,\n  \"monthlyPayment\": null,\n  \"totalPayment\": null,\n  \"interest\": null\n}"
+ },
+ {
+  "name": "EMI",
+  "category": "Finance",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 54,
+  "verdict": "REAL",
+  "sample": "{\n  \"emi\": null,\n  \"total\": null,\n  \"interest\": null\n}"
+ },
+ {
+  "name": "Mortgage",
+  "category": "Finance",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 99,
+  "verdict": "STATIC",
+  "sample": "{\n  \"loanAmount\": null,\n  \"monthlyPayment\": \"NaN\",\n  \"totalPaid\": \"NaN\",\n  \"totalInterest\": \"NaN\"\n}"
+ },
+ {
+  "name": "Retirement estimate",
+  "category": "Finance",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 70,
+  "verdict": "STATIC",
+  "sample": "{\n  \"invested\": 3000000,\n  \"futureValue\": 9510264,\n  \"gain\": 6510264\n}"
+ },
+ {
+  "name": "Savings goal",
+  "category": "Finance",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 70,
+  "verdict": "REAL",
+  "sample": "{\n  \"remaining\": -1224.5,\n  \"monthlyNeeded\": -102.04,\n  \"months\": 12\n}"
+ },
+ {
+  "name": "ROI",
+  "category": "Finance",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 78,
+  "verdict": "REAL",
+  "sample": "{\n  \"gain\": 1234.5,\n  \"cost\": 10,\n  \"roi\": \"12245%\",\n  \"multiple\": \"123.45×\"\n}"
+ },
+ {
+  "name": "Profit margin",
+  "category": "Finance",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 6,
+  "verdict": "SHALLOW",
+  "sample": "43.30%"
+ },
+ {
+  "name": "Markup",
+  "category": "Finance",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 7,
+  "verdict": "SHALLOW",
+  "sample": "-19.00%"
+ },
+ {
+  "name": "Tax",
+  "category": "Finance",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 34,
+  "verdict": "REAL",
+  "sample": "{\n  \"tax\": null,\n  \"total\": null\n}"
+ },
+ {
+  "name": "VAT/GST",
+  "category": "Finance",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 56,
+  "verdict": "REAL",
+  "sample": "{\n  \"net\": 1234.5,\n  \"tax\": 222.21,\n  \"gross\": 1456.71\n}"
+ },
+ {
+  "name": "Invoice generator",
+  "category": "Finance",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 180,
+  "verdict": "REAL",
+  "sample": "INVOICE\n==============================\nFrom:    1234.5\nTo:      sample\nDate:    11/7/2026\nInvoice: INV-310183\n\nSubtotal:"
+ },
+ {
+  "name": "Quote generator",
+  "category": "Finance",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 182,
+  "verdict": "REAL",
+  "sample": "QUOTATION\n==============================\nProvider: 1234.5\nClient:   sample\nDate:     11/7/2026\nValid:    30 days\n\nAmount"
+ },
+ {
+  "name": "Receipt generator",
+  "category": "Finance",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 138,
+  "verdict": "REAL",
+  "sample": "RECEIPT — 1234.5\n==============================\n11/7/2026, 12:41:50 PM\n\n\n------------------------------\nTOTAL           "
+ },
+ {
+  "name": "Expense tracker",
+  "category": "Finance",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 21,
+  "verdict": "REAL",
+  "sample": "Total: 10\ngeneral: 10"
+ },
+ {
+  "name": "Budget planner",
+  "category": "Finance",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 89,
+  "verdict": "REAL",
+  "sample": "{\n  \"income\": 10,\n  \"needs\": 5,\n  \"savings\": 2,\n  \"wants\": 3,\n  \"note\": \"1234.5 budget\"\n}"
+ },
+ {
+  "name": "Debt payoff (snowball/avalanche)",
+  "category": "Finance",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "Enter debts as name=balance,annualRate",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "Salary converter",
+  "category": "Finance",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 18,
+  "verdict": "REAL",
+  "sample": "0.5935096153846153"
+ },
+ {
+  "name": "Meeting cost",
+  "category": "Finance",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 96,
+  "verdict": "STATIC",
+  "sample": "{\n  \"people\": 5,\n  \"minutes\": 60,\n  \"hourlyRate\": 30,\n  \"cost\": 150,\n  \"perYearIfDaily\": 37500\n}"
+ },
+ {
+  "name": "Project cost",
+  "category": "Finance",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 78,
+  "verdict": "REAL",
+  "sample": "{\n  \"project\": \"1234.5\",\n  \"base\": 60000,\n  \"buffer\": 9000,\n  \"total\": 69000\n}"
+ },
+ {
+  "name": "Invoice number gen",
+  "category": "Finance",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 69,
+  "verdict": "STATIC",
+  "sample": "INV-2026-0188\nINV-2026-0189\nINV-2026-0190\nINV-2026-0191\nINV-2026-0192"
+ },
+ {
+  "name": "Periodic table",
+  "category": "Education",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 33,
+  "verdict": "REAL",
+  "sample": "Element not in compact reference."
+ },
+ {
+  "name": "Unit circle",
+  "category": "Education",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 4903,
+  "verdict": "STATIC",
+  "sample": "<table style=\"border-collapse:collapse;font:12px system-ui;color:#e8eaed\"><tr><th style=\"border:1px solid #333;padding:5"
+ },
+ {
+  "name": "Multiplication table",
+  "category": "Education",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 170,
+  "verdict": "STATIC",
+  "sample": "NaN × 1 = NaN\nNaN × 2 = NaN\nNaN × 3 = NaN\nNaN × 4 = NaN\nNaN × 5 = NaN\nNaN × 6 = NaN\nNaN × 7 = NaN\nNaN × 8 = NaN\nNaN × 9 "
+ },
+ {
+  "name": "Formula reference",
+  "category": "Education",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 19,
+  "verdict": "REAL",
+  "sample": "No formula matched."
+ },
+ {
+  "name": "Typing tutor",
+  "category": "Education",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 1013,
+  "verdict": "REAL",
+  "sample": "<div style=\"font:18px/1.8 monospace;color:#e8eaed;background:#0f1115;padding:14px;border-radius:8px\">The quick brown fox"
+ },
+ {
+  "name": "Typing speed test",
+  "category": "Education",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 60,
+  "verdict": "REAL",
+  "sample": "{\n  \"words\": 23,\n  \"characters\": 118,\n  \"oneMinuteWPM\": 23\n}"
+ },
+ {
+  "name": "Morse practice",
+  "category": "Education",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 11,
+  "verdict": "SHALLOW",
+  "sample": "... --- ..."
+ },
+ {
+  "name": "Keyboard shortcuts",
+  "category": "Education",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 97,
+  "verdict": "STATIC",
+  "sample": "Ctrl/Cmd+C Copy\nCtrl/Cmd+V Paste\nCtrl/Cmd+X Cut\nCtrl/Cmd+Z Undo\nCtrl/Cmd+F Find\nCtrl/Cmd+K Search"
+ },
+ {
+  "name": "Alphabet reference",
+  "category": "Education",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 217,
+  "verdict": "STATIC",
+  "sample": "A=Alpha B=Bravo C=Charlie D=Delta E=Echo F=Foxtrot G=Golf H=Hotel I=India J=Juliett K=Kilo L=Lima M=Mike N=November O=Os"
+ },
+ {
+  "name": "Number system reference",
+  "category": "Education",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 478,
+  "verdict": "STATIC",
+  "sample": "Decimal → Binary / Octal / Hex\n    0 →          0 /    0 /   0\n    1 →          1 /    1 /   1\n    2 →         10 /    2"
+ },
+ {
+  "name": "Country info",
+  "category": "Education",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 49,
+  "verdict": "STATIC",
+  "sample": "Known countries: India, USA, UK, Japan, Australia"
+ },
+ {
+  "name": "Flag identifier",
+  "category": "Education",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 67,
+  "verdict": "STATIC",
+  "sample": "Try a 2-letter code: IN, US, GB, JP, DE, FR, CN, BR, AU, CA, AE, SG"
+ },
+ {
+  "name": "Flashcards",
+  "category": "Education",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 161,
+  "verdict": "REAL",
+  "sample": "[\n  {\n    \"front\": \"The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were "
+ },
+ {
+  "name": "Quiz maker",
+  "category": "Education",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 140,
+  "verdict": "REAL",
+  "sample": "Quiz input preserved:\nThe quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks wer"
+ },
+ {
+  "name": "Study timer",
+  "category": "Education",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 183,
+  "verdict": "STATIC",
+  "sample": "Round 1: study 12:41–13:31\n        rest until 13:41\nRound 2: study 13:41–14:31\n        rest until 14:41\nRound 3: study 1"
+ },
+ {
+  "name": "Color converter",
+  "category": "Design & Color",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 81,
+  "verdict": "REAL",
+  "sample": "{\n  \"hex\": \"#336699\",\n  \"rgb\": \"rgb(51, 102, 153)\",\n  \"hsl\": \"hsl(210 50% 40%)\"\n}"
+ },
+ {
+  "name": "Palette generator",
+  "category": "Design & Color",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 67,
+  "verdict": "STATIC",
+  "sample": "[\n  \"#1f3d5c\",\n  \"#29527a\",\n  \"#336699\",\n  \"#3d7ab8\",\n  \"#478fd6\"\n]"
+ },
+ {
+  "name": "Palette from image",
+  "category": "Design & Color",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "sample": "Image is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Color harmony",
+  "category": "Design & Color",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 1263,
+  "verdict": "STATIC",
+  "sample": "<div style=\"display:flex;flex-wrap:wrap;gap:8px;font:11px system-ui;color:#111\"><div style=\"width:110px\"><div style=\"hei"
+ },
+ {
+  "name": "Contrast checker",
+  "category": "Design & Color",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 101,
+  "verdict": "STATIC",
+  "sample": "{\n  \"ratio\": 6,\n  \"AA_normal\": true,\n  \"AA_large\": true,\n  \"AAA_normal\": false,\n  \"AAA_large\": true\n}"
+ },
+ {
+  "name": "Color blindness simulator",
+  "category": "Design & Color",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 882,
+  "verdict": "STATIC",
+  "sample": "<div style=\"display:flex;flex-wrap:wrap;gap:8px;font:11px system-ui;color:#111\"><div style=\"width:110px\"><div style=\"hei"
+ },
+ {
+  "name": "Gradient generator",
+  "category": "Design & Color",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 42,
+  "verdict": "REAL",
+  "sample": "linear-gradient(90deg, #336699, undefined)"
+ },
+ {
+  "name": "Box shadow",
+  "category": "Design & Color",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 279,
+  "verdict": "STATIC",
+  "sample": "<div style=\"display:grid;place-items:center;height:200px;background:#171a21\"><div style=\"width:120px;height:120px;border"
+ },
+ {
+  "name": "Text shadow",
+  "category": "Design & Color",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 243,
+  "verdict": "REAL",
+  "sample": "<div style=\"display:grid;place-items:center;height:160px;background:#0f1115\"><span style=\"font:600 40px system-ui;color:"
+ },
+ {
+  "name": "Border radius",
+  "category": "Design & Color",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 248,
+  "verdict": "STATIC",
+  "sample": "<div style=\"display:grid;place-items:center;height:200px;background:#171a21\"><div style=\"width:150px;height:120px;backgr"
+ },
+ {
+  "name": "Transform",
+  "category": "Design & Color",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 290,
+  "verdict": "STATIC",
+  "sample": "<div style=\"display:grid;place-items:center;height:220px;background:#171a21\"><div style=\"width:120px;height:120px;backgr"
+ },
+ {
+  "name": "Filter playground",
+  "category": "Design & Color",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 258,
+  "verdict": "STATIC",
+  "sample": "<div style=\"display:grid;place-items:center;height:220px;background:#171a21\"><div style=\"width:160px;height:160px;backgr"
+ },
+ {
+  "name": "Blend mode playground",
+  "category": "Design & Color",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 313,
+  "verdict": "STATIC",
+  "sample": "<div style=\"display:grid;place-items:center;height:220px;background:#171a21\"><div style=\"position:relative;width:200px;h"
+ },
+ {
+  "name": "Clip-path gen",
+  "category": "Design & Color",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 350,
+  "verdict": "STATIC",
+  "sample": "<div style=\"display:grid;place-items:center;height:220px;background:#171a21\"><div style=\"width:160px;height:160px;backgr"
+ },
+ {
+  "name": "OG image gen",
+  "category": "Design & Color",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 370,
+  "verdict": "REAL",
+  "sample": "<div style=\"width:600px;height:315px;background:#0f1115;display:flex;flex-direction:column;justify-content:center;paddin"
+ },
+ {
+  "name": "Placeholder image gen",
+  "category": "Design & Color",
+  "output": "image",
+  "lazy": false,
+  "page": false,
+  "sample": "document is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "Pattern gen",
+  "category": "Design & Color",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 252,
+  "verdict": "STATIC",
+  "sample": "<div style=\"height:220px;background-color:#0f1115;background:radial-gradient(#7aa2ff 2px,transparent 2px) 0 0/20px 20px\""
+ },
+ {
+  "name": "Aspect ratio",
+  "category": "Design & Color",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 31,
+  "verdict": "REAL",
+  "sample": "NaN:NaN = NaN (reduced NaN:NaN)"
+ },
+ {
+  "name": "Typography scale",
+  "category": "Design & Color",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 1787,
+  "verdict": "STATIC",
+  "sample": "<div style=\"font-family:system-ui;color:#e8eaed\"><div style=\"display:flex;align-items:baseline;gap:12px;border-bottom:1p"
+ },
+ {
+  "name": "Font pairing",
+  "category": "Design & Color",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 1500,
+  "verdict": "REAL",
+  "sample": "<div style=\"margin-bottom:18px;color:#e8eaed\"><div style=\"font:700 26px Georgia, serif\">The quick brown fox jumps over t"
+ },
+ {
+  "name": "Spacing scale",
+  "category": "Design & Color",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 1667,
+  "verdict": "STATIC",
+  "sample": "<div style=\"font:12px system-ui;color:#e8eaed\"><div style=\"display:flex;align-items:center;gap:10px;margin:4px 0\"><span "
+ },
+ {
+  "name": "Design tokens",
+  "category": "Design & Color",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 2,
+  "verdict": "SHALLOW",
+  "sample": "{}"
+ },
+ {
+  "name": "CSS variables",
+  "category": "Design & Color",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 10,
+  "verdict": "SHALLOW",
+  "sample": ":root {\n\n}"
+ },
+ {
+  "name": "Animation builder",
+  "category": "Design & Color",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 494,
+  "verdict": "STATIC",
+  "sample": "<style>@keyframes fadeUp{from{opacity:0; transform:translateY(12px)}to{opacity:1; transform:translateY(0)}}</style><div "
+ },
+ {
+  "name": "Keyframe builder",
+  "category": "Design & Color",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 521,
+  "verdict": "STATIC",
+  "sample": "<style>@keyframes spin{\n  0% { transform: rotate(0deg); }\n  50% { transform: rotate(180deg); }\n  100% { transform: rotat"
+ },
+ {
+  "name": "Transition builder",
+  "category": "Design & Color",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 348,
+  "verdict": "STATIC",
+  "sample": "<style>.ttb-demo{transition:all 0.3s ease}.ttb-demo:hover{background:#39d98a;transform:scale(1.15)}</style><div style=\"d"
+ },
+ {
+  "name": "Bezier editor",
+  "category": "Design & Color",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 466,
+  "verdict": "STATIC",
+  "sample": "<svg width=\"240\" height=\"240\" style=\"background:#171a21\"><rect x=\"30\" y=\"30\" width=\"180\" height=\"180\" fill=\"none\" stroke"
+ },
+ {
+  "name": "CSV viewer/editor",
+  "category": "Data",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 269,
+  "verdict": "REAL",
+  "sample": "<table><thead><tr><th>name</th><th>score</th><th>city</th></tr></thead><tbody><tr><td>A</td><td>10</td><td>Pune</td></tr"
+ },
+ {
+  "name": "CSV→JSON/SQL/Markdown/Excel",
+  "category": "Data",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 2,
+  "verdict": "SHALLOW",
+  "sample": "[]"
+ },
+ {
+  "name": "JSON viewer",
+  "category": "Data",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 132,
+  "verdict": "REAL",
+  "sample": "{\n  \"name\": \"Ada\",\n  \"age\": 36,\n  \"tags\": [\n    \"math\",\n    \"code\"\n  ],\n  \"address\": {\n    \"city\": \"Pune\",\n    \"zip\": \"4"
+ },
+ {
+  "name": "XML viewer",
+  "category": "Data",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "DOMParser is not defined",
+  "verdict": "ENV"
+ },
+ {
+  "name": "YAML viewer",
+  "category": "Data",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 52,
+  "verdict": "REAL",
+  "sample": "{\n  \"name\": \"Ada\",\n  \"age\": \"36\",\n  \"city\": \"Pune\"\n}"
+ },
+ {
+  "name": "Table sorter",
+  "category": "Data",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 58,
+  "verdict": "REAL",
+  "sample": "name,score,city\nA,10,Pune\nB,20,Delhi\nC,30,Mumbai\nD,40,Pune"
+ },
+ {
+  "name": "Table filter",
+  "category": "Data",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 15,
+  "verdict": "REAL",
+  "sample": "name,score,city"
+ },
+ {
+  "name": "Table dedup",
+  "category": "Data",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 87,
+  "verdict": "REAL",
+  "sample": "Removed 0 duplicate row(s).\n\nname,score,city\nA,10,Pune\nB,20,Delhi\nC,30,Mumbai\nD,40,Pune"
+ },
+ {
+  "name": "Pivot table",
+  "category": "Data",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "Check the field names against the header row",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "Data cleaner",
+  "category": "Data",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 25,
+  "verdict": "REAL",
+  "sample": "name,score\nA,10\nB,20\nC,30"
+ },
+ {
+  "name": "Data validator",
+  "category": "Data",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 27,
+  "verdict": "REAL",
+  "sample": "All 3 rows look consistent."
+ },
+ {
+  "name": "Schema detector",
+  "category": "Data",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 284,
+  "verdict": "REAL",
+  "sample": "{\n  \"rows\": 3,\n  \"columns\": [\n    {\n      \"column\": \"name\",\n      \"type\": \"string\",\n      \"nonEmpty\": 3,\n      \"distinct"
+ },
+ {
+  "name": "Chart generator",
+  "category": "Data",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 384,
+  "verdict": "STATIC",
+  "sample": "<svg width=\"560\" height=\"260\"><rect x=\"34\" y=\"180\" width=\"117\" height=\"50\" fill=\"#7aa2ff\" rx=\"3\"/><rect x=\"159\" y=\"130\" "
+ },
+ {
+  "name": "Histogram",
+  "category": "Data",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 716,
+  "verdict": "STATIC",
+  "sample": "<svg width=\"560\" height=\"240\"><rect x=\"0\" y=\"20\" width=\"52\" height=\"200\" fill=\"#7aa2ff\"/><rect x=\"54\" y=\"220\" width=\"52\""
+ },
+ {
+  "name": "Box plot",
+  "category": "Data",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 360,
+  "verdict": "STATIC",
+  "sample": "<svg width=\"560\" height=\"120\"><line x1=\"40\" y1=\"60\" x2=\"520\" y2=\"60\" stroke=\"#89909d\"/><rect x=\"160\" y=\"30\" width=\"240\" "
+ },
+ {
+  "name": "Scatter plot",
+  "category": "Data",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "sample": "X and Y need the same number of values",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "Heatmap",
+  "category": "Data",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 1297,
+  "verdict": "REAL",
+  "sample": "<table style=\"border-collapse:collapse;font:11px system-ui;color:#e8eaed\"><tr><td style=\"border:1px solid #222;padding:6"
+ },
+ {
+  "name": "Correlation matrix",
+  "category": "Data",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 797,
+  "verdict": "STATIC",
+  "sample": "<table style=\"border-collapse:collapse;font:11px system-ui;color:#fff\"><tr><td style=\"border:1px solid #222;padding:6px;"
+ },
+ {
+  "name": "Outlier finder",
+  "category": "Data",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 50,
+  "verdict": "STATIC",
+  "sample": "{\n  \"lower\": -5,\n  \"upper\": 35,\n  \"outliers\": []\n}"
+ },
+ {
+  "name": "Encoding detector",
+  "category": "Data",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 157,
+  "verdict": "REAL",
+  "sample": "{\n  \"guess\": \"ASCII / UTF-8\",\n  \"byteLength\": 25,\n  \"charLength\": 25,\n  \"nonAsciiChars\": 0,\n  \"bom\": false,\n  \"nulBytes\""
+ },
+ {
+  "name": "Line-ending converter",
+  "category": "Data",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 25,
+  "verdict": "REAL",
+  "sample": "name,score\nA,10\nB,20\nC,30"
+ },
+ {
+  "name": "Delimiter detector",
+  "category": "Data",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 33,
+  "verdict": "REAL",
+  "sample": "Likely delimiter: \",\" (1 per row)"
+ },
+ {
+  "name": "Duplicate finder",
+  "category": "Data",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 19,
+  "verdict": "REAL",
+  "sample": "No duplicate lines."
+ },
+ {
+  "name": "Fuzzy match",
+  "category": "Data",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 23,
+  "verdict": "REAL",
+  "sample": "Levenshtein distance: 6"
+ },
+ {
+  "name": "Fake-data generator",
+  "category": "Data",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 785,
+  "verdict": "STATIC",
+  "sample": "[\n  {\n    \"id\": 1,\n    \"name\": \"User 1\",\n    \"email\": \"user1@example.test\"\n  },\n  {\n    \"id\": 2,\n    \"name\": \"User 2\",\n "
+ },
+ {
+  "name": "Email composer (mailto)",
+  "category": "Communication",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 38,
+  "verdict": "REAL",
+  "sample": "mailto:user@example.com?subject=&body="
+ },
+ {
+  "name": "Signature generator",
+  "category": "Communication",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 142,
+  "verdict": "REAL",
+  "sample": "—\nThe quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were striking thirteen."
+ },
+ {
+  "name": "Template library",
+  "category": "Communication",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 44,
+  "verdict": "STATIC",
+  "sample": "Templates: followup, intro, apology, invoice"
+ },
+ {
+  "name": "Subject line tester",
+  "category": "Communication",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 255,
+  "verdict": "REAL",
+  "sample": "{\n  \"subject\": \"The quick brown fox jumps over the lazy dog. It was a bright cold day in April, and the clocks were stri"
+ },
+ {
+  "name": "Email validator",
+  "category": "Communication",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 18,
+  "verdict": "REAL",
+  "sample": "Valid email format"
+ },
+ {
+  "name": "Phone validator",
+  "category": "Communication",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 22,
+  "verdict": "REAL",
+  "sample": "Plausible phone format"
+ },
+ {
+  "name": "SMS link gen",
+  "category": "Communication",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 25,
+  "verdict": "REAL",
+  "sample": "sms:+91 98765 43210?body="
+ },
+ {
+  "name": "WhatsApp link gen",
+  "category": "Communication",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 71,
+  "verdict": "REAL",
+  "sample": "https://wa.me/?text=%20and%20the%20clocks%20were%20striking%20thirteen."
+ },
+ {
+  "name": "Telegram link gen",
+  "category": "Communication",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 148,
+  "verdict": "REAL",
+  "sample": "https://t.me/The quick brown fox jumps over the lazy dog. It was a bright cold day in April?text=%20and%20the%20clocks%2"
+ },
+ {
+  "name": "Signal link gen",
+  "category": "Communication",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 21,
+  "verdict": "REAL",
+  "sample": "https://signal.me/#p/"
+ },
+ {
+  "name": "Zoom link gen",
+  "category": "Communication",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 29,
+  "verdict": "REAL",
+  "sample": "https://zoom.us/j/?pwd=sample"
+ },
+ {
+  "name": "Meet link gen",
+  "category": "Communication",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 117,
+  "verdict": "REAL",
+  "sample": "https://meet.google.com/ThequickbrownfoxjumpsoverthelazydogItwasabrightcolddayinAprilandtheclockswerestrikingthirteen"
+ },
+ {
+  "name": "ICS calendar invite",
+  "category": "Communication",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "Use YYYY-MM-DD HH:MM",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "vCard generator",
+  "category": "Communication",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 166,
+  "verdict": "REAL",
+  "sample": "BEGIN:VCARD\nVERSION:3.0\nFN:The quick brown fox jumps over the lazy dog. It was a bright cold day in April\nTEL: and the c"
+ },
+ {
+  "name": "vCard QR code",
+  "category": "Communication",
+  "output": "image",
+  "lazy": false,
+  "page": false,
+  "bytes": 17898,
+  "verdict": "STATIC",
+  "sample": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOTQiIGhlaWdodD0iMjk0IiB2aWV3Qm"
+ },
+ {
+  "name": "Title analyzer",
+  "category": "SEO",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 59,
+  "verdict": "REAL",
+  "sample": "{\n  \"length\": 118,\n  \"words\": 23,\n  \"typicalRange\": false\n}"
+ },
+ {
+  "name": "Meta description analyzer",
+  "category": "SEO",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 44,
+  "verdict": "REAL",
+  "sample": "{\n  \"length\": 118,\n  \"typicalRange\": false\n}"
+ },
+ {
+  "name": "Heading structure",
+  "category": "SEO",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "OG preview",
+  "category": "SEO",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 522,
+  "verdict": "REAL",
+  "sample": "<div style=\"max-width:520px;border:1px solid #333;border-radius:10px;overflow:hidden;font:13px system-ui;color:#e8eaed\">"
+ },
+ {
+  "name": "Twitter card preview",
+  "category": "SEO",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 542,
+  "verdict": "REAL",
+  "sample": "<div style=\"max-width:420px;border:1px solid #333;border-radius:14px;overflow:hidden;font:13px system-ui;color:#e8eaed\">"
+ },
+ {
+  "name": "SERP snippet preview",
+  "category": "SEO",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 437,
+  "verdict": "REAL",
+  "sample": "<div style=\"font:13px system-ui;color:#e8eaed;max-width:560px\"><div style=\"color:#9aa0a6;font-size:12px\">example.com</di"
+ },
+ {
+  "name": "HTML basic validator",
+  "category": "SEO",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Structured data tester",
+  "category": "SEO",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "UTM builder",
+  "category": "SEO",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 11,
+  "verdict": "SHALLOW",
+  "sample": "Invalid URL"
+ },
+ {
+  "name": "UTM parser",
+  "category": "SEO",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 11,
+  "verdict": "SHALLOW",
+  "sample": "Invalid URL"
+ },
+ {
+  "name": "Subnet calculator",
+  "category": "Network",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 34,
+  "verdict": "REAL",
+  "sample": "{\n  \"error\": \"Invalid IPv4 CIDR\"\n}"
+ },
+ {
+  "name": "CIDR converter",
+  "category": "Network",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 34,
+  "verdict": "REAL",
+  "sample": "{\n  \"error\": \"Invalid IPv4 CIDR\"\n}"
+ },
+ {
+  "name": "HTTP header viewer",
+  "category": "Network",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 21,
+  "verdict": "REAL",
+  "sample": "Enter an http(s) URL."
+ },
+ {
+  "name": "Redirect viewer",
+  "category": "Network",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 21,
+  "verdict": "REAL",
+  "sample": "Enter an http(s) URL."
+ },
+ {
+  "name": "URL shortener resolver",
+  "category": "Network",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "timeout",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "QR link gen",
+  "category": "Network",
+  "output": "image",
+  "lazy": false,
+  "page": false,
+  "sample": "Enter an http(s) URL.",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "Dyslexia font toggle",
+  "category": "Accessibility",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 88,
+  "verdict": "STATIC",
+  "sample": "Suggested CSS: font-family: Arial, sans-serif; letter-spacing: 0.04em; line-height: 1.6;"
+ },
+ {
+  "name": "Letter-spacing adjuster",
+  "category": "Accessibility",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Word-spacing adjuster",
+  "category": "Accessibility",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Reading guide (ruler)",
+  "category": "Accessibility",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 119,
+  "verdict": "STATIC",
+  "sample": "Reading guide: use a horizontal focus band with position:fixed and pointer-events:none; keep keyboard focus unaffected."
+ },
+ {
+  "name": "Reading mask",
+  "category": "Accessibility",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "ARIA inspector",
+  "category": "Accessibility",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Keyboard navigation tester",
+  "category": "Accessibility",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Focus indicator viewer",
+  "category": "Accessibility",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Motion reducer",
+  "category": "Accessibility",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 181,
+  "verdict": "STATIC",
+  "sample": "@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-dura"
+ },
+ {
+  "name": "Animation pauser",
+  "category": "Accessibility",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Flashing content detector",
+  "category": "Accessibility",
+  "output": "text",
+  "lazy": false,
+  "page": true,
+  "bytes": 52,
+  "verdict": "BROWSER",
+  "sample": "No result — the page returned nothing for this tool."
+ },
+ {
+  "name": "Alt text viewer",
+  "category": "Accessibility",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 30,
+  "verdict": "REAL",
+  "sample": "No image alt attributes found."
+ },
+ {
+  "name": "Random joke",
+  "category": "Fun & Misc",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 83,
+  "verdict": "REAL",
+  "sample": "There are only 10 kinds of people: those who understand binary and those who don't."
+ },
+ {
+  "name": "Random quote",
+  "category": "Fun & Misc",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 53,
+  "verdict": "REAL",
+  "sample": "The beginning is the most important part of the work."
+ },
+ {
+  "name": "Random fact",
+  "category": "Fun & Misc",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 58,
+  "verdict": "REAL",
+  "sample": "Honey never spoils — 3,000-year-old jars are still edible."
+ },
+ {
+  "name": "Random name",
+  "category": "Fun & Misc",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 11,
+  "verdict": "SHALLOW",
+  "sample": "Ishita Nair"
+ },
+ {
+  "name": "Random password",
+  "category": "Fun & Misc",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 16,
+  "verdict": "REAL",
+  "sample": "mgyS3GPvuR#v^fkz"
+ },
+ {
+  "name": "Random color",
+  "category": "Fun & Misc",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 168,
+  "verdict": "REAL",
+  "sample": "<div style=\"width:200px;height:120px;border-radius:12px;background:#ce187d;display:grid;place-items:end center;color:#11"
+ },
+ {
+  "name": "Decision maker",
+  "category": "Fun & Misc",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 38,
+  "verdict": "REAL",
+  "sample": "and the clocks were striking thirteen."
+ },
+ {
+  "name": "Magic 8-ball",
+  "category": "Fun & Misc",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 3,
+  "verdict": "SHALLOW",
+  "sample": "No."
+ },
+ {
+  "name": "RPS",
+  "category": "Fun & Misc",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 32,
+  "verdict": "REAL",
+  "sample": "Choose rock, paper, or scissors."
+ },
+ {
+  "name": "Tic-tac-toe",
+  "category": "Fun & Misc",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 1497,
+  "verdict": "STATIC",
+  "sample": "<style>body{margin:0;font:14px system-ui;background:#0f1115;color:#e8eaed;display:flex;flex-direction:column;align-items"
+ },
+ {
+  "name": "Sudoku gen/solve",
+  "category": "Fun & Misc",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 103,
+  "verdict": "REAL",
+  "sample": "004008010\n000090008\n198040060\n800061003\n400053001\n000020050\n900037284\n080009005\n000006079\n\n\n(0 = blank)"
+ },
+ {
+  "name": "Word search gen",
+  "category": "Fun & Misc",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 163,
+  "verdict": "REAL",
+  "sample": "Find these words:\nTHE, QUICK, BROWN, FOX, JUMPS, OVER, THE, LAZY\n\nS T P J P Z W\nQ U I C K X E\nO V E R Q B H\nK T H E H R "
+ },
+ {
+  "name": "Minesweeper",
+  "category": "Fun & Misc",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 1557,
+  "verdict": "STATIC",
+  "sample": "<style>body{margin:0;font:14px system-ui;background:#0f1115;color:#e8eaed;display:flex;flex-direction:column;align-items"
+ },
+ {
+  "name": "2048",
+  "category": "Fun & Misc",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 2076,
+  "verdict": "STATIC",
+  "sample": "<style>body{margin:0;font:14px system-ui;background:#0f1115;color:#e8eaed;display:flex;flex-direction:column;align-items"
+ },
+ {
+  "name": "Snake",
+  "category": "Fun & Misc",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 1542,
+  "verdict": "STATIC",
+  "sample": "<style>body{margin:0;font:14px system-ui;background:#0f1115;color:#e8eaed;display:flex;flex-direction:column;align-items"
+ },
+ {
+  "name": "Tetris-mini",
+  "category": "Fun & Misc",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 2239,
+  "verdict": "STATIC",
+  "sample": "<style>body{margin:0;font:14px system-ui;background:#0f1115;color:#e8eaed;display:flex;flex-direction:column;align-items"
+ },
+ {
+  "name": "Pong",
+  "category": "Fun & Misc",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 1315,
+  "verdict": "STATIC",
+  "sample": "<style>body{margin:0;font:14px system-ui;background:#0f1115;color:#e8eaed;display:flex;flex-direction:column;align-items"
+ },
+ {
+  "name": "Memory match",
+  "category": "Fun & Misc",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 1387,
+  "verdict": "STATIC",
+  "sample": "<style>body{margin:0;font:14px system-ui;background:#0f1115;color:#e8eaed;display:flex;flex-direction:column;align-items"
+ },
+ {
+  "name": "Reaction time test",
+  "category": "Fun & Misc",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 130,
+  "verdict": "STATIC",
+  "sample": "Start a timer on user input; record elapsed milliseconds when the user responds. This catalog entry requires interactive"
+ },
+ {
+  "name": "Typing test",
+  "category": "Fun & Misc",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 937,
+  "verdict": "REAL",
+  "sample": "<div id=\"t\" style=\"font:18px/1.7 monospace;color:#e8eaed;background:#0f1115;padding:14px;border-radius:8px;max-width:560"
+ },
+ {
+  "name": "Trivia quiz",
+  "category": "Fun & Misc",
+  "output": "html",
+  "lazy": false,
+  "page": false,
+  "bytes": 2796,
+  "verdict": "STATIC",
+  "sample": "<div style=\"font:14px system-ui;color:#e8eaed;max-width:520px\"><div style=\"margin:10px 0\"><div style=\"font-weight:600\">1"
+ },
+ {
+  "name": "Riddle library",
+  "category": "Fun & Misc",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 69,
+  "verdict": "REAL",
+  "sample": "The more you take, the more you leave behind. What am I? — Footsteps."
+ },
+ {
+  "name": "Fortune cookie",
+  "category": "Fun & Misc",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 65,
+  "verdict": "REAL",
+  "sample": "You will find what you are looking for where you least expect it."
+ },
+ {
+  "name": "Biorhythm",
+  "category": "Fun & Misc",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "Enter a valid birth date",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "Birthday countdown",
+  "category": "Fun & Misc",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 8,
+  "verdict": "SHALLOW",
+  "sample": "194 days"
+ },
+ {
+  "name": "Anniversary tracker",
+  "category": "Fun & Misc",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "Enter a valid date",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "Age in days/hours",
+  "category": "Fun & Misc",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 38,
+  "verdict": "REAL",
+  "sample": "{\n  \"days\": 13320,\n  \"hours\": 319692\n}"
+ },
+ {
+  "name": "Life in weeks",
+  "category": "Fun & Misc",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 28,
+  "verdict": "REAL",
+  "sample": "Approximate weeks lived: NaN"
+ },
+ {
+  "name": "Countdown to holiday",
+  "category": "Fun & Misc",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 21,
+  "verdict": "REAL",
+  "sample": "-13320 days remaining"
+ },
+ {
+  "name": "NATO phonetic alphabet",
+  "category": "Text & Writing",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 23,
+  "verdict": "REAL",
+  "sample": "9 1 9 8 7 6 5 4 3 2 1 0"
+ },
+ {
+  "name": "Number to words",
+  "category": "Calculators & Converters",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 47,
+  "verdict": "REAL",
+  "sample": "One Thousand Two Hundred Thirty-Four Point Five"
+ }
+]

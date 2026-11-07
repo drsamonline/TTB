@@ -100,11 +100,16 @@ const PAGE_TOOLS = new Set([
   'aria inspector', 'keyboard navigation tester', 'focus indicator viewer', 'flashing content detector',
   'cookie banner dismisser', 'newsletter popup killer', 'form autofill', 'form data exporter', 'copy table as markdown/csv', 'video speed controller', 'autoplay blocker', 'save scroll position', 'scroll position memory', 'highlight & annotate', 'sticky notes', 'sticky notes across tabs', 'page annotations', 'auto-refresh', 'page change monitor', 'auto-pause video on tab switch', 'resume video across tabs', 'boss key', 'screen ruler',
 ]);
-function isPageTool(name) { return PAGE_TOOLS.has(String(name || '').toLowerCase()); }
+function isPageTool(name) {
+  const n = String(name || '').toLowerCase();
+  return PAGE_TOOLS.has(n) || n.startsWith('page→');
+}
 
 export async function runPage(name, ctx = {}) {
+  if (!isPageTool(name)) return null;
   const tabId = ctx.tab?.id;
-  if (!tabId) return isPageTool(name) ? 'This tool needs an active tab (open a normal web page first).' : null;
-  return (await page(pageFn(name, ctx), tabId))[0]?.result ?? null;
+  if (!tabId) return 'This tool needs an active tab (open a normal web page first).';
+  const r = (await page(pageFn(name, ctx), tabId))[0]?.result;
+  return r ?? 'No result — the page returned nothing for this tool.';
 }
 export { isPageTool };

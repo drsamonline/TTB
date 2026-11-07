@@ -1,5 +1,46 @@
 # Changelog
 
+## 0.11.0 — Functional audit, catalog trim, UI rebuild
+
+This release starts from evidence, not from a coverage claim. Every tool was
+executed with realistic input and its **actual output** graded (`TOOL_AUDIT.md`,
+`tool-audit.json`, `npm run audit`).
+
+### Removed
+- **29 catalog entries that could never work** were deleted instead of shipped as
+  placeholders: 22 that need an unbundled third-party library (all PDF tools, OCR,
+  Excel viewer, Prettier, OpenPGP, axe-core, screenshot→markdown) and 7 that no
+  extension can implement (notification blocker, popup blocker, canvas-fingerprint
+  blocker, WebRTC leak test, IP viewer, metadata stripper, frames→GIF).
+- `tools/phase7.js` and the whole `lazy/` loader are gone — they only existed to
+  report missing dependencies.
+
+### Recovered
+- **vCard QR code** now works, using the bundled QR encoder.
+- **Password strength meter** is a real entropy calculation.
+
+### Fixed
+- **A handler that returned nothing was reported as “not implemented”.** Page and
+  storage tools that legitimately produced no output fell through to the catalog
+  fallback; they now return a clear result.
+- **`Contrast checker` was silently shadowed** by a broken duplicate in `phase6.js`.
+  The registry now refuses to let a later module replace a working implementation
+  with one that declares fewer inputs.
+- **Matrix** crashed on a dimension mismatch; it now validates shape and explains
+  what is wrong.
+- **Colour contrast** ignored its second-colour field; **Profit margin** and
+  **Markup** produced `NaN%` instead of asking for the missing value;
+  **Factorial** returned `null` for non-integers.
+- **Command palette** returned an empty string when nothing matched.
+
+### UI
+- Rebuilt the popup: brand header with live tool count, icon category rail,
+  searchable list with keyboard navigation (↑ ↓ Enter), favourites (★) and recents,
+  a proper empty state, labelled per-tool fields, a primary Run button, and a
+  result pane that reports size and renders text, HTML or image output.
+- New dark theme with consistent tokens and visible focus rings.
+
+
 ## 0.10.1 — 2026-10-25
 
 - **Licence: PolyForm Noncommercial 1.0.0.** Every repository now carries the canonical text

@@ -7,39 +7,60 @@
 <link rel="stylesheet" href="ui/style.css">
 </head>
 <body>
-<header>
-  <h1>TTB — Tiny Toolbox</h1>
-  <input id="search" autofocus autocomplete="off" placeholder="Search tools… (Ctrl+K)">
+<header class="app-header">
+  <div class="brand">
+    <span class="logo" aria-hidden="true">TTB</span>
+    <span class="brand-text"><strong>Tiny Toolbox</strong><span class="brand-sub" id="tool-count"></span></span>
+  </div>
+  <div class="searchwrap">
+    <input id="search" autofocus autocomplete="off" spellcheck="false" placeholder="Search tools…" aria-label="Search tools">
+    <kbd>Ctrl K</kbd>
+  </div>
 </header>
 <div id="status" class="sr-only" role="status" aria-live="polite"></div>
+
 <main class="layout">
-  <aside class="category-panel" aria-label="Tool categories">
-    <div class="category-heading">Browse by category</div>
-    <nav id="categories" class="categories" aria-label="Tool categories"></nav>
+  <aside class="rail" aria-label="Tool categories">
+    <div class="rail-title">Categories</div>
+    <nav id="categories"></nav>
   </aside>
-  <section id="list" aria-label="Tools"></section>
-  <section class="panel" id="panel" hidden>
-    <h2></h2>
-    <div class="category"></div>
-    <div id="fields" class="fields"></div>
-    <div id="confirm-row" class="confirm" hidden>
-      <label><input type="checkbox"> I understand — confirm this destructive action</label>
+
+  <section class="listpane" aria-label="Tools">
+    <div class="list-head"><span id="list-scope">All tools</span><span id="list-count" class="list-count"></span></div>
+    <div id="list" role="listbox" tabindex="0" aria-label="Tool list"></div>
+  </section>
+
+  <section class="detail" id="panel">
+    <div class="empty" id="empty-state">
+      <div class="empty-icon">⌘</div>
+      <h2>Pick a tool</h2>
+      <p>Search above, browse a category, or press <kbd>↓</kbd> then <kbd>Enter</kbd>.</p>
+      <p class="muted">Everything runs locally. Nothing is sent anywhere.</p>
     </div>
-    <div class="actions" id="actions">
-      <button id="run">Run</button>
-      <button id="copy">Copy result</button>
-      <button id="clear">Clear</button>
+
+    <div id="tool-view" hidden>
+      <div class="tool-head">
+        <h2></h2>
+        <span class="chip category"></span>
+      </div>
+      <div id="fields" class="fields"></div>
+      <div id="confirm-row" class="confirm" hidden>
+        <label><input type="checkbox"> I understand — confirm this destructive action</label>
+      </div>
+      <div class="actions">
+        <button id="run" class="primary">Run</button>
+        <button id="copy">Copy</button>
+        <button id="clear">Clear</button>
+        <button id="fav" class="ghost" title="Favourite" aria-label="Favourite this tool" aria-pressed="false">☆</button>
+      </div>
+      <div class="result-head"><span>Result</span><span id="result-meta" class="muted"></span></div>
+      <div id="output" class="output" aria-live="polite"></div>
     </div>
-    <div class="output-label">Result</div>
-    <div id="output" class="output" aria-live="polite"></div>
   </section>
 </main>
+
 <script src="data/tools.js"></script>
 <script type="module" src="tools/compat.js"></script>
 <script src="ui/app.js"></script>
 </body>
 </html>
-
-<!-- TTB-PAGE-MARKER: the extension popup, copied into every package by build.mjs
-     and listed in the manifest. Not a duplicate landing page. Deleted once by the
-     page sweep (4f41acf, "per the page audit") and every package build failed. -->

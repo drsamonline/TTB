@@ -115,7 +115,7 @@ export async function runSystem(name, ctx = {}) {
         return Object.fromEntries(Object.entries(store));
       },
     });
-    return res[0]?.result ?? null;
+    return res[0]?.result ?? 'No stored data on this page.';
   }
 
   // --- display / device ---
@@ -147,12 +147,13 @@ export async function runSystem(name, ctx = {}) {
     if (!has('scripting')) return unsupported('Page scripting');
     if (!ctx.tab?.id) return 'No active tab';
     const res = await chrome.scripting.executeScript({ target: { tabId: ctx.tab.id }, func: () => { document.querySelectorAll('aside,nav,header,footer,[role="complementary"],.advertisement,.ads').forEach((e) => e.style.setProperty('display', 'none', 'important')); document.body.style.maxWidth = '900px'; document.body.style.margin = 'auto'; return 'Focus mode applied'; } });
-    return res[0].result;
+    return res[0]?.result ?? 'Focus mode applied.';
   }
   if (n === 'command palette (⌘k)') {
     const q = s.trim().toLowerCase();
     const catalog = globalThis.TTB_CATALOG || [];
-    return catalog.filter((t) => !q || t.name.toLowerCase().includes(q)).slice(0, 40).map((t) => `${t.name}  ·  ${t.category}`).join('\n');
+    const hits = catalog.filter((t) => !q || t.name.toLowerCase().includes(q)).slice(0, 40).map((t) => `${t.name}  ·  ${t.category}`);
+    return hits.length ? hits.join('\n') : `No tool matches “${s.trim()}”.`;
   }
   if (n === 'import/export settings' || n === 'backup/restore') {
     if (ctx.mode === 'import') { try { const obj = JSON.parse(s); await chrome.storage.local.set(obj); return `Imported ${Object.keys(obj).length} key(s).`; } catch { return 'Paste valid JSON exported from TTB.'; } }

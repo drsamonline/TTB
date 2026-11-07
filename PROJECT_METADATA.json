@@ -1,9 +1,8 @@
 {
-  "project": "TTB \u2014 Tiny Toolbox",
-  "version": "0.10.0",
+  "project": "TTB — Tiny Toolbox",
+  "version": "0.11.0",
   "author": "Dr. Sohil Momin",
-  "catalog_entries": 591,
-  "handlers_wired": 591,
-  "lazy_dependency_stubs": 24,
-  "license": "MIT"
+  "tools": 563,
+  "categories": 18,
+  "license": "PolyForm Noncommercial 1.0.0"
 }

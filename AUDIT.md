@@ -1,6 +1,6 @@
-# TTB v0.10.0 — Audit & coverage report
+# TTB v0.11.0 — Audit & coverage report
 
-This report describes the state of the repository at v0.10.0 (the implementation pass, README badges and screenshots, and the cross-browser builds). Every number below is produced by the shipped smoke test (`node test.mjs`) and the registry, not by hand.
+This report describes the state of the repository at v0.11.0. The headline change is a **functional audit**: every tool is executed and graded (see `TOOL_AUDIT.md`), 29 tools that could never work were removed, and the popup UI was rebuilt. Every number below is produced by the shipped smoke test (`node test.mjs`) and the registry, not by hand.
 
 ## Coverage
 

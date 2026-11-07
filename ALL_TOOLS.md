@@ -1,41 +1,41 @@
 # TTB — Tiny Toolbox — Complete Tool List
 
-**Version:** v0.9.0  
+**Version:** 0.11.0  
 **Author:** Dr. Sohil Momin  
-**Total catalog entries:** 591  
+**Tools:** 563  
 **Categories:** 18  
-**Handlers wired:** 591 (of which 24 are lazy/optional-dependency stubs)  
+**With dedicated inputs:** 225  
+**Destructive (gated):** 5
 
-The catalog in `data/tools.js` is authoritative. Every entry now resolves to a handler; tools that need an optional third-party library (PDF, OCR, Excel, …) report that dependency honestly instead of pretending to work.
+Every entry below resolves to a handler and was executed in the functional audit (see `TOOL_AUDIT.md`). Tools that could not work were removed rather than listed as placeholders.
 
 ## Category summary
 
 | # | Category | Tools |
 |---:|---|---:|
-| 1 | Accessibility | 13 |
-| 2 | Calculators & Converters | 68 |
+| 1 | Accessibility | 12 |
+| 2 | Calculators & Converters | 69 |
 | 3 | Communication | 15 |
-| 4 | Data | 26 |
+| 4 | Data | 25 |
 | 5 | Design & Color | 27 |
-| 6 | Developer | 90 |
+| 6 | Developer | 89 |
 | 7 | Education | 15 |
 | 8 | Finance | 20 |
 | 9 | Fun & Misc | 29 |
-| 10 | Media & Files | 53 |
+| 10 | Media & Files | 36 |
 | 11 | Network | 6 |
-| 12 | Page Tools | 47 |
+| 12 | Page Tools | 46 |
 | 13 | Productivity | 19 |
 | 14 | SEO | 10 |
-| 15 | Security | 31 |
-| 16 | System & Browser | 41 |
+| 15 | Security | 26 |
+| 16 | System & Browser | 39 |
 | 17 | Text & Writing | 62 |
-| 18 | Unique | 19 |
+| 18 | Unique | 18 |
 
 ## Tools by category
 
-### Accessibility (13)
+### Accessibility (12)
 
-- Accessibility auditor (axe-core lazy) _(lazy dependency)_
 - Dyslexia font toggle
 - Letter-spacing adjuster
 - Word-spacing adjuster
@@ -49,7 +49,7 @@ The catalog in `data/tools.js` is authoritative. Every entry now resolves to a h
 - Flashing content detector
 - Alt text viewer
 
-### Calculators & Converters (68)
+### Calculators & Converters (69)
 
 - Live calculator
 - Scientific
@@ -119,6 +119,7 @@ The catalog in `data/tools.js` is authoritative. Every entry now resolves to a h
 - Pace/speed
 - Fuel cost
 - Electricity cost
+- Number to words
 
 ### Communication (15)
 
@@ -136,16 +137,15 @@ The catalog in `data/tools.js` is authoritative. Every entry now resolves to a h
 - Meet link gen
 - ICS calendar invite
 - vCard generator
-- vCard QR code _(lazy dependency)_
+- vCard QR code
 
-### Data (26)
+### Data (25)
 
 - CSV viewer/editor
 - CSV→JSON/SQL/Markdown/Excel
 - JSON viewer
 - XML viewer
 - YAML viewer
-- Excel viewer (lazy) _(lazy dependency)_
 - Table sorter
 - Table filter
 - Table dedup
@@ -197,7 +197,7 @@ The catalog in `data/tools.js` is authoritative. Every entry now resolves to a h
 - Transition builder
 - Bezier editor
 
-### Developer (90)
+### Developer (89)
 
 - JSON format/validate/minify
 - JSON→TypeScript
@@ -255,7 +255,6 @@ The catalog in `data/tools.js` is authoritative. Every entry now resolves to a h
 - Robots.txt tester
 - Sitemap validator
 - HTML validator
-- Prettier (lazy) _(lazy dependency)_
 - Markdown preview
 - ASCII table
 - CSV table
@@ -363,7 +362,7 @@ The catalog in `data/tools.js` is authoritative. Every entry now resolves to a h
 - Life in weeks
 - Countdown to holiday
 
-### Media & Files (53)
+### Media & Files (36)
 
 - Image compressor
 - Image resizer
@@ -386,27 +385,11 @@ The catalog in `data/tools.js` is authoritative. Every entry now resolves to a h
 - GPS extractor
 - Color extractor
 - Image→base64
-- Image→PDF _(lazy dependency)_
 - GIF→frames
-- Frames→GIF
 - QR gen
 - QR scan
 - Barcode gen
 - Barcode scan
-- PDF merge _(lazy dependency)_
-- PDF split _(lazy dependency)_
-- PDF rotate _(lazy dependency)_
-- PDF reorder _(lazy dependency)_
-- PDF→images _(lazy dependency)_
-- PDF→text _(lazy dependency)_
-- PDF metadata viewer _(lazy dependency)_
-- PDF metadata cleaner _(lazy dependency)_
-- PDF page numbers _(lazy dependency)_
-- PDF watermark _(lazy dependency)_
-- PDF crop _(lazy dependency)_
-- PDF form filler _(lazy dependency)_
-- PDF signature _(lazy dependency)_
-- Images→PDF _(lazy dependency)_
 - ZIP extract
 - ZIP create
 - TAR extract
@@ -417,7 +400,6 @@ The catalog in `data/tools.js` is authoritative. Every entry now resolves to a h
 - Audio recorder
 - Webcam capture
 - Screenshot annotator
-- OCR (lazy) _(lazy dependency)_
 
 ### Network (6)
 
@@ -428,7 +410,7 @@ The catalog in `data/tools.js` is authoritative. Every entry now resolves to a h
 - URL shortener resolver
 - QR link gen
 
-### Page Tools (47)
+### Page Tools (46)
 
 - Extract links/images/emails/phones/hashtags/mentions
 - Extract tables→CSV
@@ -460,7 +442,6 @@ The catalog in `data/tools.js` is authoritative. Every entry now resolves to a h
 - Computed CSS inspector
 - Font inspector
 - Box model inspector
-- Accessibility auditor (lazy) _(lazy dependency)_
 - Contrast auditor
 - Broken image detector
 - Slow resource finder
@@ -513,24 +494,20 @@ The catalog in `data/tools.js` is authoritative. Every entry now resolves to a h
 - UTM builder
 - UTM parser
 
-### Security (31)
+### Security (26)
 
 - Evidence capture (SHA-256 + timestamp)
 - Chain-of-custody screenshot
-- Password strength meter (zxcvbn) _(lazy dependency)_
+- Password strength meter (zxcvbn)
 - Passphrase generator (EFF)
 - TOTP (RFC 6238)
 - HOTP (RFC 4226)
 - Base32 for TOTP
 - AES-GCM encrypt/decrypt
 - PBKDF2
-- OpenPGP viewer (lazy) _(lazy dependency)_
 - Cookie inspector/editor
 - Cookie third-party analyzer
 - Fingerprint detector
-- Canvas fingerprint blocker
-- WebRTC IP leak test
-- IP address viewer
 - Homoglyph URL detector
 - Typosquatting detector
 - Lookalike domain detector
@@ -544,10 +521,9 @@ The catalog in `data/tools.js` is authoritative. Every entry now resolves to a h
 - IBAN validator
 - SSN format checker
 - Secure notes (encrypted)
-- File metadata stripper
 - Hash verifier
 
-### System & Browser (41)
+### System & Browser (39)
 
 - Tab suspender
 - Tab group manager
@@ -581,8 +557,6 @@ The catalog in `data/tools.js` is authoritative. Every entry now resolves to a h
 - Device info viewer
 - Browser info viewer
 - Permission viewer
-- Notification blocker
-- Popup blocker
 - Focus mode
 - Break reminder (20-20-20)
 - Session timer
@@ -592,8 +566,6 @@ The catalog in `data/tools.js` is authoritative. Every entry now resolves to a h
 - Debug console
 
 ### Text & Writing (62)
-
-- NATO phonetic alphabet
 
 - Case converter
 - Trim/dedupe/sort/reverse lines
@@ -656,8 +628,9 @@ The catalog in `data/tools.js` is authoritative. Every entry now resolves to a h
 - Font preview
 - TTS (Web Speech)
 - STT (Web Speech)
+- NATO phonetic alphabet
 
-### Unique (19)
+### Unique (18)
 
 - Smart Selection Parser
 - Cross-tab copy queue
@@ -672,7 +645,6 @@ The catalog in `data/tools.js` is authoritative. Every entry now resolves to a h
 - Resume video across tabs
 - Scroll position memory
 - Page annotations
-- Screenshot→Markdown table (lazy) _(lazy dependency)_
 - Document redactor
 - PII highlighter
 - Page weight→CO₂ estimate

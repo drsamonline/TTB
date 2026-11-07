@@ -4,7 +4,6 @@
 import { TTB_PHASE4_TOOLS } from '../tools/phase4.js';
 import { TTB_PHASE5_TOOLS } from '../tools/phase5.js';
 import { TTB_PHASE6_TOOLS } from '../tools/phase6.js';
-import { TTB_PHASE7_TOOLS } from '../tools/phase7.js';
 import { TTB_EXTRA_TEXT, TTB_EXTRA_CALC } from '../tools/t-text-calc.js';
 import { TTB_EXTRA_DEV } from '../tools/t-dev-data.js';
 import { TTB_EXTRA_MEDIA } from '../tools/t-media-design.js';
@@ -13,12 +12,21 @@ import { CORE_INPUTS } from '../data/inputs.js';
 import { CORE_HANDLED } from '../data/core-handled.js';
 
 const catalog = Array.isArray(globalThis.TTB_CATALOG) ? globalThis.TTB_CATALOG : [];
-const groups = [TTB_PHASE4_TOOLS, TTB_PHASE5_TOOLS, TTB_PHASE6_TOOLS, TTB_PHASE7_TOOLS, TTB_EXTRA_TEXT, TTB_EXTRA_CALC, TTB_EXTRA_DEV, TTB_EXTRA_MEDIA, TTB_EXTRA_MISC];
+const groups = [TTB_PHASE4_TOOLS, TTB_PHASE5_TOOLS, TTB_PHASE6_TOOLS, TTB_EXTRA_TEXT, TTB_EXTRA_CALC, TTB_EXTRA_DEV, TTB_EXTRA_MEDIA, TTB_EXTRA_MISC];
 
+// A later module must not silently shadow a working implementation with a
+// poorer one. Keep the first handler for a name, but let a later one win only
+// if it declares input fields the earlier one lacks (that is the better tool).
 const implementations = new Map();
 for (const group of groups) {
   for (const tool of Object.values(group || {})) {
-    if (tool?.name && typeof tool.run === 'function') implementations.set(tool.name.toLowerCase(), tool);
+    if (!tool?.name || typeof tool.run !== 'function') continue;
+    const key = tool.name.toLowerCase();
+    const prev = implementations.get(key);
+    if (!prev) { implementations.set(key, tool); continue; }
+    const prevHasInputs = Array.isArray(prev.inputs) && prev.inputs.length > 0;
+    const nextHasInputs = Array.isArray(tool.inputs) && tool.inputs.length > 0;
+    if (!prevHasInputs && nextHasInputs) implementations.set(key, tool);
   }
 }
 

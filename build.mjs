@@ -17,8 +17,8 @@ const CATALOG_COUNT = (fs.readFileSync(path.join(ROOT, 'data', 'tools.js'), 'utf
 
 // Files that belong to the repository, not to a shipped extension package.
 const EXCLUDE = new Set(['dist', '.git', '.github', 'node_modules', 'docs', 'browsers',
-  'test.mjs', 'screenshots.mjs', 'build.mjs', 'package.json', 'package-lock.json',
-  '.gitignore', '.gitattributes', 'BROWSER_SUPPORT.md', 'CONTRIBUTING.md', 'AUDIT.md']);
+  'test.mjs', 'screenshots.mjs', 'build.mjs', 'audit-tools.mjs', 'tool-audit.json', 'TOOL_AUDIT.md', 'MANIFEST.json', 'PAGES.json', 'package.json', 'package-lock.json',
+  '.gitignore', '.gitattributes', 'BROWSER_SUPPORT.md', 'CONTRIBUTING.md', 'AUDIT.md', 'CODE_OF_CONDUCT.md']);
 
 // Feature parity across targets. true = works, false = API absent, 'partial' /
 // 'fallback' / 'verify' = see the note in the generated docs.

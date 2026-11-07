@@ -166,6 +166,13 @@ export const TTB_EXTRA_CALC = {
     const det = (M) => { const n = M.length; if (n === 1) return M[0][0]; if (n === 2) return M[0][0] * M[1][1] - M[0][1] * M[1][0]; let d = 0; for (let j = 0; j < n; j++) { const sub = M.slice(1).map((r) => r.filter((_, k) => k !== j)); d += ((j % 2) ? -1 : 1) * M[0][j] * det(sub); } return d; };
     const show = (M) => M.map((r) => r.map((v) => fmt(v, 4)).join('\t')).join('\n');
     if (!A.length) throw Error('Enter matrix A (one row per line).');
+    if ((c.op === 'multiply' || c.op === 'add') && !B.length) throw Error('Enter matrix B in the second field (one row per line).');
+    const square = (M) => M.every((r) => r.length === M[0].length) && M.every((r) => r.every(Number.isFinite));
+    if (!square(A)) throw Error('Matrix A must be rectangular and contain only numbers.');
+    if ((c.op === 'multiply' || c.op === 'add') && !square(B)) throw Error('Matrix B must be rectangular and contain only numbers.');
+    if (c.op === 'add' && (A.length !== B.length || A[0].length !== B[0].length)) throw Error('For addition, A and B must have the same dimensions.');
+    if (c.op === 'multiply' && A[0].length !== B.length) throw Error(`Cannot multiply: A is ${A.length}×${A[0].length} but B is ${B.length}×${B[0].length}. A's column count must equal B's row count.`);
+    if ((c.op === 'determinant A') && (A.length !== A[0].length)) throw Error('Determinant needs a square matrix.');
     if (c.op === 'transpose A') return show(A[0].map((_, j) => A.map((r) => r[j])));
     if (c.op === 'determinant A') return String(fmt(det(A), 6));
     if (c.op === 'add') return show(add(A, B));
