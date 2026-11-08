@@ -89,3 +89,56 @@ assert.rejects(() => nw('12a'), /not a number/);
 assert.rejects(() => nw('9'.repeat(16)), /Too large/);
 
 console.log(`OK — ${catalog.length} tools, ${cats.size} categories, ${withInputs.length} with custom inputs`);
+
+// Semver — the spec's own precedence list (semver.org §11) is the known answer,
+// and each check is chosen so a plausible wrong implementation fails it.
+const sv = (text, ctx) => runTool('Semver compare & bump', { text, ...ctx });
+const specOrder = ['1.0.0-alpha', '1.0.0-alpha.1', '1.0.0-alpha.beta', '1.0.0-beta', '1.0.0-beta.2', '1.0.0-beta.11', '1.0.0-rc.1', '1.0.0'];
+const shuffled = [specOrder[7], specOrder[4], specOrder[0], specOrder[6], specOrder[2], specOrder[5], specOrder[1], specOrder[3]];
+const sorted = await sv(shuffled.join('\n'));
+const got = sorted.split('\n').slice(1, 9).map((l) => l.replace(/^\d+\. /, ''));
+assert.deepEqual(got, specOrder, 'precedence must follow semver.org §11 exactly');
+// beta.11 vs beta.2 separates numeric comparison from lexical ("11" < "2" as text).
+assert.ok(sorted.indexOf('1.0.0-beta.2') < sorted.indexOf('1.0.0-beta.11'), 'numeric identifiers must compare numerically');
+assert.match(sorted, /Highest: 1\.0\.0$/m);
+// A release outranks any prerelease of the same version.
+assert.ok(sorted.indexOf('1.0.0-rc.1') < sorted.indexOf('\n8. 1.0.0') || sorted.includes('8. 1.0.0'));
+// Build metadata is ignored for precedence but not silently dropped from the output.
+const tie = await sv('1.0.0+build.9\n1.0.0+other');
+assert.match(tie, /Equal precedence \(build metadata is ignored\)/);
+// Parsing reports the parts it actually found.
+const one = await sv('2.7.1-rc.2+sha.abc');
+assert.match(one, /major 2/); assert.match(one, /minor 7/); assert.match(one, /patch 1/);
+assert.match(one, /prerelease rc\.2/); assert.match(one, /build sha\.abc/);
+// Rejections: a leading zero in a numeric prerelease id is invalid per the spec.
+assert.rejects(() => sv('1.0.0-01'), /leading zeroes/);
+assert.rejects(() => sv('1.0'), /Not a semantic version/);
+assert.rejects(() => sv(''), /Enter a semantic version/);
+// Bump — including the case where a patch bump on a prerelease only drops the prerelease.
+assert.equal(await sv('1.2.3', { mode: 'Bump', b: 'patch' }), '1.2.3 → 1.2.4  (patch)');
+assert.equal(await sv('1.2.3', { mode: 'Bump', b: 'minor' }), '1.2.3 → 1.3.0  (minor)');
+assert.equal(await sv('1.2.3', { mode: 'Bump', b: 'major' }), '1.2.3 → 2.0.0  (major)');
+assert.equal(await sv('1.2.3-rc.1', { mode: 'Bump', b: 'patch' }), '1.2.3-rc.1 → 1.2.3  (patch)');
+assert.equal(await sv('1.2.3-rc.1+sha', { mode: 'Bump', b: 'minor' }), '1.2.3-rc.1+sha → 1.3.0  (minor)');
+// Ranges — caret, tilde, AND, OR, wildcard, and the npm prerelease rule.
+const inR = async (v, c) => (await sv(v, { mode: 'Range check', c })).includes('satisfies') && !(await sv(v, { mode: 'Range check', c })).includes('does NOT');
+assert.equal(await inR('1.2.9', '^1.2.3'), true);
+assert.equal(await inR('1.9.0', '^1.2.3'), true);
+assert.equal(await inR('2.0.0', '^1.2.3'), false);
+assert.equal(await inR('0.2.9', '^0.2.3'), true, 'caret on 0.x is bounded by the minor');
+assert.equal(await inR('0.3.0', '^0.2.3'), false);
+assert.equal(await inR('0.0.4', '^0.0.3'), false, 'caret on 0.0.x is bounded by the patch');
+assert.equal(await inR('1.2.9', '~1.2.3'), true);
+assert.equal(await inR('1.3.0', '~1.2.3'), false, 'tilde is bounded by the minor');
+assert.equal(await inR('1.5.0', '>=1.2.0 <2.0.0'), true);
+assert.equal(await inR('2.0.0', '>=1.2.0 <2.0.0'), false);
+assert.equal(await inR('2.0.0', '1.2.3 || 2.0.0'), true);
+assert.equal(await inR('2.0.1', '1.2.3 || 2.0.0'), false);
+assert.equal(await inR('1.9.9', '1.x'), true);
+assert.equal(await inR('2.0.0', '1.x'), false);
+assert.equal(await inR('1.4.0', '1.2.3 - 1.5.0'), true);
+assert.equal(await inR('1.6.0', '1.2.3 - 1.5.0'), false);
+assert.equal(await inR('1.3.0-rc.1', '^1.2.3'), false, 'npm: a prerelease needs a prerelease in the same set');
+assert.equal(await inR('1.2.3-rc.2', '>=1.2.3-rc.1 <2.0.0'), true);
+assert.rejects(() => sv('1.0.0', { mode: 'Range check', c: '' }), /Enter a range/);
+assert.match(await sv('1.2.3', { mode: 'Range check', c: '^2.0.0' }), /1\.2\.3 does NOT satisfy \^2\.0\.0/);

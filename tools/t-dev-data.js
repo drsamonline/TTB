@@ -22,7 +22,139 @@ const rgb2hsl = (r, g, b) => { r /= 255; g /= 255; b /= 255; const M = Math.max(
 const parseColor = (s) => { s = String(s).trim(); let m; if ((m = s.match(/^#?([0-9a-f]{6})$/i))) { const h = m[1]; return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)]; } if ((m = s.match(/^#?([0-9a-f]{3})$/i))) { return m[1].split('').map((c) => parseInt(c + c, 16)); } if ((m = s.match(/rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i))) return [+m[1], +m[2], +m[3]]; if ((m = s.match(/hsl\(\s*(\d+)\s*[, ]\s*(\d+)%\s*[, ]\s*(\d+)%/i))) return hsl2rgb(+m[1], +m[2], +m[3]); throw Error('Unrecognised colour. Use #rrggbb, rgb() or hsl().'); };
 const hexOf = (rgb) => '#' + rgb.map((v) => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0')).join('');
 
+// ---- Semver: parse, precedence (semver.org §11), bump and range check ----
+// Kept dependency-free and deterministic so the whole thing is testable in Node.
+const SV_ID = '[0-9A-Za-z-]+';
+const SV_RE = new RegExp(`^v?(\\d+)\\.(\\d+)\\.(\\d+)(?:-(${SV_ID}(?:\\.${SV_ID})*))?(?:\\+(${SV_ID}(?:\\.${SV_ID})*))?$`);
+const SV_PARTIAL = new RegExp(`^v?(\\d+|[xX*])(?:\\.(\\d+|[xX*]))?(?:\\.(\\d+|[xX*]))?(?:-(${SV_ID}(?:\\.${SV_ID})*))?$`);
+
+function svParse(raw) {
+  const s = String(raw == null ? '' : raw).trim();
+  const m = s.match(SV_RE);
+  if (!m) throw Error(`Not a semantic version: "${s}" — expected MAJOR.MINOR.PATCH[-prerelease][+build]`);
+  const pre = m[4] ? m[4].split('.') : [];
+  const bad = pre.find((id) => /^\d+$/.test(id) && id.length > 1 && id[0] === '0');
+  if (bad) throw Error(`Numeric prerelease identifier "${bad}" must not carry leading zeroes`);
+  return { major: +m[1], minor: +m[2], patch: +m[3], pre, build: m[5] ? m[5].split('.') : [] };
+}
+const svStr = (v) => `${v.major}.${v.minor}.${v.patch}${v.pre.length ? '-' + v.pre.join('.') : ''}${v.build.length ? '+' + v.build.join('.') : ''}`;
+function svCmpId(a, b) {
+  const an = /^\d+$/.test(a), bn = /^\d+$/.test(b);
+  if (an && bn) return +a === +b ? 0 : +a < +b ? -1 : 1;
+  if (an !== bn) return an ? -1 : 1;            // numeric identifiers rank below alphanumeric
+  return a === b ? 0 : a < b ? -1 : 1;          // ASCII lexical order
+}
+function svCmp(a, b) {                          // build metadata never affects precedence
+  for (const k of ['major', 'minor', 'patch']) if (a[k] !== b[k]) return a[k] < b[k] ? -1 : 1;
+  if (!a.pre.length || !b.pre.length) return a.pre.length === b.pre.length ? 0 : a.pre.length ? -1 : 1;
+  for (let i = 0; i < Math.min(a.pre.length, b.pre.length); i++) { const c = svCmpId(a.pre[i], b.pre[i]); if (c) return c; }
+  return a.pre.length === b.pre.length ? 0 : a.pre.length < b.pre.length ? -1 : 1;
+}
+function svInc(v, level) {
+  const out = { major: v.major, minor: v.minor, patch: v.patch, pre: [], build: [] };
+  if (level === 'major') { out.major = v.major + 1; out.minor = 0; out.patch = 0; }
+  else if (level === 'minor') { out.minor = v.minor + 1; out.patch = 0; }
+  else if (!v.pre.length) out.patch = v.patch + 1;   // patch on a prerelease only drops the prerelease
+  return out;
+}
+const svVer = (major, minor, patch, pre = []) => ({ major, minor, patch, pre, build: [] });
+function svPartial(raw) {
+  const s = String(raw).trim();
+  const m = s.match(SV_PARTIAL);
+  if (!m) throw Error(`Not a version or partial version: "${s}"`);
+  const num = (x) => (x === undefined || /^[xX*]$/.test(x) ? null : +x);
+  return { major: num(m[1]), minor: num(m[2]), patch: num(m[3]), pre: m[4] ? m[4].split('.') : [] };
+}
+// One range token -> a list of {op, ver} comparators.
+function svToken(raw) {
+  const s = String(raw).trim();
+  const m = s.match(/^(\^|~|>=|<=|>|<|=)?\s*(.+)$/);
+  const op = m[1] || '=';
+  const p = svPartial(m[2]);
+  if (p.major === null) return [];                       // * or x — no constraint
+  const lo = svVer(p.major, p.minor ?? 0, p.patch ?? 0, p.pre);
+  if (op === '^') {
+    let hi;
+    if (p.major > 0) hi = svVer(p.major + 1, 0, 0);
+    else if (p.minor === null) hi = svVer(1, 0, 0);
+    else if (p.minor > 0) hi = svVer(0, p.minor + 1, 0);
+    else if (p.patch === null) hi = svVer(0, 1, 0);
+    else hi = svVer(0, 0, p.patch + 1);
+    return [{ op: '>=', ver: lo }, { op: '<', ver: hi }];
+  }
+  if (op === '~') {
+    const hi = p.minor === null ? svVer(p.major + 1, 0, 0) : svVer(p.major, p.minor + 1, 0);
+    return [{ op: '>=', ver: lo }, { op: '<', ver: hi }];
+  }
+  if (op === '=') {                                      // bare or partial version
+    if (p.minor === null) return [{ op: '>=', ver: lo }, { op: '<', ver: svVer(p.major + 1, 0, 0) }];
+    if (p.patch === null) return [{ op: '>=', ver: lo }, { op: '<', ver: svVer(p.major, p.minor + 1, 0) }];
+    return [{ op: '=', ver: lo }];
+  }
+  if (op === '>=') return [{ op: '>=', ver: lo }];
+  if (op === '<') return [{ op: '<', ver: lo }];
+  if (op === '>') {                                      // >1.2 means after the whole 1.2 series
+    if (p.patch === null) return [{ op: '>=', ver: p.minor === null ? svVer(p.major + 1, 0, 0) : svVer(p.major, p.minor + 1, 0) }];
+    return [{ op: '>', ver: lo }];
+  }
+  if (p.patch === null) return [{ op: '<', ver: p.minor === null ? svVer(p.major + 1, 0, 0) : svVer(p.major, p.minor + 1, 0) }];
+  return [{ op: '<=', ver: lo }];
+}
+function svSet(raw) {
+  const s = String(raw).trim();
+  if (!s || /^[xX*]$/.test(s)) return [];
+  const hy = s.match(/^(\S+)\s+-\s+(\S+)$/);            // hyphen range
+  const tokens = hy ? [`>=${hy[1]}`, `<=${hy[2]}`] : s.split(/\s+/).filter(Boolean);
+  return tokens.flatMap(svToken);
+}
+function svSatisfies(v, range) {
+  const sets = String(range || '').split('||').map((x) => x.trim()).filter((x) => x !== '' || true);
+  const list = sets.length ? sets : [''];
+  return list.some((set) => {
+    const cmps = svSet(set);
+    for (const c of cmps) {
+      const r = svCmp(v, c.ver);
+      const ok = c.op === '=' ? r === 0 : c.op === '>=' ? r >= 0 : c.op === '<=' ? r <= 0 : c.op === '>' ? r > 0 : r < 0;
+      if (!ok) return false;
+    }
+    // npm rule: a prerelease only matches a set that itself names a prerelease of the same version.
+    if (v.pre.length) return cmps.some((c) => c.ver.pre.length && c.ver.major === v.major && c.ver.minor === v.minor && c.ver.patch === v.patch);
+    return true;
+  });
+}
+
 export const TTB_EXTRA_DEV = {
+  'semver compare & bump': { name: 'Semver compare & bump', cat: 'dev',
+    inputs: [
+      { key: 'mode', label: 'Mode', type: 'select', options: ['Compare / sort', 'Bump', 'Range check'], value: 'Compare / sort' },
+      { key: 'b', label: 'Bump level', type: 'select', options: ['patch', 'minor', 'major'], value: 'patch' },
+      { key: 'c', label: 'Range (Range check mode)', type: 'text', placeholder: '^1.2.3' },
+    ],
+    run: (t, c) => {
+      const mode = String(c.mode || 'Compare / sort');
+      const list = String(t == null ? '' : t).split(/[\s,]+/).map((x) => x.trim()).filter(Boolean);
+      if (!list.length) throw Error('Enter a semantic version, e.g. 1.2.3 — one per line to sort');
+      if (mode === 'Bump') {
+        const v = svParse(list[0]);
+        const level = String(c.b || 'patch');
+        return `${svStr(v)} → ${svStr(svInc(v, level))}  (${level})`;
+      }
+      if (mode === 'Range check') {
+        const range = String(c.c || '').trim();
+        if (!range) throw Error('Enter a range, e.g. ^1.2.3, ~1.2.3, >=1.0.0 <2.0.0 or 1.x');
+        return list.map((raw) => { const v = svParse(raw); return `${svStr(v)} ${svSatisfies(v, range) ? 'satisfies' : 'does NOT satisfy'} ${range}`; }).join('\n');
+      }
+      const vs = list.map(svParse);
+      if (vs.length === 1) {
+        const v = vs[0];
+        return `${svStr(v)}\n  major ${v.major}\n  minor ${v.minor}\n  patch ${v.patch}\n  prerelease ${v.pre.length ? v.pre.join('.') : '—'}\n  build ${v.build.length ? v.build.join('.') : '—'}`;
+      }
+      const sorted = [...vs].sort(svCmp);
+      const lines = sorted.map((v, i) => `${i + 1}. ${svStr(v)}`);
+      const ties = [];
+      for (let i = 1; i < sorted.length; i++) if (svCmp(sorted[i - 1], sorted[i]) === 0 && svStr(sorted[i - 1]) !== svStr(sorted[i])) ties.push(`${svStr(sorted[i - 1])} = ${svStr(sorted[i])}`);
+      return `Sorted by precedence (lowest first):\n${lines.join('\n')}\nHighest: ${svStr(sorted[sorted.length - 1])}${ties.length ? `\nEqual precedence (build metadata is ignored): ${ties.join('; ')}` : ''}`;
+    } },
   'json→go/rust/python': { name: 'JSON→Go/Rust/Python', cat: 'dev', inputs: [{ key: 'lang', label: 'Target', type: 'select', options: ['Go', 'Rust', 'Python', 'TypeScript'], value: 'Go' }], run: (t, c) => { const o = J(t); const l = c.lang;
     if (l === 'Go') return structGo(o, 'Root');
     if (l === 'TypeScript') return `interface Root ${tsType(o)}`;

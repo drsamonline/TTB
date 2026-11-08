@@ -51,6 +51,7 @@ function sampleFor(name, category) {
   if (has('morse')) return 'SOS';
   if (has('base64')) return 'hello world';
   if (has('hash', 'hmac', 'sha')) return 'abc';
+  if (has('semver', 'semantic version')) return '1.0.0-beta.11\n1.0.0-alpha\n1.0.0';
   if (has('cron')) return '*/15 9-17 * * 1-5';
   if (has('totp', 'hotp', 'base32', 'secret')) return 'JBSWY3DPEHPK3PXP';
   if (has('iban')) return 'DE89370400440532013000';

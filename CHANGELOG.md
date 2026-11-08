@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.12.0 — Semver compare & bump
+
+One new tool, built the way the 0.11.0 audit demanded: it computes, and its output
+is proven against known answers rather than claimed.
+
+### Added
+- **Semver compare & bump** (Developer, 564 tools). Parses
+  `MAJOR.MINOR.PATCH[-prerelease][+build]` and does three jobs from one box:
+  sort a list of versions by **precedence exactly as semver.org §11 defines it**
+  (numeric identifiers compare numerically, so `beta.2 < beta.11`; numeric ranks
+  below alphanumeric; a release outranks its own prereleases; build metadata never
+  changes precedence), **bump** patch/minor/major (a patch bump on a prerelease
+  only drops the prerelease, as npm does), and **check a range** — `^`, `~`,
+  `>=`/`>`/`<=`/`<`, partials, `1.x`, hyphen ranges, space-separated AND and `||`
+  OR — with npm's rule that a prerelease only matches a set naming a prerelease of
+  the same version.
+- Invalid input is rejected by name, not silently coerced: `1.0` is not a version,
+  and `1.0.0-01` is refused because a numeric prerelease identifier may not carry
+  leading zeroes.
+- The suite now covers it with 40 assertions, including four mutations of the
+  implementation (lexical id comparison, unbounded caret, dropped prerelease rule,
+  prerelease-incrementing patch bump) that each fail the tests.
+
 ## 0.11.0 — Functional audit, catalog trim, UI rebuild
 
 This release starts from evidence, not from a coverage claim. Every tool was

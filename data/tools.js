@@ -146,6 +146,7 @@ globalThis.TTB_CATALOG = [
   {"id":"developer-cron-explainer","name":"Cron explainer","category":"Developer"},
   {"id":"developer-cron-next-run","name":"Cron next-run","category":"Developer"},
   {"id":"developer-uuid-v4-v7","name":"UUID v4/v7","category":"Developer"},
+  {"id":"developer-semver-compare-bump","name":"Semver compare & bump","category":"Developer"},
   {"id":"developer-ulid","name":"ULID","category":"Developer"},
   {"id":"developer-nanoid","name":"NanoID","category":"Developer"},
   {"id":"developer-jwt-decode","name":"JWT decode","category":"Developer"},

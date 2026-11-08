@@ -1,10 +1,10 @@
 # TTB — Tiny Toolbox — Complete Tool List
 
-**Version:** 0.11.0  
+**Version:** 0.12.0  
 **Author:** Dr. Sohil Momin  
-**Tools:** 563  
+**Tools:** 564  
 **Categories:** 18  
-**With dedicated inputs:** 225  
+**With dedicated inputs:** 226  
 **Destructive (gated):** 5
 
 Every entry below resolves to a handler and was executed in the functional audit (see `TOOL_AUDIT.md`). Tools that could not work were removed rather than listed as placeholders.
@@ -18,7 +18,7 @@ Every entry below resolves to a handler and was executed in the functional audit
 | 3 | Communication | 15 |
 | 4 | Data | 25 |
 | 5 | Design & Color | 27 |
-| 6 | Developer | 89 |
+| 6 | Developer | 90 |
 | 7 | Education | 15 |
 | 8 | Finance | 20 |
 | 9 | Fun & Misc | 29 |
@@ -197,7 +197,7 @@ Every entry below resolves to a handler and was executed in the functional audit
 - Transition builder
 - Bezier editor
 
-### Developer (89)
+### Developer (90)
 
 - JSON format/validate/minify
 - JSON→TypeScript
@@ -288,6 +288,7 @@ Every entry below resolves to a handler and was executed in the functional audit
 - Design patterns
 - Sorting visualizer
 - Path finding visualizer
+- Semver compare & bump
 
 ### Education (15)
 
