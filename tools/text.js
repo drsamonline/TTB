@@ -3,7 +3,7 @@ const words=s=>(String(s).match(/\b[\p{L}\p{N}][\p{L}\p{N}'’-]*\b/gu)||[]);
 function lines(s){return String(s).split(/\r?\n/)}
 export async function runText(name,ctx={}){
  const s=String(ctx.text??''),n=name.toLowerCase();
- if(n==='case converter') return ctx.mode==='lower'?s.toLowerCase():ctx.mode==='upper'?s.toUpperCase():s.replace(/\b[\p{L}]/gu,c=>c.toUpperCase());
+ if(n==='case converter') return ctx.mode==='lower'?s.toLowerCase():ctx.mode==='upper'?s.toUpperCase():s.replace(/[\p{L}][\p{L}'’]*/gu,w=>w[0].toUpperCase()+w.slice(1).toLowerCase());
  if(n==='trim/dedupe/sort/reverse lines') return [...new Set(lines(s).map(x=>x.trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b)).join('\n');
  if(n==='remove empty/duplicate lines') return [...new Set(lines(s).filter(x=>x.trim()))].join('\n');
  if(n==='strip html/markdown/urls') return s.replace(/https?:\/\/\S+/g,'').replace(/<[^>]*>/g,'').replace(/[*_`#>\[\]()~-]/g,'').replace(/\n{3,}/g,'\n\n').trim();
