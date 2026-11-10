@@ -64,6 +64,13 @@ assert.ok(getImplementation('Lorem ipsum'), 'new handlers should be registered')
 assert.equal(await runTool('Roman numerals', { text: '1987' }), 'MCMLXXXVII');
 assert.match(await runTool('Base converter', { text: '255', b: '10', c: '16' }), /FF/);
 assert.match(await runTool('Slug generator', { text: 'Hello, World!' }), /hello-world/);
+// Case converter, title mode: the rest of the word goes down, and an apostrophe
+// does not start a new one — "don't" used to become "Don't" with a capital T,
+// and an all-caps input came back unchanged.
+assert.equal(await runTool('Case converter', { text: 'HELLO WORLD', mode: 'Title Case' }), 'Hello World');
+assert.equal(await runTool('Case converter', { text: 'hello WORLD', mode: 'Title Case' }), 'Hello World');
+assert.equal(await runTool('Case converter', { text: "don't stop", mode: 'Title Case' }), "Don't Stop");
+assert.equal(await runTool('Case converter', { text: 'Hello World', mode: 'lower' }), 'hello world');
 const luhn = await runTool('Credit card validator (Luhn)', { text: '4242424242424242' });
 assert.equal(luhn, 'Valid');
 assert.equal(await runTool('NATO phonetic alphabet', { text: 'SOS' }), 'Sierra Oscar Sierra');
