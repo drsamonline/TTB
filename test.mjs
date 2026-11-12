@@ -95,6 +95,25 @@ assert.match(await nw(''), /Enter a number/);
 assert.rejects(() => nw('12a'), /not a number/);
 assert.rejects(() => nw('9'.repeat(16)), /Too large/);
 
+// IPv6 expand/compress — the compression IS the feature, so each case is an
+// address whose RFC 5952 answer differs from the naive one: the LONGEST run of
+// zero groups wins, the LEFTMOST wins a tie, and a run of one is never compressed.
+const v6 = async (text) => JSON.parse(await runTool('IPv6 expand/compress', { text }));
+assert.equal((await v6('2001:db8::1')).expanded, '2001:0db8:0000:0000:0000:0000:0000:0001');
+assert.equal((await v6('2001:db8::1')).compressed, '2001:db8::1');
+assert.equal((await v6('::')).compressed, '::');
+assert.equal((await v6('::1')).compressed, '::1');
+assert.equal((await v6('fe80:0:0:0:1:0:0:1')).compressed, 'fe80::1:0:0:1');
+assert.equal((await v6('2001:db8:0:0:1:0:0:1')).compressed, '2001:db8::1:0:0:1');
+assert.equal((await v6('1:2:3:4:5:6:7:8')).compressed, '1:2:3:4:5:6:7:8');
+assert.equal((await v6('0:0:0:1:0:0:0:1')).compressed, '::1:0:0:0:1');
+assert.equal((await v6('2001:DB8::/32')).compressed, '2001:db8::');
+assert.equal((await v6('2001:db8::/32')).prefix, 32);
+assert.equal((await v6('[2001:db8::1]')).compressed, '2001:db8::1');
+await assert.rejects(() => v6('2001:db8:::1'), /lone ":"/);
+await assert.rejects(() => v6('1:2:3'), /8 groups/);
+await assert.rejects(() => v6('2001:db8::/129'), /0–128/);
+
 console.log(`OK — ${catalog.length} tools, ${cats.size} categories, ${withInputs.length} with custom inputs`);
 
 // Semver — the spec's own precedence list (semver.org §11) is the known answer,

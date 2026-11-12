@@ -3,17 +3,77 @@
   "locked": false,
   "files": {
     "README.md": {
-      "sha": "c1f7164dc57f448237c4c4dcd4be033547bd1124",
-      "producer": "audit-2026-11-10",
+      "sha": "85e3c4bbe2492172fc614a47fc01f8fcaa1fce28",
+      "producer": "ttb@0.13.0",
       "class": "agent",
-      "at": "2026-11-10T13:40:10Z"
+      "at": "2026-11-12T12:40:37Z"
     },
     "docs/index.html": {
       "sha": "4d76ac1f4bbda718dd1d97bbc227c6dde2fe8826",
       "producer": "audit-2026-11-10",
       "class": "agent",
       "at": "2026-11-10T13:40:10Z"
+    },
+    "ALL_TOOLS.md": {
+      "sha": "9222562f5fbeb572a45c16b0380a3f319797994c",
+      "producer": "ttb@0.13.0",
+      "class": "hand",
+      "at": "2026-11-12T12:40:37Z"
+    },
+    "BROWSER_SUPPORT.md": {
+      "sha": "041751accc1fc301962eb1bbc06867e5650b7854",
+      "producer": "ttb@0.13.0",
+      "class": "hand",
+      "at": "2026-11-12T12:40:37Z"
+    },
+    "CHANGELOG.md": {
+      "sha": "017ea9d2b9ff84257fbbd9b7c7c4d820cd804e60",
+      "producer": "ttb@0.13.0",
+      "class": "hand",
+      "at": "2026-11-12T12:40:37Z"
+    },
+    "PROJECT_METADATA.json": {
+      "sha": "7669157b5a46f023e2e0dd42491908fe69b9fe3a",
+      "producer": "ttb@0.13.0",
+      "class": "hand",
+      "at": "2026-11-12T12:40:37Z"
+    },
+    "data/tools.js": {
+      "sha": "20e3b5274e53e54fd766410b85983bf6b55f10ec",
+      "producer": "ttb@0.13.0",
+      "class": "hand",
+      "at": "2026-11-12T12:40:37Z"
+    },
+    "manifest.json": {
+      "sha": "72da55b740c5d2849494977cb14314e8db4936b8",
+      "producer": "ttb@0.13.0",
+      "class": "hand",
+      "at": "2026-11-12T12:40:37Z"
+    },
+    "package.json": {
+      "sha": "53f4d00bc00fa0298bf64ca5d3b2dfff9605c7b9",
+      "producer": "ttb@0.13.0",
+      "class": "hand",
+      "at": "2026-11-12T12:40:37Z"
+    },
+    "test.mjs": {
+      "sha": "0270c1453c09bd1d0c6b0065a17858875c0ccc54",
+      "producer": "ttb@0.13.0",
+      "class": "hand",
+      "at": "2026-11-12T12:40:37Z"
+    },
+    "tools/phase5.js": {
+      "sha": "e45b3efb8ce00636fca1e9aebb5a1f7c3e0a1f9d",
+      "producer": "ttb@0.13.0",
+      "class": "hand",
+      "at": "2026-11-12T12:40:37Z"
+    },
+    "MANIFEST.json": {
+      "sha": "af4a247e01ce842d52cf4c807437fadcd149f84a",
+      "producer": "ttb@0.13.0",
+      "class": "generated",
+      "at": "2026-11-12T12:40:38Z"
     }
   },
-  "updated": "2026-11-10T13:40:10Z"
+  "updated": "2026-11-12T12:40:38Z"
 }

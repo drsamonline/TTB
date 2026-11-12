@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.13.0 — IPv6 expand/compress
+
+One new tool in the thinnest category (Network had 6). It computes both directions
+from one box and follows RFC 5952 for the compressed form, because the compression
+is the part that is easy to get subtly wrong.
+
+### Added
+- **IPv6 expand/compress** (Network, 565 tools). Give it `2001:db8::1` and it returns
+  the fully expanded address (`2001:0db8:0000:0000:0000:0000:0000:0001`) and the
+  correctly compressed one. Compression picks the **longest** run of zero groups,
+  the **leftmost** run when two are equally long, never compresses a run of one, and
+  drops leading zeros — so `fe80:0:0:0:1:0:0:1` becomes `fe80::1:0:0:1` and
+  `2001:db8:0:0:1:0:0:1` becomes `2001:db8::1:0:0:1`. A `/prefix` is read and kept
+  (0–128, out-of-range refused), and a bracketed `[addr]` is accepted.
+- Invalid input is named, not coerced: `2001:db8:::1` is refused for the lone colon,
+  `1:2:3` for not having 8 groups, and a non-hex group is quoted back.
+
+### Changed
+- `manifest.json` reports 0.13.0. It had still said 0.11.0 through the 0.12.0
+  release, so the packaged extension and the package disagreed about their version.
+
 ## 0.12.0 — Semver compare & bump
 
 One new tool, built the way the 0.11.0 audit demanded: it computes, and its output

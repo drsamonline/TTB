@@ -2,16 +2,16 @@
 
 [![Validate](https://github.com/drsamonline/TTB/actions/workflows/validate.yml/badge.svg)](https://github.com/drsamonline/TTB/actions/workflows/validate.yml)
 [![License: PolyForm Noncommercial](https://img.shields.io/badge/license-PolyForm%20Noncommercial-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.12.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.13.0-blue.svg)](CHANGELOG.md)
 [![Manifest V3](https://img.shields.io/badge/Manifest-V3-success.svg)](manifest.json)
 [![Chrome 127+](https://img.shields.io/badge/Chrome-127%2B-yellow.svg)](BROWSER_SUPPORT.md)
 [![Firefox 121+](https://img.shields.io/badge/Firefox-121%2B-orange.svg)](BROWSER_SUPPORT.md)
 [![Safari 16.4+](https://img.shields.io/badge/Safari-16.4%2B-blue.svg)](BROWSER_SUPPORT.md)
-[![Tools](https://img.shields.io/badge/tools-564-brightgreen.svg)](ALL_TOOLS.md)
+[![Tools](https://img.shields.io/badge/tools-565-brightgreen.svg)](ALL_TOOLS.md)
 [![Audited](https://img.shields.io/badge/every%20tool-audited-informational.svg)](TOOL_AUDIT.md)
 [![Network](https://img.shields.io/badge/network-none-lightgrey.svg)](PRIVACY.md)
 
-> **564 tools that actually run. One popup. Chrome, Edge, Firefox and Safari. No framework, no telemetry, no remote code.**
+> **565 tools that actually run. One popup. Chrome, Edge, Firefox and Safari. No framework, no telemetry, no remote code.**
 
 TTB (Tiny Toolbox) is a Manifest V3 browser extension that puts a large collection of small, genuinely working utilities — text, calculations, developer helpers, page tools, data, design, finance, media, security, accessibility — behind one fast, offline-first interface.
 

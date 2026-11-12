@@ -1,8 +1,8 @@
 {
   "project": "TTB — Tiny Toolbox",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "author": "Dr. Sohil Momin",
-  "tools": 564,
+  "tools": 565,
   "categories": 18,
   "license": "PolyForm Noncommercial 1.0.0"
 }
