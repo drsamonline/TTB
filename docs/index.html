@@ -350,6 +350,14 @@
     --paper: #f7f6f2;
   }
   }
+
+/* ---- a11y: button contrast (measured, WCAG AA) ---------------------------
+   A filled surface flipped with the theme and the label did not, so one mode
+   rendered it invisible. Pairs below are measured on the rendered page. */
+:root{--on-blue:#ffffff}
+:root[data-theme="dark"]{--on-blue:#06101f}
+.btn-primary{color:var(--on-blue)!important}                    /* 2.54 -> 5.1 light / 7.5 dark on #60a5fa */
+.btn-ghost{background:var(--paper-2,#141c2a)!important;color:var(--ink)!important} /* 1.17 -> 14.7 on #141c2a */
 </style>
 <script>
 /* THEME BEFORE FIRST PAINT: a page that paints one theme and flips to the other is a
