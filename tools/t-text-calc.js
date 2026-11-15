@@ -232,7 +232,7 @@ export const TTB_EXTRA_CALC = {
     let cur = new Date(); const plan = [];
     for (let i = 1; i <= cycles; i++) { const s = new Date(cur), e = new Date(cur.getTime() + work * 60000); plan.push(`#${i} work ${s.toTimeString().slice(0, 5)}–${e.toTimeString().slice(0, 5)}`); cur = new Date(e.getTime() + brk * 60000); if (i < cycles) plan.push(`   break until ${cur.toTimeString().slice(0, 5)}`); }
     return plan.join('\n') + `\n\nTotal: ${cycles * work} min work, ${(cycles - 1) * brk} min break.`; } },
-  'unit converter': { name: 'Unit converter', cat: 'calc', inputs: [{ key: 'b', label: 'From unit', type: 'text', value: 'km' }, { key: 'c', label: 'To unit', type: 'text', value: 'mi' }, { key: 'd', label: 'Category', type: 'select', options: Object.keys(UNITS), value: 'length' }], run: (t, c) => { const table = UNITS[c.d || 'length']; return `${num(t)} ${c.b} = ${fmt(convert(num(t), c.b, c.c, table), 6)} ${c.c}`; } },
+  'unit converter': { name: 'Unit converter', cat: 'calc', inputs: [{ key: 'b', label: 'From unit', type: 'text', value: 'km' }, { key: 'c', label: 'To unit', type: 'text', value: 'mi' }, { key: 'd', label: 'Category', type: 'select', options: Object.keys(UNITS), value: 'length' }], run: (t, c) => { const table = UNITS[c.d || 'length']; if (!table) throw Error(`Unknown category. Known: ${Object.keys(UNITS).join(', ')}`); return `${num(t)} ${c.b} = ${fmt(convert(num(t), c.b, c.c, table), 6)} ${c.c}`; } },
   'length/weight/temp/area/volume': { name: 'Length/weight/temp/area/volume', cat: 'calc', inputs: [{ key: 'b', label: 'From', type: 'text', value: 'm' }, { key: 'c', label: 'To', type: 'text', value: 'ft' }], run: (t, c) => {
     const f = c.b, to = c.c; const temp = { C: (x) => x, F: (x) => (x - 32) * 5 / 9, K: (x) => x - 273.15 };
     if (f in temp && to in temp) { const celsius = temp[f](num(t)); const back = { C: (x) => x, F: (x) => x * 9 / 5 + 32, K: (x) => x + 273.15 }[to](celsius); return `${num(t)}°${f} = ${fmt(back, 3)}°${to}`; }
@@ -249,11 +249,14 @@ export const TTB_EXTRA_CALC = {
   'data rate': { name: 'Data rate', cat: 'calc', inputs: [{ key: 'b', label: 'To', type: 'select', options: ['Mbps', 'MB/s', 'Gbps', 'GB/s'], value: 'MB/s' }], run: (t, c) => { const mbps = num(t); const map = { Mbps: mbps, 'MB/s': mbps / 8, Gbps: mbps / 1000, 'GB/s': mbps / 8000 }; return `${mbps} Mbps = ${fmt(map[c.b], 4)} ${c.b}`; } },
   'frequency/wavelength': { name: 'Frequency/wavelength', cat: 'calc', inputs: [{ key: 'b', label: 'Input is', type: 'select', options: ['frequency (MHz)', 'wavelength (m)'], value: 'frequency (MHz)' }], run: (t, c) => {
     const v = num(t); const cLight = 299792458;
-    if (c.b.startsWith('frequency')) { const hz = v * 1e6; return JSON.stringify({ frequencyMHz: v, wavelengthM: fmt(cLight / hz, 4), wavelengthCm: fmt(cLight / hz * 100, 2), band: hz < 3e8 ? 'HF/VHF' : hz < 3e9 ? 'UHF' : 'SHF' }, null, 2); }
+    if (String(c.b || 'frequency (MHz)').startsWith('frequency')) { const hz = v * 1e6; return JSON.stringify({ frequencyMHz: v, wavelengthM: fmt(cLight / hz, 4), wavelengthCm: fmt(cLight / hz * 100, 2), band: hz < 3e8 ? 'HF/VHF' : hz < 3e9 ? 'UHF' : 'SHF' }, null, 2); }
     return JSON.stringify({ wavelengthM: v, frequencyMHz: fmt(cLight / v / 1e6, 4) }, null, 2); } },
   'angle': { name: 'Angle', cat: 'calc', inputs: [{ key: 'b', label: 'From', type: 'text', value: 'deg' }, { key: 'c', label: 'To', type: 'text', value: 'rad' }], run: (t, c) => `${num(t)} ${c.b} = ${fmt(convert(num(t), c.b, c.c, UNITS.angle), 6)} ${c.c}` },
   'base converter': { name: 'Base converter', cat: 'calc', inputs: [{ key: 'b', label: 'From base (2-36)', type: 'number', value: '10' }, { key: 'c', label: 'To base (2-36)', type: 'number', value: '16' }], run: (t, c) => {
-    const from = Number(c.b || 10), to = Number(c.c || 16); const v = parseInt(String(t).trim(), from); if (!Number.isFinite(v)) throw Error('Invalid number for that base'); return v.toString(to).toUpperCase(); } },
+    const from = Number(c.b || 10), to = Number(c.c || 16);
+    const ok = (x) => Number.isInteger(x) && x >= 2 && x <= 36;
+    if (!ok(from) || !ok(to)) throw Error('Both bases must be whole numbers from 2 to 36.');
+    const v = parseInt(String(t).trim(), from); if (!Number.isFinite(v)) throw Error(`"${String(t).trim()}" is not a valid base-${from} number`); return v.toString(to).toUpperCase(); } },
   'binary/octal/hex': { name: 'Binary/octal/hex', cat: 'calc', inputs: [{ key: 'b', label: 'Input base', type: 'select', options: ['dec', 'bin', 'oct', 'hex'], value: 'dec' }], run: (t, c) => {
     const bases = { dec: 10, bin: 2, oct: 8, hex: 16 }; const v = parseInt(String(t).trim(), bases[c.b || 'dec']); if (!Number.isFinite(v)) throw Error('Invalid number');
     return JSON.stringify({ decimal: v, binary: v.toString(2), octal: v.toString(8), hex: v.toString(16).toUpperCase() }, null, 2); } },
@@ -283,7 +286,7 @@ export const TTB_EXTRA_CALC = {
   'probability': { name: 'Probability', cat: 'calc', inputs: [{ key: 'b', label: 'Operation', type: 'select', options: ['nCr (combinations)', 'nPr (permutations)', 'n! (factorial)'], value: 'nCr (combinations)' }, { key: 'c', label: 'r', type: 'number', value: '2' }], run: (t, c) => {
     const n = Math.trunc(num(t)), r = Math.trunc(num(c.c || 2)); const fact = (x) => { let f = 1; for (let i = 2; i <= x; i++) f *= i; return f; };
     if (n > 170) throw Error('Keep n ≤ 170 to stay within floating-point range');
-    if (c.b.startsWith('n!')) return String(fact(n));
+    if (String(c.b || 'nCr (combinations)').startsWith('n!')) return String(fact(n));
     if (r > n || r < 0) throw Error('r must be between 0 and n');
     return String(c.b.startsWith('nCr') ? Math.round(fact(n) / (fact(r) * fact(n - r))) : Math.round(fact(n) / fact(n - r))); } },
   'random from list': { name: 'Random from list', cat: 'calc', inputs: [{ key: 'b', label: 'How many to pick', type: 'number', value: '1' }], run: (t, c) => {

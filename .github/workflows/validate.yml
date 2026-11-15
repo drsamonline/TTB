@@ -43,6 +43,12 @@ jobs:
       - name: Run the smoke test
         run: node test.mjs
 
+      # A tool that throws a raw TypeError is not "needs input" - the UI prints
+      # `Error: ${e.message}`, so the engine's sentence becomes the tool's answer.
+      # test.mjs counts a refusal as fine either way; this step does not.
+      - name: Guard every tool's error message
+        run: node test-input-guard.mjs
+
       - name: Build every browser target
         run: node build.mjs
 
@@ -52,8 +58,9 @@ jobs:
           set -e
           for t in chrome edge firefox safari; do
             cp test.mjs "dist/$t/test.mjs"
-            ( cd "dist/$t" && node test.mjs )
-            rm -f "dist/$t/test.mjs"
+            cp test-input-guard.mjs "dist/$t/test-input-guard.mjs"
+            ( cd "dist/$t" && node test.mjs && node test-input-guard.mjs )
+            rm -f "dist/$t/test.mjs" "dist/$t/test-input-guard.mjs"
           done
 
       - name: Package the builds

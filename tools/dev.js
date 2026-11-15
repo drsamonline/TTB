@@ -1,15 +1,24 @@
-function json(s,space=2){return JSON.stringify(JSON.parse(String(s)),null,space)}
+// One parser for every JSON tool. An empty box and a typo used to surface as the
+// engine's own "Unexpected end of JSON input" / "Unexpected token } in JSON at
+// position 5" - a raw SyntaxError shown to the user as the tool's answer. These
+// two messages say what to do instead. (Tested by test-input-guard.mjs.)
+function parseJsonText(s){
+ const raw=String(s??'');
+ if(!raw.trim()) throw Error('Paste some JSON first - the box is empty.');
+ try{return JSON.parse(raw)}catch(e){throw Error(`That is not valid JSON: ${e.message}`)}
+}
+function json(s,space=2){return JSON.stringify(parseJsonText(s),null,space)}
 export async function runDev(name,ctx={}){const s=String(ctx.text??''),n=name.toLowerCase();
- if(n==='json format/validate/minify'||n==='json viewer'){const o=JSON.parse(s);return n.includes('minify')?JSON.stringify(o):JSON.stringify(o,null,2)}
- if(n==='json→typescript'){const o=JSON.parse(s);return typeFor('Root',o)}
- if(n==='json→csv') {const a=JSON.parse(s);if(!Array.isArray(a))throw Error('Expected an array of objects');const keys=[...new Set(a.flatMap(x=>Object.keys(x)))];return [keys.join(','),...a.map(x=>keys.map(k=>csv(x[k])).join(','))].join('\n')}
- if(n==='json→sql/csv/yaml/xml') return JSON.stringify(JSON.parse(s),null,2);
+ if(n==='json format/validate/minify'||n==='json viewer'){const o=parseJsonText(s);return n.includes('minify')?JSON.stringify(o):JSON.stringify(o,null,2)}
+ if(n==='json→typescript'){const o=parseJsonText(s);return typeFor('Root',o)}
+ if(n==='json→csv') {const a=parseJsonText(s);if(!Array.isArray(a))throw Error('Expected an array of objects');const keys=[...new Set(a.flatMap(x=>Object.keys(x)))];return [keys.join(','),...a.map(x=>keys.map(k=>csv(x[k])).join(','))].join('\n')}
+ if(n==='json→sql/csv/yaml/xml') return JSON.stringify(parseJsonText(s),null,2);
  if(n==='yaml↔json'){return s.trim().startsWith('{')?json(s):yamlToJson(s)}
  if(n==='xml format')return s.replace(/></g,'>\n<');
  if(n==='base64 url-safe')return btoa(unescape(encodeURIComponent(s))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
  if(n==='base32')return base32(new TextEncoder().encode(s));
  if(n==='base58')return base58(new TextEncoder().encode(s));
- if(n==='url parser'){const u=new URL(s);return JSON.stringify({href:u.href,protocol:u.protocol,host:u.host,hostname:u.hostname,port:u.port,path:u.pathname,query:u.search,hash:u.hash},null,2)}
+ if(n==='url parser'){let u;try{u=new URL(s)}catch{throw Error('Enter a full URL including the scheme, e.g. https://example.com/path')} return JSON.stringify({href:u.href,protocol:u.protocol,host:u.host,hostname:u.hostname,port:u.port,path:u.pathname,query:u.search,hash:u.hash},null,2)}
  if(n==='query string parser')return JSON.stringify(Object.fromEntries(new URLSearchParams(s)),null,2);
  if(n==='http header parser')return s.split(/\r?\n/).filter(Boolean).map(x=>{const i=x.indexOf(':');return [i<0?x:x.slice(0,i).trim(),i<0?'':x.slice(i+1).trim()]});
  if(n==='http status lookup')return ({200:'OK',201:'Created',204:'No Content',301:'Moved Permanently',302:'Found',304:'Not Modified',400:'Bad Request',401:'Unauthorized',403:'Forbidden',404:'Not Found',409:'Conflict',429:'Too Many Requests',500:'Internal Server Error',502:'Bad Gateway',503:'Service Unavailable'})[s.trim()]??'Unknown status';
@@ -17,7 +26,7 @@ export async function runDev(name,ctx={}){const s=String(ctx.text??''),n=name.to
  if(n.startsWith('hash (md5/sha-1/256/512)')){const alg=(ctx.algorithm||'SHA-256').toUpperCase();const data=new TextEncoder().encode(s);const h=await crypto.subtle.digest(alg,data);return hex(new Uint8Array(h))}
  if(n==='hmac'){const key=await crypto.subtle.importKey('raw',new TextEncoder().encode(String(ctx.key??'')),{name:'HMAC',hash:'SHA-256'},false,['sign']);return hex(new Uint8Array(await crypto.subtle.sign('HMAC',key,new TextEncoder().encode(s))))}
  if(n==='uuid v4/v7')return crypto.randomUUID();
- if(n==='jwt decode'){const p=s.split('.')[1];if(!p)throw Error('Invalid JWT');return JSON.stringify(JSON.parse(atob(p.replace(/-/g,'+').replace(/_/g,'/'))),null,2)}
+ if(n==='jwt decode'){const p=s.split('.')[1];if(!p)throw Error('Invalid JWT');try{return JSON.stringify(JSON.parse(atob(p.replace(/-/g,'+').replace(/_/g,'/'))),null,2)}catch{throw Error('That JWT payload is not valid JSON - the token may be truncated or not a JWT.')}}
  if(n==='color converter'){const m=s.match(/^#?([\da-f]{6})$/i);if(!m)throw Error('Use a 6-digit hex color');const h=m[1],r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);return JSON.stringify({hex:'#'+h.toUpperCase(),rgb:`rgb(${r}, ${g}, ${b})`,hsl:rgbToHsl(r,g,b)},null,2)}
  if(n==='color contrast (wcag)'){const [a,b0]=s.split(/\s+/);const b=ctx.b||b0;if(!b)throw Error('Enter the second colour in the field, or both separated by a space');return contrast(a,b)}
  if(n==='css specificity'){const x=s.replace(/"[^"]*"|'[^']*'/g,'');return JSON.stringify({ids:(x.match(/#[\w-]+/g)||[]).length,classes:(x.match(/\.[\w-]+|\[[^\]]+\]|:(?!:)[\w-]+/g)||[]).length,elements:(x.match(/(^|[ >+~])([a-z][\w-]*)/gi)||[]).length},null,2)}

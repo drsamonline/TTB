@@ -1,5 +1,45 @@
 # Changelog
 
+## 0.13.1 — a refusal must be a sentence
+
+Forty-four tool/input pairs answered with the JavaScript engine's own error text.
+The UI prints whatever it catches (`Error: ${e.message}`), so that text *was* the
+tool's answer: open any JSON tool and press Run with an empty box and it replied
+`Unexpected end of JSON input`; Fuzzy match answered one word with
+`Cannot read properties of undefined (reading 'length')`; Base converter answered
+"to base 1" with a raw `RangeError`. None of those tell a person what to do.
+
+### Fixed
+- **The JSON family (10 tools)** — format/validate/minify, viewer, →TypeScript,
+  →Go/Rust/Python, →SQL/CSV/YAML/XML, Schema gen, JSONPath eval, diff, CSV↔JSON and
+  HAR viewer now share one parser: an empty box says *"Paste some JSON first — the
+  box is empty."*, and a typo says *"That is not valid JSON: …"* with the engine's
+  position kept, because the position is the useful half.
+- **Base converter** — both bases must be whole numbers 2–36. `toString(1)` was a
+  RangeError; now it names the range.
+- **Fuzzy match** — asks for two comma-separated strings instead of crashing on one.
+- **Bezier editor** — refuses anything that is not four numbers, instead of drawing a
+  plausible-looking curve from `NaN` coordinates.
+- **Unit converter** — an unknown category names the categories it knows.
+- **URL parser** — says to include the scheme, instead of `TypeError: Invalid URL`.
+- **JWT decode**, **frequency/wavelength**, **probability** — guarded the same way.
+
+### Added
+- **`test-input-guard.mjs`** — runs all 565 tools against three input shapes (empty,
+  untouched, filled) and fails if any tool throws `TypeError`, `RangeError`,
+  `ReferenceError`, `SyntaxError` or `URIError`. Thirteen tools legitimately need a
+  browser; they are declared one by one with the global they are allowed to miss, and
+  the guard fails if that list goes stale *or* if a tool is exempted without being
+  declared — so the suppression is counted and printed, never silent. Wired into
+  `validate.yml` (and into each built package) beside the smoke test.
+
+### Proof
+`node test-input-guard.mjs` → **565 tools × 3 contexts, 0 raw JavaScript errors,
+13 declared browser-only**. Mutation-checked both ways: remove the base-converter
+range check → red; remove the empty-JSON message → red; restore → green.
+`node test.mjs` stays green (565/565 resolved) and `node audit-tools.mjs` reports
+**0 crashes**.
+
 ## 0.13.0 — IPv6 expand/compress
 
 One new tool in the thinnest category (Network had 6). It computes both directions

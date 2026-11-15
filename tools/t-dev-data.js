@@ -1,5 +1,6 @@
 // TTB — Developer and Data tools (extended handlers).
-const J = (s) => JSON.parse(String(s));
+// Same contract as dev.js: an empty box or a typo is a sentence, not a raw SyntaxError.
+const J = (s) => { const raw = String(s ?? ''); if (!raw.trim()) throw Error('Paste some JSON first - the box is empty.'); try { return JSON.parse(raw); } catch (e) { throw Error(`That is not valid JSON: ${e.message}`); } };
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const parseCSV = (s) => { const rows = []; let row = [], cell = '', q = false; for (let i = 0; i < s.length; i++) { const c = s[i], n = s[i + 1]; if (c === '"' && q && n === '"') { cell += '"'; i++; continue; } if (c === '"') { q = !q; continue; } if ((c === ',' || c === '\n' || c === '\r') && !q) { if (c === '\r' && n === '\n') i++; row.push(cell); cell = ''; if (c !== ',') { rows.push(row); row = []; } } else cell += c; } if (cell !== '' || row.length) row.push(cell); if (row.length) rows.push(row); return rows; };
 const toCSV = (rows) => rows.map((r) => r.map((v) => { const x = v == null ? '' : String(v); return /[",\n]/.test(x) ? '"' + x.replace(/"/g, '""') + '"' : x; }).join(',')).join('\n');
