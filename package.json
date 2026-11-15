@@ -1,13 +1,13 @@
 {
   "name": "ttb-tiny-toolbox",
-  "version": "0.13.0",
+  "version": "0.13.1",
   "private": true,
   "type": "module",
   "description": "TTB \u2014 Tiny Toolbox: a privacy-first offline browser toolbox for Chrome, Edge, Firefox and Safari.",
   "author": "Dr. Sohil Momin",
   "license": "PolyForm-Noncommercial-1.0.0",
   "scripts": {
-    "test": "node test.mjs",
+    "test": "node test.mjs && node test-input-guard.mjs",
     "build": "node build.mjs",
     "build:chrome": "node build.mjs chrome",
     "build:firefox": "node build.mjs firefox",

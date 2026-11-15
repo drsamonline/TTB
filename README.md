@@ -2,7 +2,7 @@
 
 [![Validate](https://github.com/drsamonline/TTB/actions/workflows/validate.yml/badge.svg)](https://github.com/drsamonline/TTB/actions/workflows/validate.yml)
 [![License: PolyForm Noncommercial](https://img.shields.io/badge/license-PolyForm%20Noncommercial-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.13.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.13.1-blue.svg)](CHANGELOG.md)
 [![Manifest V3](https://img.shields.io/badge/Manifest-V3-success.svg)](manifest.json)
 [![Chrome 127+](https://img.shields.io/badge/Chrome-127%2B-yellow.svg)](BROWSER_SUPPORT.md)
 [![Firefox 121+](https://img.shields.io/badge/Firefox-121%2B-orange.svg)](BROWSER_SUPPORT.md)

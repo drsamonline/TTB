@@ -73,7 +73,49 @@
       "producer": "ttb@0.13.0",
       "class": "generated",
       "at": "2026-11-12T12:40:38Z"
+    },
+    "test-input-guard.mjs": {
+      "sha": "4322c3488d75ff28b76624a7c1e286024c2e042f",
+      "producer": "ttb@0.13.1",
+      "class": "agent",
+      "at": "2026-11-15T12:45:48Z"
+    },
+    "tools/dev.js": {
+      "sha": "5d3f48d0ba5b87ecf3d1653753507b9998f38f9a",
+      "producer": "ttb@0.13.1",
+      "class": "agent",
+      "at": "2026-11-15T12:45:49Z"
+    },
+    "tools/phase4.js": {
+      "sha": "01002c728aa708398e45560256d40131345c59d5",
+      "producer": "ttb@0.13.1",
+      "class": "agent",
+      "at": "2026-11-15T12:45:49Z"
+    },
+    "tools/t-dev-data.js": {
+      "sha": "99cbb22d7d8d53b1cc888bc1d93a5df9f448f729",
+      "producer": "ttb@0.13.1",
+      "class": "agent",
+      "at": "2026-11-15T12:45:49Z"
+    },
+    "tools/t-media-design.js": {
+      "sha": "06142ae826fb3d216d0c93266f3a26daa10c16e5",
+      "producer": "ttb@0.13.1",
+      "class": "agent",
+      "at": "2026-11-15T12:45:49Z"
+    },
+    "tools/t-text-calc.js": {
+      "sha": "f326b31ed616235ad087919f8fabda1a4be41c3d",
+      "producer": "ttb@0.13.1",
+      "class": "agent",
+      "at": "2026-11-15T12:45:49Z"
+    },
+    ".github/workflows/validate.yml": {
+      "sha": "46bd7240b7476c6aca97f39595d7d3e694cc1c12",
+      "producer": "ttb@0.13.1",
+      "class": "agent",
+      "at": "2026-11-15T12:45:50Z"
     }
   },
-  "updated": "2026-11-12T12:40:38Z"
+  "updated": "2026-11-15T12:45:50Z"
 }
