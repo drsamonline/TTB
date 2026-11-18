@@ -69,11 +69,11 @@
       "at": "2026-11-12T12:40:37Z"
     },
     "MANIFEST.json": {
-      "sha": "af4a247e01ce842d52cf4c807437fadcd149f84a",
-      "producer": "ttb@0.13.0",
-      "class": "generated",
-      "at": "2026-11-12T12:40:38Z"
+      "sha": "63ad5193b77e956d9064b83b92ef9a03b66ff4a8",
+      "producer": "human",
+      "class": "hand",
+      "at": "2026-11-16T13:46:30Z"
     }
   },
-  "updated": "2026-11-12T12:40:38Z"
+  "updated": "2026-11-16T13:46:30Z"
 }
