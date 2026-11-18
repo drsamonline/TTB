@@ -2,7 +2,7 @@
 
 **Version:** 0.13.0  
 **Author:** Dr. Sohil Momin  
-**Tools:** 565  
+**Tools:** 566  
 **Categories:** 18  
 **With dedicated inputs:** 226  
 **Destructive (gated):** 5
@@ -23,7 +23,7 @@ Every entry below resolves to a handler and was executed in the functional audit
 | 8 | Finance | 20 |
 | 9 | Fun & Misc | 29 |
 | 10 | Media & Files | 36 |
-| 11 | Network | 7 |
+| 11 | Network | 8 |
 | 12 | Page Tools | 46 |
 | 13 | Productivity | 19 |
 | 14 | SEO | 10 |
@@ -402,7 +402,7 @@ Every entry below resolves to a handler and was executed in the functional audit
 - Webcam capture
 - Screenshot annotator
 
-### Network (7)
+### Network (8)
 
 - Subnet calculator
 - IPv6 expand/compress
@@ -411,6 +411,7 @@ Every entry below resolves to a handler and was executed in the functional audit
 - Redirect viewer
 - URL shortener resolver
 - QR link gen
+- Hostname validator
 
 ### Page Tools (46)
 

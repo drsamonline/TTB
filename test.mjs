@@ -168,3 +168,26 @@ assert.equal(await inR('1.3.0-rc.1', '^1.2.3'), false, 'npm: a prerelease needs 
 assert.equal(await inR('1.2.3-rc.2', '>=1.2.3-rc.1 <2.0.0'), true);
 assert.rejects(() => sv('1.0.0', { mode: 'Range check', c: '' }), /Enter a range/);
 assert.match(await sv('1.2.3', { mode: 'Range check', c: '^2.0.0' }), /1\.2\.3 does NOT satisfy \^2\.0\.0/);
+
+// Hostname validator — each refusal names its own rule, and the punycode form
+// is the one that actually goes on the wire, so a Unicode host is checked as
+// its A-label rather than as the characters a person typed.
+const hn = async (text) => JSON.parse(await runTool('Hostname validator', { text }));
+assert.equal((await hn('example.com')).ascii, 'example.com');
+assert.equal((await hn('münchen.de')).ascii, 'xn--mnchen-3ya.de');
+assert.equal((await hn('münchen.de')).tld, 'de');
+assert.equal((await hn('EXAMPLE.COM')).ascii, 'example.com');
+assert.equal((await hn('example.com.')).fqdn, true, 'a trailing dot marks a fully-qualified name');
+assert.equal((await hn('localhost')).labels, 1);
+assert.equal((await hn('localhost')).fqdn, false);
+assert.equal((await hn('192.168.1.1')).kind, 'ipv4');
+assert.equal((await hn('100')).ascii, '0.0.0.100', 'URL parsing reads a bare number as an IPv4 shorthand — say so rather than calling it a hostname');
+await assert.rejects(() => hn('bad_host.com'), /"_" is not allowed/);
+await assert.rejects(() => hn('a..b'), /empty label/);
+await assert.rejects(() => hn('-lead.com'), /starts or ends with a hyphen/);
+await assert.rejects(() => hn('x.com:8080'), /port/);
+await assert.rejects(() => hn('256.1.1.1'), /above 255/);
+await assert.rejects(() => hn('1.2.3.999'), /above 255/);
+await assert.rejects(() => hn('a'.repeat(64) + '.com'), /at most 63/);
+await assert.rejects(() => hn('site.123'), /numeric label/);
+await assert.rejects(() => hn('   '), /Enter a hostname/);

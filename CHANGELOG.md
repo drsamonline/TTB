@@ -1,5 +1,31 @@
 # Changelog
 
+## 0.14.0 — Hostname validator
+
+One new tool in the thinnest category (Network had 7). It answers the question a
+form actually needs answered — *is this a hostname, and what will go on the wire* —
+rather than the one a regex answers.
+
+### Added
+- **Hostname validator** (Network, 566 tools). Give it `münchen.de` and it returns
+  the A-label (`xn--mnchen-3ya.de`) that DNS actually resolves, plus the label
+  count, the TLD and whether the name was written fully-qualified. `EXAMPLE.COM`
+  comes back lowercased, because that is the form that is compared.
+- Each refusal names the rule it broke, instead of one catch-all "invalid":
+  an underscore, an empty label (`a..b`), a label that starts or ends with a
+  hyphen, a label over 63 characters, a name over 253, a `:port` typed into the
+  host box, and an IPv4 octet above 255. `site.123` is refused for ending in a
+  numeric label — that is an address, not a hostname.
+- An IPv4 literal is recognised as an address (`kind: "ipv4"`) rather than
+  reported as a four-label hostname, including the shorthand a browser accepts:
+  `100` is `0.0.0.100`, and the tool says so instead of quietly calling it a host.
+
+### Fixed
+- The shipped `manifest.json` description still advertised a 563-tool catalog and
+  `docs/index.html` a 564-tool one; both now match the catalog (566). `AUDIT.md`,
+  `TOOL_AUDIT.md` and `CATEGORY_DISCOVERY_FINAL_AUDIT.json` are left as they were —
+  they record what was audited in that release, not what ships today.
+
 ## 0.13.0 — IPv6 expand/compress
 
 One new tool in the thinnest category (Network had 6). It computes both directions

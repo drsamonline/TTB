@@ -29,6 +29,37 @@ function ipv6(i){
    :hex.join(':');
  return {expanded,compressed,prefix,groups:8};
 }
+function hostname(i){
+ const raw=String(i||'').trim();
+ if(!raw)throw Error('Enter a hostname, e.g. example.com or münchen.de');
+ if(/[\s/\\]/.test(raw))throw Error('A hostname cannot contain a space or a path — enter the host only');
+ if(raw.includes(':'))throw Error('A hostname cannot contain ":" — that is a port; enter the host only');
+ const fqdn=raw.endsWith('.');
+ const body=fqdn?raw.slice(0,-1):raw;
+ if(!body)throw Error('Enter a hostname, e.g. example.com');
+ if(/^\d+(\.\d+){3}$/.test(body)){
+  const o=body.split('.').map(Number);
+  const bad=o.findIndex(x=>x>255);
+  if(bad>=0)throw Error(`"${body}" is not a valid IPv4 address — octet ${bad+1} is ${o[bad]}, above 255`);
+  return {hostname:body,ascii:o.join('.'),kind:'ipv4',labels:4,fqdn,tld:null};
+ }
+ if(/\.\d+$/.test(body))throw Error(`"${body}" ends in a numeric label — that is an IP address, not a hostname`);
+ let ascii;
+ try{ascii=new URL('http://'+body).hostname.replace(/\.$/,'')}catch{throw Error(`"${body}" is not a valid hostname`)}
+ if(/^\d+(\.\d+){3}$/.test(ascii))return {hostname:body,ascii,kind:'ipv4',labels:4,fqdn,tld:null};
+ if(ascii.length>253)throw Error(`A hostname may be at most 253 characters; this one is ${ascii.length}`);
+ const labels=ascii.split('.');
+ if(labels.some(l=>l===''))throw Error(`"${body}" has an empty label — two dots in a row`);
+ const badChar=labels.find(l=>/[^a-z0-9-]/i.test(l));
+ if(badChar!==undefined){const ch=(badChar.match(/[^a-z0-9-]/i)||[])[0];throw Error(`"${ch}" is not allowed in a hostname label — only letters, digits and hyphen`)}
+ const hyphen=labels.find(l=>l.startsWith('-')||l.endsWith('-'));
+ if(hyphen!==undefined)throw Error(`"${hyphen}" starts or ends with a hyphen, which a label may not do`);
+ const long=labels.find(l=>l.length>63);
+ if(long!==undefined)throw Error(`"${long}" is ${long.length} characters; a label may be at most 63`);
+ if(labels.length===1)return {hostname:body,ascii,kind:'hostname',labels:1,fqdn:false,tld:null};
+ const tld=labels[labels.length-1];
+ return {hostname:body,ascii,kind:'hostname',labels:labels.length,fqdn,tld};
+}
 const T={
  'loan-calculator':{name:'Loan',cat:'finance',run:i=>{const[p,r,y]=(i||'100000,8,5').split(',').map(Number),m=y*12,a=emi(p,r,m);return JSON.stringify({principal:p,annualRate:r,years:y,monthlyPayment:+a.toFixed(2),totalPayment:+(a*m).toFixed(2),interest:+(a*m-p).toFixed(2)},null,2)}},
  'emi':{name:'EMI',cat:'finance',run:i=>{const[p,r,m]=(i||'100000,8,60').split(',').map(Number);return emi(p,r,m).toFixed(2)}},
@@ -42,6 +73,7 @@ const T={
  'subnet-calculator':{name:'Subnet calculator',cat:'network',run:i=>JSON.stringify(subnet(i||'192.168.1.0/24'),null,2)},
  'cidr-converter':{name:'CIDR converter',cat:'network',run:i=>JSON.stringify(subnet(i||'10.0.0.0/8'),null,2)},
  'ipv6-expand-compress':{name:'IPv6 expand/compress',cat:'network',run:i=>JSON.stringify(ipv6(i||'2001:db8::1'),null,2)},
+ 'hostname-validator':{name:'Hostname validator',cat:'network',run:i=>JSON.stringify(hostname(i||'example.com'),null,2)},
  'port-reference':{name:'Port reference',cat:'network',run:i=>({20:'FTP-data',21:'FTP',22:'SSH',23:'Telnet',25:'SMTP',53:'DNS',80:'HTTP',110:'POP3',143:'IMAP',443:'HTTPS',587:'SMTP submission',993:'IMAPS',995:'POP3S'})[Number(i)]||'Unknown/common port not in reference'},
  'title-analyzer':{name:'Title analyzer',cat:'seo',run:i=>{const s=String(i||'');return JSON.stringify({length:s.length,words:s.trim()?s.trim().split(/\s+/).length:0,typicalRange:s.length>=30&&s.length<=60},null,2)}},
  'meta-description-analyzer':{name:'Meta description analyzer',cat:'seo',run:i=>{const s=String(i||'');return JSON.stringify({length:s.length,typicalRange:s.length>=120&&s.length<=160},null,2)}},

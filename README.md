@@ -7,11 +7,11 @@
 [![Chrome 127+](https://img.shields.io/badge/Chrome-127%2B-yellow.svg)](BROWSER_SUPPORT.md)
 [![Firefox 121+](https://img.shields.io/badge/Firefox-121%2B-orange.svg)](BROWSER_SUPPORT.md)
 [![Safari 16.4+](https://img.shields.io/badge/Safari-16.4%2B-blue.svg)](BROWSER_SUPPORT.md)
-[![Tools](https://img.shields.io/badge/tools-565-brightgreen.svg)](ALL_TOOLS.md)
+[![Tools](https://img.shields.io/badge/tools-566-brightgreen.svg)](ALL_TOOLS.md)
 [![Audited](https://img.shields.io/badge/every%20tool-audited-informational.svg)](TOOL_AUDIT.md)
 [![Network](https://img.shields.io/badge/network-none-lightgrey.svg)](PRIVACY.md)
 
-> **565 tools that actually run. One popup. Chrome, Edge, Firefox and Safari. No framework, no telemetry, no remote code.**
+> **566 tools that actually run. One popup. Chrome, Edge, Firefox and Safari. No framework, no telemetry, no remote code.**
 
 TTB (Tiny Toolbox) is a Manifest V3 browser extension that puts a large collection of small, genuinely working utilities — text, calculations, developer helpers, page tools, data, design, finance, media, security, accessibility — behind one fast, offline-first interface.
 
@@ -47,7 +47,7 @@ Captured from the real extension UI in headless Chrome.
 
 ## What's in it
 
-- **564 working tools across 18 categories**, reachable from the popup or side panel.
+- **566 working tools across 18 categories**, reachable from the popup or side panel.
 - **Category rail + search** with keyboard navigation (`↑` `↓` `Enter`), favourites (`★`) and recents.
 - **Per-tool inputs** — multi-field tools render exactly the fields they need, including file pickers for media tools.
 - **Text, HTML and image output** — rich results render in a sandboxed preview; images render inline with a download link.
