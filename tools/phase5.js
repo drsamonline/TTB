@@ -60,6 +60,35 @@ function hostname(i){
  const tld=labels[labels.length-1];
  return {hostname:body,ascii,kind:'hostname',labels:labels.length,fqdn,tld};
 }
+function ptr(i){
+ const raw=String(i||'').trim().replace(/^\[/,'').replace(/\]$/,'');
+ if(!raw)throw Error('Enter an IPv4 or IPv6 address, e.g. 192.168.1.10 or 2001:db8::1');
+ if(/[\s\\]/.test(raw))throw Error('A PTR name is made from an address — remove the space or path');
+ const m=raw.match(/^([^/]+)(?:\/(\d{1,3}))?$/);
+ if(!m)throw Error('Enter an address, optionally with a prefix, e.g. 192.168.1.0/24');
+ const addr=m[1].trim(),prefix=m[2]===undefined?null:Number(m[2]);
+ const v4=addr.match(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/);
+ if(v4){
+  const o=v4.slice(1).map(Number);
+  const bad=o.findIndex(x=>x>255);
+  if(bad>=0)throw Error(`"${addr}" is not a valid IPv4 address — octet ${bad+1} is ${o[bad]}, above 255`);
+  const zero=o.findIndex((_,k)=>/^0\d/.test(v4[k+1]));
+  if(zero>=0)throw Error(`Octet ${zero+1} is written "${v4[zero+1]}" — a leading zero makes it ambiguous (some parsers read it as octal); write ${o[zero]}`);
+  if(prefix!==null&&prefix>32)throw Error('The prefix length must be 0–32 for IPv4');
+  if(prefix!==null&&prefix%8)throw Error(`A reverse zone is octet-aligned: /${prefix} is not a multiple of 8 — the nearest zones are /${Math.floor(prefix/8)*8} and /${Math.ceil(prefix/8)*8}`);
+  const used=prefix===null?4:prefix/8;
+  const labels=o.slice(0,used).reverse();
+  return {address:o.join('.'),kind:'ipv4',prefix:prefix===null?32:prefix,zone:prefix!==null&&prefix<32,labels:labels.length,name:[...labels,'in-addr.arpa'].join('.')};
+ }
+ if(!addr.includes(':'))throw Error(`"${addr}" is not an IP address — a hostname has no reverse zone of its own; resolve it first`);
+ if(prefix!==null&&prefix>128)throw Error('The prefix length must be 0–128 for IPv6');
+ if(prefix!==null&&prefix%4)throw Error(`A reverse zone is nibble-aligned: /${prefix} is not a multiple of 4 — the nearest zones are /${Math.floor(prefix/4)*4} and /${Math.ceil(prefix/4)*4}`);
+ const v=ipv6(prefix===null?addr:addr+'/'+prefix);
+ const nibbles=v.expanded.replace(/:/g,'').split('');
+ const used=prefix===null?32:prefix/4;
+ const labels=nibbles.slice(0,used).reverse();
+ return {address:v.compressed,kind:'ipv6',prefix:prefix===null?128:prefix,zone:prefix!==null&&prefix<128,labels:labels.length,name:[...labels,'ip6.arpa'].join('.')};
+}
 const T={
  'loan-calculator':{name:'Loan',cat:'finance',run:i=>{const[p,r,y]=(i||'100000,8,5').split(',').map(Number),m=y*12,a=emi(p,r,m);return JSON.stringify({principal:p,annualRate:r,years:y,monthlyPayment:+a.toFixed(2),totalPayment:+(a*m).toFixed(2),interest:+(a*m-p).toFixed(2)},null,2)}},
  'emi':{name:'EMI',cat:'finance',run:i=>{const[p,r,m]=(i||'100000,8,60').split(',').map(Number);return emi(p,r,m).toFixed(2)}},
@@ -74,6 +103,7 @@ const T={
  'cidr-converter':{name:'CIDR converter',cat:'network',run:i=>JSON.stringify(subnet(i||'10.0.0.0/8'),null,2)},
  'ipv6-expand-compress':{name:'IPv6 expand/compress',cat:'network',run:i=>JSON.stringify(ipv6(i||'2001:db8::1'),null,2)},
  'hostname-validator':{name:'Hostname validator',cat:'network',run:i=>JSON.stringify(hostname(i||'example.com'),null,2)},
+ 'reverse-dns-ptr':{name:'Reverse DNS (PTR) name',cat:'network',run:i=>JSON.stringify(ptr(i||'192.168.1.10'),null,2)},
  'port-reference':{name:'Port reference',cat:'network',run:i=>({20:'FTP-data',21:'FTP',22:'SSH',23:'Telnet',25:'SMTP',53:'DNS',80:'HTTP',110:'POP3',143:'IMAP',443:'HTTPS',587:'SMTP submission',993:'IMAPS',995:'POP3S'})[Number(i)]||'Unknown/common port not in reference'},
  'title-analyzer':{name:'Title analyzer',cat:'seo',run:i=>{const s=String(i||'');return JSON.stringify({length:s.length,words:s.trim()?s.trim().split(/\s+/).length:0,typicalRange:s.length>=30&&s.length<=60},null,2)}},
  'meta-description-analyzer':{name:'Meta description analyzer',cat:'seo',run:i=>{const s=String(i||'');return JSON.stringify({length:s.length,typicalRange:s.length>=120&&s.length<=160},null,2)}},
