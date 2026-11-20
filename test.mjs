@@ -191,3 +191,57 @@ await assert.rejects(() => hn('1.2.3.999'), /above 255/);
 await assert.rejects(() => hn('a'.repeat(64) + '.com'), /at most 63/);
 await assert.rejects(() => hn('site.123'), /numeric label/);
 await assert.rejects(() => hn('   '), /Enter a hostname/);
+
+// Reverse DNS (PTR) name — the label order IS the tool, so every case below is
+// one whose answer a plausible wrong implementation gets wrong: an unreversed
+// address, an unexpanded IPv6 run, a zone that keeps the host part, or a prefix
+// that is not aligned to the label size.
+const ptr = async (text) => JSON.parse(await runTool('Reverse DNS (PTR) name', { text }));
+const p4 = (t) => ptr(t);
+assert.equal((await p4('8.8.4.4')).name, '4.4.8.8.in-addr.arpa', 'octets reverse — 8.8.4.4 is not 8.8.4.4');
+assert.equal((await p4('192.168.1.10')).name, '10.1.168.192.in-addr.arpa');
+assert.equal((await p4('0.0.0.0')).name, '0.0.0.0.in-addr.arpa');
+assert.equal((await p4('255.255.255.255')).name, '255.255.255.255.in-addr.arpa');
+assert.equal((await p4('192.168.1.10')).kind, 'ipv4');
+assert.equal((await p4('192.168.1.10')).prefix, 32, 'a bare address is the whole /32 name');
+assert.equal((await p4('192.168.1.10')).zone, false);
+// A prefix cuts the name at an octet boundary: the zone, not the host.
+assert.equal((await p4('192.168.1.0/24')).name, '1.168.192.in-addr.arpa');
+assert.equal((await p4('192.168.1.0/24')).labels, 3);
+assert.equal((await p4('192.168.1.0/24')).zone, true);
+assert.equal((await p4('10.0.0.0/8')).name, '10.in-addr.arpa');
+assert.equal((await p4('8.8.8.8/32')).name, '8.8.8.8.in-addr.arpa', 'a /32 is a single name, not a zone');
+assert.equal((await p4('8.8.8.8/32')).zone, false);
+assert.equal((await p4('0.0.0.0/0')).name, 'in-addr.arpa', 'the /0 zone is the root of in-addr.arpa');
+await assert.rejects(() => p4('192.168.1.0/20'), /nearest zones are \/16 and \/24/);
+await assert.rejects(() => p4('192.168.1.0/33'), /0–32/);
+await assert.rejects(() => p4('256.1.1.1'), /above 255/);
+await assert.rejects(() => p4('192.168.001.10'), /ambiguous/);
+// IPv6: the full 32 nibbles, reversed, whatever the input's shorthand was.
+assert.equal((await p4('2001:db8::1')).name, '1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.8.b.d.0.1.0.0.2.ip6.arpa');
+assert.equal((await p4('2001:0db8:0000:0000:0000:0000:0000:0001')).name, (await p4('2001:db8::1')).name, 'the shorthand and the expanded form are one name');
+assert.equal((await p4('::1')).name, '1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa');
+assert.equal((await p4('fe80::1')).name, '1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa');
+assert.equal((await p4('2001:DB8::1')).name, (await p4('2001:db8::1')).name, 'hex is case-folded — DNS compares lower case');
+assert.equal((await p4('[2001:db8::1]')).name, (await p4('2001:db8::1')).name);
+assert.equal((await p4('2001:db8::1')).kind, 'ipv6');
+assert.equal((await p4('2001:db8::1')).labels, 32);
+assert.equal((await p4('2001:db8::1')).name.split('.').length, 34, '32 nibbles + ip6 + arpa');
+// An IPv6 zone is nibble-aligned, and /32 is the delegation the registries use.
+assert.equal((await p4('2001:db8::/32')).name, '8.b.d.0.1.0.0.2.ip6.arpa');
+assert.equal((await p4('2001:db8::/32')).labels, 8);
+assert.equal((await p4('2001:db8::/32')).zone, true);
+assert.equal((await p4('2001:db8::/128')).name, (await p4('2001:db8::')).name, 'a /128 is a single name');
+assert.equal((await p4('2001:db8::/128')).zone, false);
+assert.equal((await p4('::/0')).name, 'ip6.arpa', 'the /0 zone is the root of ip6.arpa');
+assert.equal((await p4('2001:db8::/36')).name, '0.8.b.d.0.1.0.0.2.ip6.arpa', '/36 is nibble-aligned: nine nibbles');
+await assert.rejects(() => p4('2001:db8::/34'), /nibble-aligned.*\/32 and \/36/);
+await assert.rejects(() => p4('2001:db8::/129'), /0–128/);
+await assert.rejects(() => p4('1:2:3'), /8 groups/);
+// A hostname is not an address, and the refusal says what to do instead.
+await assert.rejects(() => p4('example.com'), /resolve it first/);
+await assert.rejects(() => p4('   '), /Enter an IPv4 or IPv6 address/);
+await assert.rejects(() => p4('192.168.1.10/24/8'), /Enter an address/);
+// The catalog entry is real: the tool is registered, not merely listed.
+assert.ok(getImplementation('Reverse DNS (PTR) name'), 'the PTR tool must have a handler');
+assert.equal(globalThis.TTB_CATALOG.filter((t) => t.category === 'Network').length, 9);

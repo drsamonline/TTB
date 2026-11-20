@@ -517,6 +517,7 @@ globalThis.TTB_CATALOG = [
   {"id":"network-subnet-calculator","name":"Subnet calculator","category":"Network"},
   {"id":"network-ipv6-expand-compress","name":"IPv6 expand/compress","category":"Network"},
   {"id":"network-hostname-validator","name":"Hostname validator","category":"Network"},
+  {"id":"network-reverse-dns-ptr","name":"Reverse DNS (PTR) name","category":"Network"},
   {"id":"network-cidr-converter","name":"CIDR converter","category":"Network"},
   {"id":"network-http-header-viewer","name":"HTTP header viewer","category":"Network"},
   {"id":"network-redirect-viewer","name":"Redirect viewer","category":"Network"},

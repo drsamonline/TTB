@@ -1,5 +1,38 @@
 # Changelog
 
+## 0.15.0 — Reverse DNS (PTR) name
+
+One new tool in Network (8 → 9), and it is the question the other network tools
+leave unanswered: *what name does this address have in the reverse tree?* A
+subnet calculator tells you the range, `dig -x` needs this. It is pure
+computation — no query, no network — and the label order is the whole answer.
+
+### Added
+- **Reverse DNS (PTR) name** (Network, 567 tools). `192.168.1.10` returns
+  `10.1.168.192.in-addr.arpa`; `2001:db8::1` returns the full 32-nibble name
+  `1.0.0.0….8.b.d.0.1.0.0.2.ip6.arpa`. The shorthand and the expanded IPv6 form
+  are one answer, hex is case-folded (DNS compares lower case), and a bracketed
+  `[2001:db8::1]` is accepted.
+- A **prefix** returns the ZONE, not the host: `192.168.1.0/24` →
+  `1.168.192.in-addr.arpa`, `2001:db8::/32` → `8.b.d.0.1.0.0.2.ip6.arpa` (the
+  delegation the registries actually use). `/32` on IPv4 and `/128` on IPv6 are
+  single names, not zones, and `/0` is the root of `in-addr.arpa` / `ip6.arpa`.
+- Each refusal names the rule it broke, instead of one catch-all: a prefix that is
+  not aligned to the label size (`/20` → *the nearest zones are /16 and /24*;
+  `/34` → *the nearest zones are /32 and /36*), a prefix outside 0–32 / 0–128, an
+  IPv4 octet above 255, an octet with a leading zero (some parsers read it as
+  octal, so `192.168.001.10` is ambiguous rather than "just" wrong), and a
+  hostname — which is refused with the honest instruction to resolve it first,
+  because a name has no reverse zone of its own.
+
+### Fixed
+- `ALL_TOOLS.md` still announced version 0.13.0 and `README.md`, `manifest.json`,
+  `docs/index.html` and `BROWSER_SUPPORT.md` still announced a 566-tool catalog.
+  All now read 0.15.0 / 567 / Network 9, from one release rather than drifting
+  one file at a time. `TOOL_AUDIT.md`, `AUDIT.md` and
+  `CATEGORY_DISCOVERY_FINAL_AUDIT.json` are left as they were — they record what
+  was audited in that release, not what ships today.
+
 ## 0.14.0 — Hostname validator
 
 One new tool in the thinnest category (Network had 7). It answers the question a
