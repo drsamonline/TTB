@@ -114,7 +114,51 @@ await assert.rejects(() => v6('2001:db8:::1'), /lone ":"/);
 await assert.rejects(() => v6('1:2:3'), /8 groups/);
 await assert.rejects(() => v6('2001:db8::/129'), /0–128/);
 
+// Unit price comparison — four numbers, and the answer has to be a per-unit price,
+// not a total. The pairs are chosen so a plausible wrong implementation (compare the
+// totals, or the raw sizes) picks the other product: 120 for 800 g beats 95 for 750 g
+// on price but loses per gram, and 3.50 for 500 g beats 6.00 for 1 kg only if the
+// sizes are read as written.
+const up = (a, b, c, d, unit) => runTool('Unit price comparison', { text: String(a), b: String(b), c: String(c), d: String(d), unit });
+const upOut = await up(120, 800, 95, 750, 'g');
+assert.match(upOut, /A: 120 ÷ 800 g = 0\.15 per g/);
+assert.match(upOut, /B: 95 ÷ 750 g = 0\.1267 per g/);
+assert.match(upOut, /Cheaper: B — 15\.6% less per g/);
+assert.match(upOut, /Both sizes are read in g/);
+// the unit is a label, not a conversion: 1 kg at 120 is 120 per kg, not 0.12
+assert.match(await up(120, 1, 95, 0.75, 'kg'), /A: 120 ÷ 1 kg = 120 per kg/);
+// a tie is a tie, not a 0% "cheaper"
+assert.match(await up(30, 500, 60, 1000, 'g'), /Same price per g — neither is cheaper/);
+// free is a price; zero size is not a size
+assert.match(await up(0, 500, 10, 500, 'g'), /Cheaper: A — 100% less per g/);
+await assert.rejects(() => up(120, 0, 95, 750, 'g'), /Size A must be more than zero/);
+await assert.rejects(() => up(120, 800, 95, -1, 'g'), /Size B must be more than zero/);
+await assert.rejects(() => up(-120, 800, 95, 750, 'g'), /Price A cannot be negative/);
+// a blank field names itself, because "enter a valid number" says nothing here
+await assert.rejects(() => up(120, 800, 95, '', 'g'), /Size B is empty/);
+await assert.rejects(() => up(120, 'eight hundred', 95, 750, 'g'), /Size A \(“eight hundred”\) is not a number/);
+
 console.log(`OK — ${catalog.length} tools, ${cats.size} categories, ${withInputs.length} with custom inputs`);
+
+// The published counts are asserted, not just printed: ALL_TOOLS.md is hand-written
+// and the module's own count is the truth, so a tool added (or an `inputs` array
+// dropped) without updating the doc now fails here instead of drifting quietly.
+const allTools = fs.readFileSync(new URL('./ALL_TOOLS.md', import.meta.url), 'utf8');
+const published = (re, what) => {
+  const m = allTools.match(re);
+  assert.ok(m, `ALL_TOOLS.md no longer publishes ${what}`);
+  return Number(m[1]);
+};
+assert.equal(published(/^\*\*Tools:\*\* (\d+)/m, 'a tool count'), catalog.length, 'ALL_TOOLS.md tool count');
+assert.equal(published(/^\*\*With dedicated inputs:\*\* (\d+)/m, 'an input count'), withInputs.length, 'ALL_TOOLS.md "with dedicated inputs" count');
+// manifest.json, not package.json: a built package ships the manifest and not the
+// package file, and this same test runs inside dist/<target> in CI.
+assert.equal(allTools.match(/^\*\*Version:\*\* (\S+)/m)?.[1], JSON.parse(fs.readFileSync(new URL('./manifest.json', import.meta.url), 'utf8')).version, 'ALL_TOOLS.md version');
+assert.equal(published(/\| 2 \| Calculators & Converters \| (\d+) \|/, 'a category count'), catalog.filter((t) => t.category === 'Calculators & Converters').length, 'Calculators & Converters row');
+assert.equal(published(/^### Calculators & Converters \((\d+)\)/m, 'a category heading'), catalog.filter((t) => t.category === 'Calculators & Converters').length, 'Calculators & Converters heading');
+const twoPlus = tools.filter((t) => Array.isArray(t.inputs) && t.inputs.length >= 2);
+assert.equal(twoPlus.length, 106, `expected 106 tools with two or more fields, got ${twoPlus.length}`);
+
 
 // Semver — the spec's own precedence list (semver.org §11) is the known answer,
 // and each check is chosen so a plausible wrong implementation fails it.

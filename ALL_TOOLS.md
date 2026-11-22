@@ -1,10 +1,10 @@
 # TTB — Tiny Toolbox — Complete Tool List
 
-**Version:** 0.15.0  
+**Version:** 0.16.0  
 **Author:** Dr. Sohil Momin  
-**Tools:** 567  
+**Tools:** 568  
 **Categories:** 18  
-**With dedicated inputs:** 226  
+**With dedicated inputs:** 227  
 **Destructive (gated):** 5
 
 Every entry below resolves to a handler and was executed in the functional audit (see `TOOL_AUDIT.md`). Tools that could not work were removed rather than listed as placeholders.
@@ -14,7 +14,7 @@ Every entry below resolves to a handler and was executed in the functional audit
 | # | Category | Tools |
 |---:|---|---:|
 | 1 | Accessibility | 12 |
-| 2 | Calculators & Converters | 69 |
+| 2 | Calculators & Converters | 70 |
 | 3 | Communication | 15 |
 | 4 | Data | 25 |
 | 5 | Design & Color | 27 |
@@ -49,7 +49,7 @@ Every entry below resolves to a handler and was executed in the functional audit
 - Flashing content detector
 - Alt text viewer
 
-### Calculators & Converters (69)
+### Calculators & Converters (70)
 
 - Live calculator
 - Scientific
@@ -119,6 +119,7 @@ Every entry below resolves to a handler and was executed in the functional audit
 - Pace/speed
 - Fuel cost
 - Electricity cost
+- Unit price comparison
 - Number to words
 
 ### Communication (15)
