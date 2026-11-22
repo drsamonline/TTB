@@ -1,5 +1,36 @@
 # Changelog
 
+## 0.16.0 — Unit price comparison, and counts that are asserted
+
+One new tool in Calculators & Converters (69 → 70), and the doc numbers are now
+checked by the test instead of only printed by it.
+
+### Added
+- **Unit price comparison** (Calculators & Converters, 568 tools). Four numbers —
+  price A, size A, price B, size B — and the answer is the price **per unit**, not
+  the total: `120 for 800 g` is `0.15 per g`, `95 for 750 g` is `0.1267 per g`, so
+  the cheaper-looking pack is not the cheaper one. The saving is reported against
+  the dearer pack (`15.6% less per g`) and the tie case says *same price per unit*
+  rather than `0% cheaper`.
+- The unit is stated **once**, for both sizes, so the tool never guesses whether
+  `500` means grams or millilitres; it echoes the unit it read in every line.
+- Every refusal names the field it is about, because *enter a valid number* says
+  nothing when a tool has four numbers: a blank field, a non-number, a size of zero
+  or less (*a unit price divides by the size*), and a negative price are each
+  refused by name. A price of `0` is allowed — free is a price.
+
+### Changed
+- **`test.mjs` now asserts the published counts.** `ALL_TOOLS.md` is hand-written
+  and the module's own count is the truth, so the tool count, the
+  *with dedicated inputs* count, the version, and the Calculators & Converters row
+  and heading are each compared against `data/tools.js`, the registry and
+  `package.json`. Adding a tool, or dropping an `inputs` array, without updating the
+  doc now fails the suite instead of drifting quietly — seven mutations (each doc
+  number wrong, the tie check, the zero-size guard, the cheaper-side pick and the
+  blank-field guard removed) each turn it red.
+- `567` → `568` in `README.md`, `BROWSER_SUPPORT.md`, `docs/index.html`,
+  `manifest.json` and `PROJECT_METADATA.json`, from one release rather than drifting.
+
 ## 0.15.0 — Reverse DNS (PTR) name
 
 One new tool in Network (8 → 9), and it is the question the other network tools

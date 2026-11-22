@@ -128,6 +128,7 @@ globalThis.TTB_CATALOG = [
   {"id":"calculators-converters-pace-speed","name":"Pace/speed","category":"Calculators & Converters"},
   {"id":"calculators-converters-fuel-cost","name":"Fuel cost","category":"Calculators & Converters"},
   {"id":"calculators-converters-electricity-cost","name":"Electricity cost","category":"Calculators & Converters"},
+  {"id":"calculators-converters-unit-price-comparison","name":"Unit price comparison","category":"Calculators & Converters"},
   {"id":"developer-json-format-validate-minify","name":"JSON format/validate/minify","category":"Developer"},
   {"id":"developer-json-typescript","name":"JSON→TypeScript","category":"Developer"},
   {"id":"developer-json-go-rust-python","name":"JSON→Go/Rust/Python","category":"Developer"},

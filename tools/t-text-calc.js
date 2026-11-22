@@ -311,4 +311,52 @@ export const TTB_EXTRA_CALC = {
   'electricity cost': { name: 'Electricity cost', cat: 'calc', inputs: [{ key: 'b', label: 'Hours/day', type: 'number', value: '4' }, { key: 'c', label: 'Price / kWh', type: 'number', value: '8' }, { key: 'd', label: 'Days', type: 'number', value: '30' }], run: (t, c) => {
     const watts = num(t), h = num(c.b), price = num(c.c), days = num(c.d); const kwh = watts / 1000 * h * days;
     return JSON.stringify({ watts, hoursPerDay: h, days, kWh: fmt(kwh, 3), cost: fmt(kwh * price, 2) }, null, 2); } },
+  // Two products, four numbers. The unit is stated ONCE because a per-unit price is
+  // only meaningful between two sizes in the same unit — so the tool never has to
+  // guess whether "500" means grams or millilitres, and it says so in its answer.
+  'unit price comparison': { name: 'Unit price comparison', cat: 'calc',
+    inputs: [
+      { key: 'b', label: 'Size A', type: 'number', placeholder: '800' },
+      { key: 'c', label: 'Price B', type: 'number', placeholder: '95' },
+      { key: 'd', label: 'Size B', type: 'number', placeholder: '750' },
+      { key: 'unit', label: 'Unit (both sizes)', type: 'select', options: ['g', 'kg', 'ml', 'L', 'item', 'm', 'ft', 'oz', 'lb'], value: 'g' },
+    ],
+    run: (t, c) => {
+      const unit = String(c.unit || 'g');
+      // Every refusal names the field it is about: "enter a valid number" told the
+      // reader nothing when the tool has four of them.
+      const field = (v, label) => {
+        const s = String(v ?? '').trim();
+        if (!s) throw Error(`${label} is empty — this tool needs all four numbers (price A, size A, price B, size B).`);
+        const x = Number(s.replace(/[,\s_]/g, ''));
+        if (!Number.isFinite(x)) throw Error(`${label} (“${s}”) is not a number.`);
+        return x;
+      };
+      const priceA = field(c.a ?? t, 'Price A'), sizeA = field(c.b, 'Size A');
+      const priceB = field(c.c, 'Price B'), sizeB = field(c.d, 'Size B');
+      for (const [label, size] of [['Size A', sizeA], ['Size B', sizeB]]) {
+        if (size <= 0) throw Error(`${label} must be more than zero — a unit price divides by the size, and ${size} has no per-unit price.`);
+      }
+      for (const [label, price] of [['Price A', priceA], ['Price B', priceB]]) {
+        if (price < 0) throw Error(`${label} cannot be negative (${price}) — a price is zero or more.`);
+      }
+      const perA = priceA / sizeA, perB = priceB / sizeB;
+      // 4 significant digits, because the third decimal of a per-gram price is noise
+      // and Number() strips the 0.15000000000000002 a raw division leaves behind.
+      const show = (x) => String(Number(x.toPrecision(4)));
+      const lines = [
+        `A: ${show(priceA)} ÷ ${show(sizeA)} ${unit} = ${show(perA)} per ${unit}`,
+        `B: ${show(priceB)} ÷ ${show(sizeB)} ${unit} = ${show(perB)} per ${unit}`,
+      ];
+      if (perA === perB) {
+        lines.push(`Same price per ${unit} — neither is cheaper.`);
+      } else {
+        const cheaper = perA < perB ? 'A' : 'B';
+        const hi = Math.max(perA, perB), lo = Math.min(perA, perB);
+        const pct = Number(((hi - lo) / hi * 100).toFixed(1));
+        lines.push(`Cheaper: ${cheaper} — ${pct}% less per ${unit} (${show(hi - lo)} per ${unit} less than the other).`);
+      }
+      lines.push(`Both sizes are read in ${unit}; a different unit for one side is not comparable and is not guessed.`);
+      return lines.join('\n');
+    } },
 };
