@@ -14,6 +14,7 @@
     "build:safari": "node build.mjs safari",
     "shots": "node screenshots.mjs",
     "check": "node --check background.js",
-    "audit": "node audit-tools.mjs"
+    "audit": "node audit-tools.mjs",
+    "audit:check": "node audit-tools.mjs --check"
   }
 }

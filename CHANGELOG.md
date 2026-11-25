@@ -1,5 +1,37 @@
 # Changelog
 
+## Unreleased — the functional audit is now a check
+
+`audit-tools.mjs` used to be non-reproducible: a random password, a UUID, a
+"now" timestamp and a lorem sample changed on every run, so `tool-audit.json`
+could never be regenerated and the committed copy had quietly fallen to 563
+tools while the catalog shipped 567. Three sources of drift are now pinned
+before any tool code loads — `Math.random`, `crypto.getRandomValues` /
+`randomUUID`, and the clock — `process.env.TZ` is fixed to UTC so a sample that
+prints a date does not depend on the host, and `fetch` is stubbed out so the two
+tools that really go to the network (*URL expander*, *URL shortener resolver*)
+are graded on their offline behaviour instead of on whether the machine running
+the audit happened to have internet.
+
+### Changed
+- Two runs of the same commit now produce **byte-identical** `tool-audit.json`
+  and `TOOL_AUDIT.md`, and the audit writes both.
+- `TOOL_AUDIT.md`'s counts table and its per-tool tables are generated between
+  markers instead of being typed by hand, so the document can no longer drift
+  from the results it describes. The prose above them is still written by hand.
+- `node audit-tools.mjs --check` verifies both artifacts against a fresh run and
+  exits non-zero on drift; it is now a step in `validate.yml`. `npm run
+  audit:check` is the same thing.
+- `test.mjs` gains the cheap half of the same check: the audit must cover every
+  catalog entry, and every verdict count in `TOOL_AUDIT.md` must equal the one
+  in `tool-audit.json`.
+- The audit now records a 120-character output sample for **every** verdict, not
+  just the non-REAL ones, so the generated per-tool tables show what each tool
+  actually printed.
+- `uncaughtException` is no longer swallowed: a stray rejection from a tool is
+  still graded, but an error in the audit itself now exits 1 instead of printing
+  nothing and looking like a clean run.
+
 ## 0.15.0 — Reverse DNS (PTR) name
 
 One new tool in Network (8 → 9), and it is the question the other network tools

@@ -36,7 +36,8 @@
   "lazy": false,
   "page": false,
   "bytes": 0,
-  "verdict": "EMPTY"
+  "verdict": "EMPTY",
+  "sample": ""
  },
  {
   "name": "Word/char/line/sentence/paragraph count",
@@ -114,9 +115,9 @@
   "output": "text",
   "lazy": false,
   "page": false,
-  "bytes": 1126,
+  "bytes": 1056,
   "verdict": "REAL",
-  "sample": "Laboris aliqua deserunt velit ipsum proident et enim incididunt enim est sunt incididunt laborum eu anim elit voluptate "
+  "sample": "Deserunt id esse officia laboris sint consequat in amet ex ad est consequat enim nostrud eu proident duis est ipsum dese"
  },
  {
   "name": "Base64 encode/decode",
@@ -525,7 +526,8 @@
   "lazy": false,
   "page": false,
   "bytes": 0,
-  "verdict": "EMPTY"
+  "verdict": "EMPTY",
+  "sample": ""
  },
  {
   "name": "Regex replace preview",
@@ -870,7 +872,7 @@
   "page": false,
   "bytes": 10,
   "verdict": "SHALLOW",
-  "sample": "1794055305"
+  "sample": "1767225600"
  },
  {
   "name": "ISO 8601",
@@ -880,7 +882,7 @@
   "page": false,
   "bytes": 24,
   "verdict": "REAL",
-  "sample": "2026-11-07T12:41:45.852Z"
+  "sample": "2026-01-01T00:00:00.000Z"
  },
  {
   "name": "Cron time",
@@ -890,7 +892,7 @@
   "page": false,
   "bytes": 314,
   "verdict": "STATIC",
-  "sample": "Sat Nov 07 2026 12:45:00 GMT+0000 (Coordinated Universal Time)\nSat Nov 07 2026 13:00:00 GMT+0000 (Coordinated Universal "
+  "sample": "Thu Jan 01 2026 09:00:00 GMT+0000 (Coordinated Universal Time)\nThu Jan 01 2026 09:15:00 GMT+0000 (Coordinated Universal "
  },
  {
   "name": "Stopwatch",
@@ -908,9 +910,9 @@
   "output": "text",
   "lazy": false,
   "page": false,
-  "bytes": 88,
+  "bytes": 85,
   "verdict": "REAL",
-  "sample": "Since Sun May 20 1990 00:00:00 GMT+0000 (Coordinated Universal Time): 13320d 12h 41m 45s"
+  "sample": "Since Sun May 20 1990 00:00:00 GMT+0000 (Coordinated Universal Time): 13010d 0h 0m 0s"
  },
  {
   "name": "Pomodoro",
@@ -920,7 +922,7 @@
   "page": false,
   "bytes": 178,
   "verdict": "STATIC",
-  "sample": "#1 work 12:41–13:06\n   break until 13:11\n#2 work 13:11–13:36\n   break until 13:41\n#3 work 13:41–14:06\n   break until 14:"
+  "sample": "#1 work 00:00–00:25\n   break until 00:30\n#2 work 00:30–00:55\n   break until 01:00\n#3 work 01:00–01:25\n   break until 01:"
  },
  {
   "name": "Unit converter",
@@ -1175,7 +1177,7 @@
   "page": false,
   "bytes": 6,
   "verdict": "SHALLOW",
-  "sample": "875358"
+  "sample": "142119"
  },
  {
   "name": "Random from list",
@@ -1205,7 +1207,7 @@
   "page": false,
   "bytes": 5,
   "verdict": "SHALLOW",
-  "sample": "Heads"
+  "sample": "Tails"
  },
  {
   "name": "Password generator",
@@ -1215,7 +1217,7 @@
   "page": false,
   "bytes": 16,
   "verdict": "REAL",
-  "sample": "GHoyd![n[n5[cUL#"
+  "sample": "x[Gf(@kyZ}M6@&nN"
  },
  {
   "name": "PIN generator",
@@ -1225,7 +1227,7 @@
   "page": false,
   "bytes": 6,
   "verdict": "SHALLOW",
-  "sample": "683591"
+  "sample": "130936"
  },
  {
   "name": "BMI/BMR/TDEE",
@@ -1422,7 +1424,8 @@
   "lazy": false,
   "page": false,
   "bytes": 0,
-  "verdict": "EMPTY"
+  "verdict": "EMPTY",
+  "sample": ""
  },
  {
   "name": "Cron explainer",
@@ -1442,7 +1445,7 @@
   "page": false,
   "bytes": 314,
   "verdict": "STATIC",
-  "sample": "Mon Nov 09 2026 09:00:00 GMT+0000 (Coordinated Universal Time)\nMon Nov 09 2026 09:15:00 GMT+0000 (Coordinated Universal "
+  "sample": "Thu Jan 01 2026 09:00:00 GMT+0000 (Coordinated Universal Time)\nThu Jan 01 2026 09:15:00 GMT+0000 (Coordinated Universal "
  },
  {
   "name": "UUID v4/v7",
@@ -1452,7 +1455,17 @@
   "page": false,
   "bytes": 36,
   "verdict": "REAL",
-  "sample": "87d01433-7305-4b0e-8153-5f9eaa0e6c63"
+  "sample": "e01a71d8-15af-4e8e-b9e5-c4f9a28b58e9"
+ },
+ {
+  "name": "Semver compare & bump",
+  "category": "Developer",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "bytes": 92,
+  "verdict": "REAL",
+  "sample": "Sorted by precedence (lowest first):\n1. 1.0.0-alpha\n2. 1.0.0-beta.11\n3. 1.0.0\nHighest: 1.0.0"
  },
  {
   "name": "ULID",
@@ -1462,7 +1475,7 @@
   "page": false,
   "bytes": 26,
   "verdict": "REAL",
-  "sample": "01M6V0EYNRBVEJ72T1WCADX5R3"
+  "sample": "01KDVDNA00W1EQ20VQ4R37CMPY"
  },
  {
   "name": "NanoID",
@@ -1472,7 +1485,7 @@
   "page": false,
   "bytes": 21,
   "verdict": "REAL",
-  "sample": "D_9c8xWixa1ZdxR2InxWC"
+  "sample": "feS3aoiFPl5R6GMBYqx43"
  },
  {
   "name": "JWT decode",
@@ -2147,7 +2160,7 @@
   "output": "html",
   "lazy": false,
   "page": false,
-  "bytes": 18881,
+  "bytes": 20721,
   "verdict": "REAL",
   "sample": "<div id=\"v\" style=\"display:flex;gap:2px;align-items:flex-end;height:220px;background:#0f1115;padding:8px\"></div><script>"
  },
@@ -3340,7 +3353,7 @@
   "page": false,
   "bytes": 86,
   "verdict": "STATIC",
-  "sample": "{\n  \"extensionVersion\": \"0.10.0\",\n  \"tabs\": 0,\n  \"catalog\": 563,\n  \"permissions\": {}\n}"
+  "sample": "{\n  \"extensionVersion\": \"0.10.0\",\n  \"tabs\": 0,\n  \"catalog\": 567,\n  \"permissions\": {}\n}"
  },
  {
   "name": "Evidence capture (SHA-256 + timestamp)",
@@ -3350,7 +3363,7 @@
   "page": false,
   "bytes": 188,
   "verdict": "REAL",
-  "sample": "{\n  \"sha256\": \"ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad\",\n  \"timestamp\": \"2026-11-07T12:41:46.69"
+  "sample": "{\n  \"sha256\": \"ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad\",\n  \"timestamp\": \"2026-01-01T00:00:00.00"
  },
  {
   "name": "Chain-of-custody screenshot",
@@ -3360,7 +3373,7 @@
   "page": false,
   "bytes": 220,
   "verdict": "REAL",
-  "sample": "{\n  \"timestamp\": \"2026-11-07T12:41:46.694Z\",\n  \"sha256\": \"b53413d9cd9bc655b64059fb15cc134a821453437f83f5e9315a658ac66dc3"
+  "sample": "{\n  \"timestamp\": \"2026-01-01T00:00:00.000Z\",\n  \"sha256\": \"b53413d9cd9bc655b64059fb15cc134a821453437f83f5e9315a658ac66dc3"
  },
  {
   "name": "Password strength meter (zxcvbn)",
@@ -3378,9 +3391,9 @@
   "output": "text",
   "lazy": false,
   "page": false,
-  "bytes": 35,
+  "bytes": 34,
   "verdict": "REAL",
-  "sample": "aurora-signal-thistle-signal-marble"
+  "sample": "forest-harbor-anchor-timber-signal"
  },
  {
   "name": "TOTP (RFC 6238)",
@@ -3390,7 +3403,7 @@
   "page": false,
   "bytes": 103,
   "verdict": "STATIC",
-  "sample": "{\n  \"code\": \"624138\",\n  \"period\": 30,\n  \"secondsRemaining\": 14,\n  \"algorithm\": \"SHA-1\",\n  \"digits\": 6\n}"
+  "sample": "{\n  \"code\": \"326968\",\n  \"period\": 30,\n  \"secondsRemaining\": 30,\n  \"algorithm\": \"SHA-1\",\n  \"digits\": 6\n}"
  },
  {
   "name": "HOTP (RFC 4226)",
@@ -3420,7 +3433,7 @@
   "page": false,
   "bytes": 310,
   "verdict": "REAL",
-  "sample": "{\"v\":1,\"kdf\":\"PBKDF2-SHA256\",\"iter\":210000,\"cipher\":\"AES-GCM\",\"salt\":\"A81a6+SmxDKROlKD8x+Zjg==\",\"iv\":\"sh8Ltv4FoUMZB1J+\","
+  "sample": "{\"v\":1,\"kdf\":\"PBKDF2-SHA256\",\"iter\":210000,\"cipher\":\"AES-GCM\",\"salt\":\"0zGkeJwZZxFb6IZUMNeFmQ==\",\"iv\":\"zxqGsURkWwZXam+0\","
  },
  {
   "name": "PBKDF2",
@@ -3507,8 +3520,9 @@
   "output": "text",
   "lazy": false,
   "page": false,
-  "sample": "timeout",
-  "verdict": "VALIDATION"
+  "bytes": 159,
+  "verdict": "STATIC",
+  "sample": "Could not follow redirects (audit: network disabled). Cross-origin fetches are blocked unless the site allows it; open t"
  },
  {
   "name": "URL cleaner (UTM)",
@@ -3895,9 +3909,9 @@
   "output": "text",
   "lazy": false,
   "page": false,
-  "bytes": 98,
+  "bytes": 94,
   "verdict": "REAL",
-  "sample": "{\n  \"target\": \"1990-05-20T00:00:00.000Z\",\n  \"milliseconds\": -1150893710162,\n  \"days\": -13320.529\n}"
+  "sample": "{\n  \"target\": \"1990-05-20T00:00:00.000Z\",\n  \"milliseconds\": -1124064000000,\n  \"days\": -13010\n}"
  },
  {
   "name": "Days-since tracker",
@@ -3946,7 +3960,7 @@
   "page": false,
   "bytes": 76,
   "verdict": "STATIC",
-  "sample": "Do-not-disturb until 1:41:50 PM. TTB will stay quiet (no alarms) until then."
+  "sample": "Do-not-disturb until 1:00:00 AM. TTB will stay quiet (no alarms) until then."
  },
  {
   "name": "Site blocker",
@@ -4074,9 +4088,9 @@
   "output": "text",
   "lazy": false,
   "page": false,
-  "bytes": 180,
+  "bytes": 179,
   "verdict": "REAL",
-  "sample": "INVOICE\n==============================\nFrom:    1234.5\nTo:      sample\nDate:    11/7/2026\nInvoice: INV-310183\n\nSubtotal:"
+  "sample": "INVOICE\n==============================\nFrom:    1234.5\nTo:      sample\nDate:    1/1/2026\nInvoice: INV-600000\n\nSubtotal: "
  },
  {
   "name": "Quote generator",
@@ -4084,9 +4098,9 @@
   "output": "text",
   "lazy": false,
   "page": false,
-  "bytes": 182,
+  "bytes": 181,
   "verdict": "REAL",
-  "sample": "QUOTATION\n==============================\nProvider: 1234.5\nClient:   sample\nDate:     11/7/2026\nValid:    30 days\n\nAmount"
+  "sample": "QUOTATION\n==============================\nProvider: 1234.5\nClient:   sample\nDate:     1/1/2026\nValid:    30 days\n\nAmount:"
  },
  {
   "name": "Receipt generator",
@@ -4094,9 +4108,9 @@
   "output": "text",
   "lazy": false,
   "page": false,
-  "bytes": 138,
+  "bytes": 137,
   "verdict": "REAL",
-  "sample": "RECEIPT — 1234.5\n==============================\n11/7/2026, 12:41:50 PM\n\n\n------------------------------\nTOTAL           "
+  "sample": "RECEIPT — 1234.5\n==============================\n1/1/2026, 12:00:00 AM\n\n\n------------------------------\nTOTAL            "
  },
  {
   "name": "Expense tracker",
@@ -4165,7 +4179,7 @@
   "page": false,
   "bytes": 69,
   "verdict": "STATIC",
-  "sample": "INV-2026-0188\nINV-2026-0189\nINV-2026-0190\nINV-2026-0191\nINV-2026-0192"
+  "sample": "INV-2026-0000\nINV-2026-0001\nINV-2026-0002\nINV-2026-0003\nINV-2026-0004"
  },
  {
   "name": "Periodic table",
@@ -4315,7 +4329,7 @@
   "page": false,
   "bytes": 183,
   "verdict": "STATIC",
-  "sample": "Round 1: study 12:41–13:31\n        rest until 13:41\nRound 2: study 13:41–14:31\n        rest until 14:41\nRound 3: study 1"
+  "sample": "Round 1: study 00:00–00:50\n        rest until 01:00\nRound 2: study 01:00–01:50\n        rest until 02:00\nRound 3: study 0"
  },
  {
   "name": "Color converter",
@@ -5092,6 +5106,33 @@
   "sample": "{\n  \"error\": \"Invalid IPv4 CIDR\"\n}"
  },
  {
+  "name": "IPv6 expand/compress",
+  "category": "Network",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "Enter an IPv6 address, e.g. 2001:db8::1 or 2001:db8::/32",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "Hostname validator",
+  "category": "Network",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "A hostname cannot contain a space or a path — enter the host only",
+  "verdict": "VALIDATION"
+ },
+ {
+  "name": "Reverse DNS (PTR) name",
+  "category": "Network",
+  "output": "text",
+  "lazy": false,
+  "page": false,
+  "sample": "A PTR name is made from an address — remove the space or path",
+  "verdict": "VALIDATION"
+ },
+ {
   "name": "CIDR converter",
   "category": "Network",
   "output": "text",
@@ -5127,8 +5168,9 @@
   "output": "text",
   "lazy": false,
   "page": false,
-  "sample": "timeout",
-  "verdict": "VALIDATION"
+  "bytes": 42,
+  "verdict": "STATIC",
+  "sample": "Could not resolve: audit: network disabled"
  },
  {
   "name": "QR link gen",
@@ -5265,9 +5307,9 @@
   "output": "text",
   "lazy": false,
   "page": false,
-  "bytes": 83,
-  "verdict": "REAL",
-  "sample": "There are only 10 kinds of people: those who understand binary and those who don't."
+  "bytes": 65,
+  "verdict": "STATIC",
+  "sample": "Why do programmers prefer dark mode? Because light attracts bugs."
  },
  {
   "name": "Random quote",
@@ -5275,9 +5317,9 @@
   "output": "text",
   "lazy": false,
   "page": false,
-  "bytes": 53,
-  "verdict": "REAL",
-  "sample": "The beginning is the most important part of the work."
+  "bytes": 55,
+  "verdict": "STATIC",
+  "sample": "What we know is a drop; what we don't know is an ocean."
  },
  {
   "name": "Random fact",
@@ -5285,9 +5327,9 @@
   "output": "text",
   "lazy": false,
   "page": false,
-  "bytes": 58,
+  "bytes": 63,
   "verdict": "REAL",
-  "sample": "Honey never spoils — 3,000-year-old jars are still edible."
+  "sample": "There are more possible chess games than atoms in the universe."
  },
  {
   "name": "Random name",
@@ -5297,7 +5339,7 @@
   "page": false,
   "bytes": 11,
   "verdict": "SHALLOW",
-  "sample": "Ishita Nair"
+  "sample": "Nisha Mehta"
  },
  {
   "name": "Random password",
@@ -5307,7 +5349,7 @@
   "page": false,
   "bytes": 16,
   "verdict": "REAL",
-  "sample": "mgyS3GPvuR#v^fkz"
+  "sample": "VnzWsx@Ltn%6@vbW"
  },
  {
   "name": "Random color",
@@ -5317,7 +5359,7 @@
   "page": false,
   "bytes": 168,
   "verdict": "REAL",
-  "sample": "<div style=\"width:200px;height:120px;border-radius:12px;background:#ce187d;display:grid;place-items:end center;color:#11"
+  "sample": "<div style=\"width:200px;height:120px;border-radius:12px;background:#c2da08;display:grid;place-items:end center;color:#11"
  },
  {
   "name": "Decision maker",
@@ -5325,9 +5367,9 @@
   "output": "text",
   "lazy": false,
   "page": false,
-  "bytes": 38,
+  "bytes": 78,
   "verdict": "REAL",
-  "sample": "and the clocks were striking thirteen."
+  "sample": "The quick brown fox jumps over the lazy dog. It was a bright cold day in April"
  },
  {
   "name": "Magic 8-ball",
@@ -5367,7 +5409,7 @@
   "page": false,
   "bytes": 103,
   "verdict": "REAL",
-  "sample": "004008010\n000090008\n198040060\n800061003\n400053001\n000020050\n900037284\n080009005\n000006079\n\n\n(0 = blank)"
+  "sample": "000078010\n070190008\n098002060\n009760000\n026803001\n013020056\n061030200\n287000000\n305086109\n\n\n(0 = blank)"
  },
  {
   "name": "Word search gen",
@@ -5377,7 +5419,7 @@
   "page": false,
   "bytes": 163,
   "verdict": "REAL",
-  "sample": "Find these words:\nTHE, QUICK, BROWN, FOX, JUMPS, OVER, THE, LAZY\n\nS T P J P Z W\nQ U I C K X E\nO V E R Q B H\nK T H E H R "
+  "sample": "Find these words:\nTHE, QUICK, BROWN, FOX, JUMPS, OVER, THE, LAZY\n\nJ U M P S K X\nG Z E B E C O\nN R N H H I F\nY W E M T U "
  },
  {
   "name": "Minesweeper",
@@ -5455,7 +5497,7 @@
   "output": "html",
   "lazy": false,
   "page": false,
-  "bytes": 937,
+  "bytes": 961,
   "verdict": "REAL",
   "sample": "<div id=\"t\" style=\"font:18px/1.7 monospace;color:#e8eaed;background:#0f1115;padding:14px;border-radius:8px;max-width:560"
  },
@@ -5475,9 +5517,9 @@
   "output": "text",
   "lazy": false,
   "page": false,
-  "bytes": 69,
+  "bytes": 47,
   "verdict": "REAL",
-  "sample": "The more you take, the more you leave behind. What am I? — Footsteps."
+  "sample": "What has a head, a tail, but no body? — A coin."
  },
  {
   "name": "Fortune cookie",
@@ -5486,7 +5528,7 @@
   "lazy": false,
   "page": false,
   "bytes": 65,
-  "verdict": "REAL",
+  "verdict": "STATIC",
   "sample": "You will find what you are looking for where you least expect it."
  },
  {
@@ -5506,7 +5548,7 @@
   "page": false,
   "bytes": 8,
   "verdict": "SHALLOW",
-  "sample": "194 days"
+  "sample": "504 days"
  },
  {
   "name": "Anniversary tracker",
@@ -5525,7 +5567,7 @@
   "page": false,
   "bytes": 38,
   "verdict": "REAL",
-  "sample": "{\n  \"days\": 13320,\n  \"hours\": 319692\n}"
+  "sample": "{\n  \"days\": 13010,\n  \"hours\": 312240\n}"
  },
  {
   "name": "Life in weeks",
@@ -5545,7 +5587,7 @@
   "page": false,
   "bytes": 21,
   "verdict": "REAL",
-  "sample": "-13320 days remaining"
+  "sample": "-13010 days remaining"
  },
  {
   "name": "NATO phonetic alphabet",

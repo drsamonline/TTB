@@ -1,6 +1,14 @@
 // Functional audit — runs every catalog tool with realistic inputs and grades
 // the actual output. This is the honest counterpart to "the handler resolves".
 //
+// The audit is DETERMINISTIC. Two runs of the same commit produce byte-identical
+// `tool-audit.json` and `TOOL_AUDIT.md`, so the audit stops being a screenshot and
+// becomes a check: `node audit-tools.mjs --check` exits non-zero when the committed
+// results no longer match what the code produces. Three sources of drift are pinned
+// before any tool code loads — `Math.random`, `crypto.getRandomValues`/`randomUUID`,
+// and the clock — because a random password, a UUID or "now" would otherwise differ
+// on every run.
+//
 // Verdicts:
 //   REAL        output is computed and changes with input
 //   STATIC      output is identical for different inputs (a reference/lookup, not a function)
@@ -9,9 +17,83 @@
 //   EMPTY       returned nothing
 //   ERROR       threw
 //   BROWSER     needs a live tab/extension context (page & privileged tools) — not testable here
+//
+// Usage:
+//   node audit-tools.mjs                 regenerate tool-audit.json + TOOL_AUDIT.md
+//   node audit-tools.mjs --check         verify both are current; exit 1 on drift
+//   node audit-tools.mjs --seed=7 --clock=2026-01-01T00:00:00Z
 import fs from 'node:fs';
-process.on('unhandledRejection', () => {});
-process.on('uncaughtException', () => {});
+process.env.TZ = 'UTC';   // a sample that prints a date must not depend on the host's timezone
+process.on('unhandledRejection', () => {});                       // a tool's stray rejection is graded, not fatal
+process.on('uncaughtException', (e) => { console.error(e); process.exit(1); });  // anything else is a real bug
+
+// ---- flags ---------------------------------------------------------------
+const argv = process.argv.slice(2);
+function flag(name, dflt) {
+  const hit = argv.find((a) => a === `--${name}` || a.startsWith(`--${name}=`));
+  if (!hit) return dflt;
+  const eq = hit.indexOf('=');
+  return eq === -1 ? true : hit.slice(eq + 1);
+}
+const SEED = Number(flag('seed', 20260101)) >>> 0;
+const CLOCK = Date.parse(String(flag('clock', '2026-01-01T00:00:00.000Z')));
+const CHECK = flag('check', false) === true;
+const OUT = String(flag('out', 'tool-audit.json'));
+const MD = String(flag('md', 'TOOL_AUDIT.md'));
+if (!Number.isFinite(CLOCK)) throw new Error(`--clock is not a date: ${flag('clock')}`);
+
+// ---- determinism, installed before any tool module is imported -----------
+function mulberry32(a) {
+  return function () {
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+const rng = mulberry32(SEED);
+Math.random = rng;
+
+const realCrypto = globalThis.crypto;
+const fakeCrypto = {
+  getRandomValues(arr) {
+    const bytes = new Uint8Array(arr.buffer, arr.byteOffset, arr.byteLength);
+    for (let i = 0; i < bytes.length; i++) bytes[i] = Math.floor(rng() * 256);
+    return arr;
+  },
+  randomUUID() {
+    const b = new Uint8Array(16);
+    fakeCrypto.getRandomValues(b);
+    b[6] = (b[6] & 0x0f) | 0x40;
+    b[8] = (b[8] & 0x3f) | 0x80;
+    const h = [...b].map((x) => x.toString(16).padStart(2, '0')).join('');
+    return `${h.slice(0, 8)}-${h.slice(8, 12)}-${h.slice(12, 16)}-${h.slice(16, 20)}-${h.slice(20)}`;
+  },
+  randomBytes(n) {
+    const b = new Uint8Array(n);
+    fakeCrypto.getRandomValues(b);
+    return b;
+  },
+  subtle: realCrypto?.subtle,
+};
+Object.defineProperty(globalThis, 'crypto', { value: fakeCrypto, configurable: true, writable: true });
+
+// No network. Two tools — URL expander and URL shortener resolver — fetch for real,
+// so their verdict depended on whether the HOST had internet: green on a laptop,
+// a failure message in a sandbox. The audit grades the offline behaviour, which is
+// the behaviour a shipped offline toolbox must have.
+globalThis.fetch = () => Promise.reject(new Error('audit: network disabled'));
+
+const RealDate = Date;
+class FixedDate extends RealDate {
+  constructor(...args) {
+    if (args.length === 0) super(CLOCK);
+    else super(...args);
+  }
+  static now() { return CLOCK; }
+}
+globalThis.Date = FixedDate;
+
 const withTimeout = (p, ms = 2500) => Promise.race([p, new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), ms))]);
 
 await import('./data/tools.js');
@@ -98,15 +180,16 @@ for (const t of catalog) {
     let out1 = typeof r1 === 'string' ? r1 : JSON.stringify(r1, null, 2);
     rec.bytes = out1.length;
     if (!out1 || !out1.trim()) { rec.verdict = 'EMPTY'; }
-    else if (PLACEHOLDER.test(out1) && out1.length < 400) { rec.verdict = 'PLACEHOLDER'; rec.sample = out1.slice(0, 120); }
+    else if (PLACEHOLDER.test(out1) && out1.length < 400) { rec.verdict = 'PLACEHOLDER'; }
     else if (BROWSER_HINT.test(out1)) { rec.verdict = 'BROWSER'; }
     else {
       let r2; try { r2 = await withTimeout(runTool(t.name, buildCtx(meta, s2))); } catch { r2 = null; }
       const out2 = typeof r2 === 'string' ? r2 : JSON.stringify(r2, null, 2);
-      if (out1 === out2 && out1.length > 40) { rec.verdict = 'STATIC'; rec.sample = out1.slice(0, 120); }
-      else if (out1.trim().length < 12) { rec.verdict = 'SHALLOW'; rec.sample = out1.slice(0, 120); }
-      else { rec.verdict = 'REAL'; rec.sample = out1.slice(0, 120); }
+      if (out1 === out2 && out1.length > 40) rec.verdict = 'STATIC';
+      else if (out1.trim().length < 12) rec.verdict = 'SHALLOW';
+      else rec.verdict = 'REAL';
     }
+    rec.sample = out1.slice(0, 120);
   } catch (e) {
     const msg = String(e?.message || e);
     rec.sample = msg.slice(0, 120);
@@ -118,13 +201,99 @@ for (const t of catalog) {
   results.push(rec);
 }
 
+// ---- report --------------------------------------------------------------
 const counts = {};
 for (const r of results) counts[r.verdict] = (counts[r.verdict] || 0) + 1;
-fs.writeFileSync('tool-audit.json', JSON.stringify(results, null, 1));
-console.log(JSON.stringify(counts, null, 2));
-console.log('total', results.length);
-for (const v of ['CRASH', 'PLACEHOLDER', 'EMPTY', 'SHALLOW']) {
-  const list = results.filter((r) => r.verdict === v);
-  console.log(`\n### ${v} (${list.length})`);
-  console.log(list.map((r) => `${r.name}  [${r.category}]${r.sample ? '  :: ' + r.sample.replace(/\s+/g, ' ').slice(0, 70) : ''}`).join('\n'));
+
+const VERDICTS = [
+  ['REAL', 'computed output that changes with input'],
+  ['SHALLOW', 'real but terse'],
+  ['STATIC', 'identical for different inputs (reference or lookup)'],
+  ['VALIDATION', 'correctly rejected the generic sample'],
+  ['ENV', 'needs a browser API (Image/document/navigator)'],
+  ['BROWSER', 'needs a live tab or privileged API'],
+  ['PLACEHOLDER', 'says the capability is unavailable here'],
+  ['EMPTY', 'no match for the sample input'],
+  ['CRASH', 'threw an unexpected error'],
+];
+
+const cell = (s) => String(s ?? '').replace(/\s+/g, ' ').replace(/\|/g, '\\|').trim().slice(0, 70) || '—';
+
+function renderSummary() {
+  const cats = new Set(results.map((r) => r.category));
+  return [
+    `**${results.length} tools** across **${cats.size}** categories.`,
+    '',
+    '| Verdict | Meaning | Count |',
+    '|---|---|---:|',
+    ...VERDICTS.map(([v, m]) => `| \`${v}\` | ${m} | ${counts[v] || 0} |`),
+  ].join('\n');
+}
+
+function renderTools() {
+  const order = [];
+  const byCat = new Map();
+  for (const r of results) {
+    if (!byCat.has(r.category)) { byCat.set(r.category, []); order.push(r.category); }
+    byCat.get(r.category).push(r);
+  }
+  const out = [];
+  for (const cat of order) {
+    out.push(`### ${cat}`, '', '| Tool | Verdict | Output sample |', '|---|---|---|');
+    for (const r of byCat.get(cat)) out.push(`| ${cell(r.name)} | \`${r.verdict}\` | ${cell(r.sample)} |`);
+    out.push('');
+  }
+  return out.join('\n').trimEnd();
+}
+
+const json = JSON.stringify(results, null, 1);
+const SUMMARY_RE = /<!-- BEGIN GENERATED: audit summary -->[\s\S]*?<!-- END GENERATED: audit summary -->/;
+const TOOLS_RE = /<!-- BEGIN GENERATED: audit tools -->[\s\S]*?<!-- END GENERATED: audit tools -->/;
+
+function applyBlocks(text) {
+  if (!SUMMARY_RE.test(text) || !TOOLS_RE.test(text)) {
+    throw new Error(`${MD} is missing a generated block marker (audit summary / audit tools)`);
+  }
+  return text
+    .replace(SUMMARY_RE, `<!-- BEGIN GENERATED: audit summary -->\n${renderSummary()}\n<!-- END GENERATED: audit summary -->`)
+    .replace(TOOLS_RE, `<!-- BEGIN GENERATED: audit tools -->\n${renderTools()}\n<!-- END GENERATED: audit tools -->`);
+}
+
+if (CHECK) {
+  const drift = [];
+  const committed = fs.existsSync(OUT) ? fs.readFileSync(OUT, 'utf8') : '';
+  if (committed !== json) {
+    let before = [];
+    try { before = JSON.parse(committed); } catch { /* unparseable counts as total drift */ }
+    const was = new Map((Array.isArray(before) ? before : []).map((r) => [r.name, JSON.stringify(r)]));
+    const now = new Set(results.map((r) => r.name));
+    const changed = results.filter((r) => was.get(r.name) !== JSON.stringify(r)).map((r) => r.name);
+    const gone = [...was.keys()].filter((n) => !now.has(n));
+    drift.push(`${OUT}: ${changed.length} record(s) changed, ${gone.length} removed${changed.length ? ' — ' + changed.slice(0, 12).join(', ') + (changed.length > 12 ? ', …' : '') : ''}${gone.length ? ' — gone: ' + gone.slice(0, 8).join(', ') : ''}`);
+  }
+  if (!fs.existsSync(MD)) drift.push(`${MD}: missing`);
+  else {
+    const md = fs.readFileSync(MD, 'utf8');
+    let rendered;
+    try { rendered = applyBlocks(md); } catch (e) { drift.push(`${MD}: ${e.message}`); rendered = md; }
+    if (rendered !== md) drift.push(`${MD}: generated blocks are stale (run: node audit-tools.mjs)`);
+  }
+  if (drift.length) {
+    console.error('AUDIT DRIFT — the committed audit does not match what the code produces:');
+    for (const d of drift) console.error('  ' + d);
+    console.error(`(seed ${SEED}, clock ${new Date(CLOCK).toISOString()})`);
+    process.exit(1);
+  }
+  console.log(`audit check: OK — ${OUT} and ${MD} match ${results.length} tools (seed ${SEED})`);
+} else {
+  fs.writeFileSync(OUT, json);
+  const md = fs.readFileSync(MD, 'utf8');
+  fs.writeFileSync(MD, applyBlocks(md));
+  console.log(JSON.stringify(counts, null, 2));
+  console.log('total', results.length);
+  for (const v of ['CRASH', 'PLACEHOLDER', 'EMPTY', 'SHALLOW']) {
+    const list = results.filter((r) => r.verdict === v);
+    console.log(`\n### ${v} (${list.length})`);
+    console.log(list.map((r) => `${r.name}  [${r.category}]${r.sample ? '  :: ' + r.sample.replace(/\s+/g, ' ').slice(0, 70) : ''}`).join('\n'));
+  }
 }

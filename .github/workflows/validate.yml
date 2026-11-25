@@ -43,6 +43,12 @@ jobs:
       - name: Run the smoke test
         run: node test.mjs
 
+      # The functional audit is deterministic, so the committed results are a
+      # check: this re-runs every tool and fails if tool-audit.json or
+      # TOOL_AUDIT.md no longer match what the code produces.
+      - name: Check the functional audit is current
+        run: node audit-tools.mjs --check
+
       - name: Build every browser target
         run: node build.mjs
 
