@@ -245,3 +245,32 @@ await assert.rejects(() => p4('192.168.1.10/24/8'), /Enter an address/);
 // The catalog entry is real: the tool is registered, not merely listed.
 assert.ok(getImplementation('Reverse DNS (PTR) name'), 'the PTR tool must have a handler');
 assert.equal(globalThis.TTB_CATALOG.filter((t) => t.category === 'Network').length, 9);
+
+// The functional audit is deterministic (seeded RNG, pinned clock), so the
+// committed results are a CHECK and not a screenshot. This is the cheap half —
+// it proves the two artifacts agree with each other and with the catalog in a
+// second; `node audit-tools.mjs --check` is the expensive half and re-runs every
+// tool to prove they still agree with the code.
+const auditPath = new URL('./tool-audit.json', import.meta.url);
+const auditMdPath = new URL('./TOOL_AUDIT.md', import.meta.url);
+if (fs.existsSync(auditPath) && fs.existsSync(auditMdPath)) {
+  const audit = JSON.parse(fs.readFileSync(auditPath, 'utf8'));
+  assert.equal(audit.length, catalog.length, `the audit covers ${audit.length} of ${catalog.length} tools — re-run node audit-tools.mjs`);
+  const audited = new Set(audit.map((r) => r.name));
+  for (const t of catalog) assert.ok(audited.has(t.name), `audit is missing "${t.name}"`);
+  const counts = {};
+  for (const r of audit) counts[r.verdict] = (counts[r.verdict] || 0) + 1;
+  const md = fs.readFileSync(auditMdPath, 'utf8');
+  const summary = (md.split('<!-- BEGIN GENERATED: audit summary -->')[1] || '').split('<!-- END GENERATED: audit summary -->')[0];
+  assert.ok(summary, 'TOOL_AUDIT.md is missing its generated summary block');
+  assert.ok(summary.includes(`**${catalog.length} tools**`), `TOOL_AUDIT.md must publish the live tool count (${catalog.length})`);
+  const published = {};
+  for (const line of summary.split('\n')) {
+    const m = line.match(/^\| `([A-Z]+)` \|[^|]*\|\s*(\d+)\s*\|$/);
+    if (m) published[m[1]] = Number(m[2]);
+  }
+  for (const [v, n] of Object.entries(counts)) {
+    assert.equal(published[v], n, `TOOL_AUDIT.md says ${published[v]} ${v}, tool-audit.json says ${n} — re-run node audit-tools.mjs`);
+  }
+  console.log(`audit: ${audit.length} tools covered, ${Object.keys(counts).length} verdicts match TOOL_AUDIT.md`);
+}
