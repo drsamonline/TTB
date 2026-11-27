@@ -43,6 +43,14 @@ jobs:
       - name: Run the smoke test
         run: node test.mjs
 
+      # The same suite, run west of Greenwich. A calendar day typed as
+      # YYYY-MM-DD is UTC midnight to `new Date()`, which is the previous local
+      # day in the Americas: Saturday 26 + Sunday 27 December once counted as
+      # ONE business day, and 1 January 2026 was read as the year 2025. Running
+      # here means a date bug cannot come back green.
+      - name: Run the smoke test west of Greenwich
+        run: TZ=America/New_York node test.mjs
+
       - name: Build every browser target
         run: node build.mjs
 

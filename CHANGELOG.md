@@ -1,5 +1,45 @@
 # Changelog
 
+## 0.15.1 — A date you type is the day you typed
+
+Four date tools gave wrong answers and one of them was wrong for most of the
+year. `Zodiac` held each sign's **end** boundary and then named that sign, so a
+date between two boundaries answered with the sign before it — on 2026-06-01 it
+said Taurus, and Taurus ends on 20 May. Only 1–19 January came out right, and
+only by accident. The other three were a timezone bug: `new Date('2026-12-25')`
+is UTC midnight, which west of Greenwich is still 24 December, and the tools
+then asked that value for a weekday, a month and a date.
+
+### Fixed
+- **Zodiac** names the sign the date is actually in. The table now holds each
+  sign's first day and a date takes the last start it has reached. Checked on all
+  twelve signs and on both sides of the three boundaries that are easy to get
+  wrong (19/20 January, 20/21 March, 21/22 December).
+- **Business days** counted Saturday 26 + Sunday 27 December 2026 as **one**
+  business day in New York, because both dates had slipped back a day. It is 0.
+- **Add/subtract date** put 15 January + 30 days on a **Friday** in New York; it
+  is Saturday 14 February 2026.
+- **Chinese zodiac** read 1 January 2026 as the year 2025 west of Greenwich and
+  answered Snake (Wood) instead of Horse (Fire).
+- **Anniversary tracker** moved a 14 February anniversary to the 13th.
+  **Days-since tracker** and **Biorhythm** read the same shifted day, **Streak
+  tracker** recorded "today" as the UTC date, and **Countdown** named the day
+  before for a bare date.
+- A day that does not exist — `2026-02-30` — is refused instead of rolling
+  forward to 2 March.
+
+`tools/day.js` is now the one place that decides what a typed date means;
+`parseDay` and `dayString` are used by both date modules.
+
+### Tests
+- Nineteen zodiac dates (every sign, plus both sides of three boundaries), the
+  Saturday+Sunday range, a reversed range, both directions of add/subtract, the
+  Chinese year on 1 January, the anniversary day, the countdown day, and the
+  refused impossible date. Each one fails on 0.15.0.
+- **CI runs the whole suite a second time under `TZ=America/New_York`.** The date
+  tests are the reason: in UTC a date-only bug is invisible, and these four were
+  found only by asking what a user in the Americas sees.
+
 ## 0.15.0 — Reverse DNS (PTR) name
 
 One new tool in Network (8 → 9), and it is the question the other network tools

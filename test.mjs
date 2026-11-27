@@ -245,3 +245,39 @@ await assert.rejects(() => p4('192.168.1.10/24/8'), /Enter an address/);
 // The catalog entry is real: the tool is registered, not merely listed.
 assert.ok(getImplementation('Reverse DNS (PTR) name'), 'the PTR tool must have a handler');
 assert.equal(globalThis.TTB_CATALOG.filter((t) => t.category === 'Network').length, 9);
+
+// Dates — a day typed as YYYY-MM-DD is the day that was typed, wherever the
+// person is. `new Date('2026-12-25')` is UTC midnight, which west of Greenwich
+// is still 24 December, and every date tool here read that value and then asked
+// it for a weekday, a month and a date. Measured before this fix, in
+// America/New_York: Saturday 26 + Sunday 27 December counted as ONE business
+// day, 15 January + 30 days fell on a Friday, and 1 January 2026 was read as the
+// year 2025 (Snake instead of Horse).
+const zodiac = (text) => runTool('Zodiac', { text });
+for (const [date, sign] of [
+  ['2026-01-10', 'Capricorn'], ['2026-01-19', 'Capricorn'], ['2026-01-20', 'Aquarius'],
+  ['2026-02-18', 'Aquarius'], ['2026-02-19', 'Pisces'], ['2026-03-20', 'Pisces'],
+  ['2026-03-21', 'Aries'], ['2026-04-19', 'Aries'], ['2026-04-20', 'Taurus'], ['2026-05-21', 'Gemini'],
+  ['2026-06-01', 'Gemini'], ['2026-06-21', 'Cancer'], ['2026-07-23', 'Leo'],
+  ['2026-08-23', 'Virgo'], ['2026-09-23', 'Libra'], ['2026-10-23', 'Scorpio'],
+  ['2026-11-22', 'Sagittarius'], ['2026-12-21', 'Sagittarius'], ['2026-12-22', 'Capricorn'],
+  ['2026-12-31', 'Capricorn'],
+]) {
+  assert.equal(await zodiac(date), sign, `${date} is ${sign}`);
+}
+await assert.rejects(() => zodiac('2026-02-30'), /valid date/, 'a day that does not exist is refused, not rolled forward');
+
+const bd = async (a, b) => JSON.parse(await runTool('Business days', { text: a, b }));
+assert.equal((await bd('2026-12-26', '2026-12-27')).businessDays, 0, 'Saturday and Sunday are not business days in any zone');
+assert.equal((await bd('2026-12-24', '2026-12-31')).businessDays, 6);
+assert.equal((await bd('2026-12-31', '2026-12-24')).businessDays, 6, 'a reversed range counts the same days');
+const span = await bd('2026-12-24', '2026-12-31');
+assert.deepEqual([span.from, span.to], ['2026-12-24', '2026-12-31'], 'the dates come back as they were typed');
+assert.equal(span.calendarDays, 7);
+
+assert.equal(await runTool('Add/subtract date', { text: '2026-01-15', b: '30' }), '2026-02-14 (Saturday)');
+assert.equal(await runTool('Add/subtract date', { text: '2026-01-15', b: '-30' }), '2025-12-16 (Tuesday)');
+assert.equal(await runTool('Chinese zodiac', { text: '2026-01-01' }), 'Horse (Fire)', 'the year is the year typed, even at 00:00 on 1 January');
+assert.equal(await runTool('Chinese zodiac', { text: '2026-12-25' }), 'Horse (Fire)');
+assert.match(await runTool('Anniversary tracker', { text: 'Birthday', date: '2020-02-14' }), /Feb 14/, 'a 14 February anniversary stays on the 14th');
+assert.match(await runTool('Countdown', { text: '2026-12-25' }), /Dec 25/, 'a bare date counts down to that day, not the day before it');

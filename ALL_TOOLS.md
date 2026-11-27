@@ -1,6 +1,6 @@
 # TTB — Tiny Toolbox — Complete Tool List
 
-**Version:** 0.15.0  
+**Version:** 0.15.1  
 **Author:** Dr. Sohil Momin  
 **Tools:** 567  
 **Categories:** 18  

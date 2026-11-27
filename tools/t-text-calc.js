@@ -1,6 +1,7 @@
 // TTB — Text & Writing and Calculators & Converters (extended handlers).
 // Keyed by the lower-cased catalog name. Consulted only after the built-in
 // text/calc/dev modules decline a name, so nothing here shadows existing code.
+import { parseDay, dayString } from './day.js';
 const W = (s) => (String(s).match(/\b[\p{L}\p{N}][\p{L}\p{N}'’-]*\b/gu) || []);
 const syl = (w) => { const x = w.toLowerCase().replace(/[^a-z]/g, ''); if (!x) return 0; if (x.length <= 3) return 1; let n = (x.match(/[aeiouy]+/g) || []).length; if (/e$/.test(x) && n > 1) n--; return Math.max(1, n); };
 const rnd = (n) => { const b = crypto.getRandomValues(new Uint32Array(1))[0]; return b % n; };
@@ -182,21 +183,25 @@ export const TTB_EXTRA_CALC = {
     const hourly = target / (hours * weeks);
     return JSON.stringify({ annualTarget: target, billableHoursPerWeek: hours, workingWeeks: weeks, hourlyRate: fmt(hourly), dayRate: fmt(hourly * 8), weeklyRate: fmt(hourly * hours) }, null, 2); } },
   'business days': { name: 'Business days', cat: 'calc', inputs: [{ key: 'b', label: 'End date', type: 'text', placeholder: '2026-12-31' }], run: (t, c) => {
-    const a = new Date(t), b = new Date(c.b); if (isNaN(a) || isNaN(b)) throw Error('Enter two valid dates');
+    const a = parseDay(t), b = parseDay(c.b); if (!a || !b) throw Error('Enter two valid dates');
     const dir = a <= b ? 1 : -1; const d = new Date(a); let n = 0; const total = 0;
     while ((dir > 0 ? d <= b : d >= b)) { const day = d.getDay(); if (day !== 0 && day !== 6) n++; d.setDate(d.getDate() + dir); }
-    return JSON.stringify({ from: a.toISOString().slice(0, 10), to: b.toISOString().slice(0, 10), businessDays: n, calendarDays: Math.round(Math.abs(b - a) / 86400000) }, null, 2); } },
+    return JSON.stringify({ from: dayString(a), to: dayString(b), businessDays: n, calendarDays: Math.round(Math.abs(b - a) / 86400000) }, null, 2); } },
   'add/subtract date': { name: 'Add/subtract date', cat: 'calc', inputs: [{ key: 'b', label: 'Days (+/-)', type: 'number', value: '30' }], run: (t, c) => {
-    const d = new Date(t); if (isNaN(d)) throw Error('Enter a valid date'); const n = Number(c.b || 0);
-    d.setDate(d.getDate() + n); return d.toISOString().slice(0, 10) + ' (' + d.toLocaleDateString(undefined, { weekday: 'long' }) + ')'; } },
+    const d = parseDay(t); if (!d) throw Error('Enter a valid date'); const n = Number(c.b || 0);
+    d.setDate(d.getDate() + n); return dayString(d) + ' (' + d.toLocaleDateString(undefined, { weekday: 'long' }) + ')'; } },
   'zodiac': { name: 'Zodiac', cat: 'calc', run: (t) => {
-    const d = new Date(t); if (isNaN(d)) throw Error('Enter a valid date');
+    const d = parseDay(t); if (!d) throw Error('Enter a valid date');
     const m = d.getMonth() + 1, day = d.getDate();
-    const signs = [['Capricorn', 1, 19], ['Aquarius', 2, 18], ['Pisces', 3, 20], ['Aries', 4, 19], ['Taurus', 5, 20], ['Gemini', 6, 20], ['Cancer', 7, 22], ['Leo', 8, 22], ['Virgo', 9, 22], ['Libra', 10, 22], ['Scorpio', 11, 21], ['Sagittarius', 12, 21]];
-    let sign = 'Capricorn'; for (const [name, mm, dd] of signs) { if (m > mm || (m === mm && day > dd)) sign = name; }
+    // The first day of each sign, and the date is the LAST start it has reached.
+    // The table used to hold each sign's END boundary and then name that sign, so
+    // every date between two boundaries answered with the sign before it — on
+    // 2026-06-01 it said Taurus, and Taurus ends on 20 May.
+    const starts = [[1, 20, 'Aquarius'], [2, 19, 'Pisces'], [3, 21, 'Aries'], [4, 20, 'Taurus'], [5, 21, 'Gemini'], [6, 21, 'Cancer'], [7, 23, 'Leo'], [8, 23, 'Virgo'], [9, 23, 'Libra'], [10, 23, 'Scorpio'], [11, 22, 'Sagittarius'], [12, 22, 'Capricorn']];
+    let sign = 'Capricorn'; for (const [mm, dd, name] of starts) { if (m > mm || (m === mm && day >= dd)) sign = name; }
     return sign; } },
   'chinese zodiac': { name: 'Chinese zodiac', cat: 'calc', run: (t) => {
-    const y = new Date(t).getFullYear(); if (!y) throw Error('Enter a valid date');
+    const d = parseDay(t); if (!d) throw Error('Enter a valid date'); const y = d.getFullYear();
     const animals = ['Rat', 'Ox', 'Tiger', 'Rabbit', 'Dragon', 'Snake', 'Horse', 'Goat', 'Monkey', 'Rooster', 'Dog', 'Pig'];
     const elements = ['Wood', 'Fire', 'Earth', 'Metal', 'Water'];
     return `${animals[(y - 4) % 12]} (${elements[Math.floor(((y - 4) % 10) / 2)]})`; } },
@@ -223,7 +228,7 @@ export const TTB_EXTRA_CALC = {
       const ms = st.running ? now - st.start : (st.elapsed || 0);
       return JSON.stringify({ running: st.running, elapsedMs: ms, elapsed: (ms / 1000).toFixed(2) + 's', laps: st.laps.map((l, i) => `lap ${i + 1}: ${(l / 1000).toFixed(2)}s`) }, null, 2); })(); } },
   'countdown': { name: 'Countdown', cat: 'calc', run: (t) => {
-    const target = new Date(t); if (isNaN(target)) throw Error('Enter a valid target date/time');
+    const target = parseDay(t); if (!target) throw Error('Enter a valid target date/time');
     let ms = target - Date.now(); const past = ms < 0; ms = Math.abs(ms);
     const d = Math.floor(ms / 86400000), h = Math.floor(ms / 3600000) % 24, m = Math.floor(ms / 60000) % 60, s = Math.floor(ms / 1000) % 60;
     return `${past ? 'Since' : 'Until'} ${target.toString()}: ${d}d ${h}h ${m}m ${s}s`; } },
